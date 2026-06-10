@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Portal - Create Notice</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-container": "#a44100",
+                      "on-primary-fixed-variant": "#3323cc",
+                      "on-tertiary": "#ffffff",
+                      "surface-container-low": "#eff4ff",
+                      "inverse-on-surface": "#eaf1ff",
+                      "inverse-primary": "#c3c0ff",
+                      "tertiary-fixed-dim": "#ffb695",
+                      "surface": "#f8f9ff",
+                      "tertiary-fixed": "#ffdbcc",
+                      "secondary": "#006591",
+                      "on-secondary-fixed-variant": "#004c6e",
+                      "on-tertiary-container": "#ffd2be",
+                      "on-error": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "surface-container": "#e5eeff",
+                      "on-tertiary-fixed-variant": "#7b2f00",
+                      "on-background": "#0b1c30",
+                      "surface-container-highest": "#d3e4fe",
+                      "tertiary": "#7e3000",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary-container": "#dad7ff",
+                      "surface-tint": "#4d44e3",
+                      "on-secondary-container": "#004666",
+                      "secondary-fixed": "#c9e6ff",
+                      "primary-fixed": "#e2dfff",
+                      "inverse-surface": "#213145",
+                      "surface-container-high": "#dce9ff",
+                      "on-error-container": "#93000a",
+                      "error": "#ba1a1a",
+                      "secondary-container": "#39b8fd",
+                      "on-tertiary-fixed": "#351000",
+                      "surface-bright": "#f8f9ff",
+                      "primary-fixed-dim": "#c3c0ff",
+                      "secondary-fixed-dim": "#89ceff",
+                      "on-surface": "#0b1c30",
+                      "surface-dim": "#cbdbf5",
+                      "outline-variant": "#c7c4d8",
+                      "outline": "#777587",
+                      "surface-variant": "#d3e4fe",
+                      "primary": "#3525cd",
+                      "on-surface-variant": "#464555",
+                      "on-primary-fixed": "#0f0069",
+                      "background": "#f8f9ff",
+                      "on-secondary-fixed": "#001e2f",
+                      "on-primary": "#ffffff",
+                      "primary-container": "#4f46e5",
+                      "on-secondary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "2xl": "48px",
+                      "3xl": "64px",
+                      "sm": "8px",
+                      "gutter": "24px",
+                      "xl": "32px",
+                      "md": "16px",
+                      "lg": "24px",
+                      "xs": "4px",
+                      "margin-mobile": "16px",
+                      "container-max": "1440px",
+                      "base": "4px"
+              },
+              "fontFamily": {
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "headline-sm": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-sm": [
+                              "11px",
+                              {
+                                      "lineHeight": "1",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-sm": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-on-background min-h-screen font-body-md antialiased overflow-x-hidden flex">
+<!-- Navigation Drawer (Desktop) -->
+<nav class="hidden md:flex flex-col gap-sm py-xl w-[280px] h-full h-screen fixed left-0 top-0 border-r border-outline-variant dark:border-outline bg-surface-container-low dark:bg-inverse-surface z-40">
+<div class="font-headline-md text-headline-md text-primary dark:text-primary-fixed font-bold px-lg pb-xl">Admin Portal</div>
+<a class="flex items-center gap-md px-lg py-md text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all duration-200 cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-lg py-md text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all duration-200 cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="emergency">emergency</span>
+<span class="font-label-md text-label-md">Complaints</span>
+</a>
+<a class="flex items-center gap-md px-lg py-md text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all duration-200 cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-label-md text-label-md">Residents</span>
+</a>
+<!-- Active Tab: Notices intent -->
+<a class="flex items-center gap-md px-lg py-md text-primary dark:text-primary-fixed font-bold border-r-2 border-primary bg-primary-container/5 transition-all duration-200 cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="campaign" style="font-variation-settings: 'FILL' 1;">campaign</span>
+<span class="font-label-md text-label-md">Notices</span>
+</a>
+<a class="flex items-center gap-md px-lg py-md text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all duration-200 cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="ballot">ballot</span>
+<span class="font-label-md text-label-md">Polls</span>
+</a>
+<a class="flex items-center gap-md px-lg py-md text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all duration-200 cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="event_available">event_available</span>
+<span class="font-label-md text-label-md">Bookings</span>
+</a>
+</nav>
+<!-- Top App Bar (Mobile) & Nav Spacer for Desktop -->
+<div class="md:ml-[280px] w-full flex flex-col min-h-screen">
+<header class="md:hidden w-full top-0 sticky border-b border-outline-variant dark:border-outline bg-surface dark:bg-inverse-surface flex justify-between items-center px-margin-mobile py-sm z-30">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed cursor-pointer active:opacity-80 transition-opacity" data-icon="menu">menu</span>
+<span class="font-headline-sm text-headline-sm-mobile text-primary dark:text-primary-fixed font-bold">CommunityHub</span>
+</div>
+<div class="w-[32px] h-[32px] rounded-full bg-surface-variant overflow-hidden cursor-pointer active:opacity-80 transition-opacity">
+<img alt="User profile photo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLt1JeRPdmNF8n0V5S1_EZ1NTcZIZvjgs6AtO-HYdjepIUQ9FaE5_sTq_MwIav1wwRvbWyXriNjRUKhAL-n4Xy95vbZ7GCIpyEI8PluSVFOZUXOdmtAGm8j4cl5LRAo9_uQ0TxZjxmfSoF8QWopuQxX5owLyHS7drvIp0_jWj8ADsRdOWuptm1D35qvDNN8tFbgbZJm-g6FFEwmTqQgPxJEuq455VxX6zmNZL984Rq7JhN3Sm1gzYdZVEA"/>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 px-margin-mobile md:px-gutter py-lg md:py-xl max-w-container-max mx-auto w-full pb-3xl md:pb-xl">
+<div class="mb-lg">
+<a class="inline-flex items-center gap-xs text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md mb-md" href="#">
+<span class="material-symbols-outlined text-[16px]" data-icon="arrow_back">arrow_back</span>
+                    Back to Notices
+                </a>
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background">Create Notice</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Draft and publish a new announcement for residents.</p>
+</div>
+<!-- Form Container -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md md:p-xl shadow-[0_8px_24px_rgba(11,28,48,0.04)]">
+<form class="space-y-lg">
+<!-- Title Input -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-xs" for="notice-title">Notice Title</label>
+<input class="w-full bg-surface border border-outline-variant rounded-lg px-md py-sm font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary-fixed transition-all placeholder:text-outline" id="notice-title" placeholder="e.g., Upcoming Water Maintenance" type="text"/>
+</div>
+<!-- Content Editor (Rich Text Mockup) -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-xs">Content</label>
+<div class="border border-outline-variant rounded-lg overflow-hidden flex flex-col bg-surface">
+<!-- Toolbar -->
+<div class="flex items-center gap-sm p-sm border-b border-outline-variant bg-surface-container-low flex-wrap">
+<button class="p-xs text-on-surface-variant hover:text-primary hover:bg-surface-variant rounded transition-colors" type="button"><span class="material-symbols-outlined text-[20px]" data-icon="format_bold">format_bold</span></button>
+<button class="p-xs text-on-surface-variant hover:text-primary hover:bg-surface-variant rounded transition-colors" type="button"><span class="material-symbols-outlined text-[20px]" data-icon="format_italic">format_italic</span></button>
+<button class="p-xs text-on-surface-variant hover:text-primary hover:bg-surface-variant rounded transition-colors" type="button"><span class="material-symbols-outlined text-[20px]" data-icon="format_underlined">format_underlined</span></button>
+<div class="w-px h-[20px] bg-outline-variant mx-xs"></div>
+<button class="p-xs text-on-surface-variant hover:text-primary hover:bg-surface-variant rounded transition-colors" type="button"><span class="material-symbols-outlined text-[20px]" data-icon="format_list_bulleted">format_list_bulleted</span></button>
+<button class="p-xs text-on-surface-variant hover:text-primary hover:bg-surface-variant rounded transition-colors" type="button"><span class="material-symbols-outlined text-[20px]" data-icon="format_list_numbered">format_list_numbered</span></button>
+<div class="w-px h-[20px] bg-outline-variant mx-xs"></div>
+<button class="p-xs text-on-surface-variant hover:text-primary hover:bg-surface-variant rounded transition-colors" type="button"><span class="material-symbols-outlined text-[20px]" data-icon="link">link</span></button>
+</div>
+<!-- Editable Area -->
+<textarea class="w-full border-none resize-y p-md font-body-md text-body-md text-on-surface focus:outline-none focus:ring-0 bg-transparent placeholder:text-outline" id="notice-content" placeholder="Write the details of the notice here..." rows="6"></textarea>
+</div>
+</div>
+<!-- Meta Data Row: Expiry & Pin -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<!-- Expiry Date -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-xs" for="expiry-date">Expiry Date (Optional)</label>
+<div class="relative">
+<input class="w-full bg-surface border border-outline-variant rounded-lg pl-md pr-[40px] py-sm font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary-fixed transition-all" id="expiry-date" type="date"/>
+<span class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 text-outline pointer-events-none" data-icon="calendar_today">calendar_today</span>
+</div>
+<p class="font-body-md text-[12px] text-on-surface-variant mt-xs">Notice will automatically be archived after this date.</p>
+</div>
+<!-- Pin Toggle -->
+<div class="flex items-center justify-between p-md border border-outline-variant rounded-lg bg-surface">
+<div>
+<div class="font-label-md text-label-md text-on-surface">Pin Notice</div>
+<div class="font-body-md text-[12px] text-on-surface-variant mt-base">Keep this notice at the top of the feed.</div>
+</div>
+<!-- Toggle Switch UI -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-fixed rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-outline-variant after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+<!-- Attachment Upload (Drag & Drop) -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-xs">Attachments</label>
+<div class="border-2 border-dashed border-outline-variant rounded-lg p-lg flex flex-col items-center justify-center text-center hover:border-primary hover:bg-surface-container-low transition-colors cursor-pointer group bg-surface">
+<div class="w-[48px] h-[48px] rounded-full bg-surface-container-high flex items-center justify-center mb-md group-hover:bg-primary-container/10 transition-colors">
+<span class="material-symbols-outlined text-primary text-[24px]" data-icon="cloud_upload">cloud_upload</span>
+</div>
+<div class="font-label-md text-label-md text-on-surface mb-xs">Drag and drop files here, or <span class="text-primary hover:underline">browse</span></div>
+<div class="font-body-md text-[12px] text-on-surface-variant">Supports PDF, JPG, PNG (Max 5MB)</div>
+</div>
+</div>
+<hr class="border-outline-variant my-lg"/>
+<!-- Action Buttons -->
+<div class="flex flex-col sm:flex-row justify-end gap-md">
+<button class="px-[20px] py-[10px] rounded-lg border border-outline text-on-surface font-label-md text-label-md hover:bg-surface-variant transition-colors bg-surface-container-lowest" type="button">Cancel</button>
+<button class="px-[20px] py-[10px] rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:bg-primary/90 transition-colors shadow-sm flex items-center justify-center gap-xs" type="submit">
+<span class="material-symbols-outlined text-[18px]" data-icon="send">send</span>
+                            Publish Notice
+                        </button>
+</div>
+</form>
+</div>
+</main>
+</div>
+<!-- Bottom Nav Bar (Mobile Only - Suppressed on specific task flows, but kept here for contextual completion if deemed top-level in mobile view, though typically "Create" hides nav. As per "Linear/Transactional" rule, a "Create" screen implies a temporary departure, so technically we should suppress. I will suppress the bottom nav to prioritize the canvas for form entry). -->
+</body></html>

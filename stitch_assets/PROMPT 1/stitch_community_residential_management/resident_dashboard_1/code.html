@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-low": "#eff4ff",
+                      "on-error": "#ffffff",
+                      "error": "#ba1a1a",
+                      "surface-container": "#e5eeff",
+                      "secondary-fixed": "#c9e6ff",
+                      "on-secondary": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "on-primary-container": "#dad7ff",
+                      "on-surface-variant": "#464555",
+                      "background": "#f8f9ff",
+                      "tertiary": "#7e3000",
+                      "primary-fixed-dim": "#c3c0ff",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-tint": "#4d44e3",
+                      "tertiary-fixed-dim": "#ffb695",
+                      "tertiary-container": "#a44100",
+                      "on-secondary-fixed": "#001e2f",
+                      "surface-bright": "#f8f9ff",
+                      "on-primary-fixed": "#0f0069",
+                      "surface": "#f8f9ff",
+                      "surface-container-high": "#dce9ff",
+                      "on-secondary-container": "#004666",
+                      "surface-variant": "#d3e4fe",
+                      "on-tertiary-fixed-variant": "#7b2f00",
+                      "on-tertiary": "#ffffff",
+                      "on-surface": "#0b1c30",
+                      "error-container": "#ffdad6",
+                      "inverse-on-surface": "#eaf1ff",
+                      "tertiary-fixed": "#ffdbcc",
+                      "on-background": "#0b1c30",
+                      "surface-container-highest": "#d3e4fe",
+                      "secondary-container": "#39b8fd",
+                      "primary-container": "#4f46e5",
+                      "secondary": "#006591",
+                      "on-tertiary-container": "#ffd2be",
+                      "primary-fixed": "#e2dfff",
+                      "on-primary-fixed-variant": "#3323cc",
+                      "outline-variant": "#c7c4d8",
+                      "surface-dim": "#cbdbf5",
+                      "inverse-surface": "#213145",
+                      "on-tertiary-fixed": "#351000",
+                      "secondary-fixed-dim": "#89ceff",
+                      "on-primary": "#ffffff",
+                      "on-secondary-fixed-variant": "#004c6e",
+                      "outline": "#777587",
+                      "primary": "#3525cd",
+                      "inverse-primary": "#c3c0ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "md": "16px",
+                      "2xl": "48px",
+                      "margin-mobile": "16px",
+                      "gutter": "24px",
+                      "base": "4px",
+                      "xs": "4px",
+                      "3xl": "64px",
+                      "lg": "24px",
+                      "sm": "8px",
+                      "container-max": "1440px",
+                      "xl": "32px"
+              },
+              "fontFamily": {
+                      "headline-lg-mobile": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "headline-sm": ["Inter"],
+                      "label-md": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "label-sm": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                      "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "body-md": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "headline-sm": ["18px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                      "label-md": ["12px", {"lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                      "label-sm": ["11px", {"lineHeight": "1", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+      </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen pb-24 md:pb-0">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface w-full top-0 sticky border-b border-outline-variant dark:border-outline z-40">
+<div class="flex justify-between items-center px-margin-mobile md:px-lg h-16 w-full">
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed-dim hover:bg-surface-container-high transition-colors p-2 rounded-full active:scale-95">menu</button>
+<h1 class="font-headline-md text-headline-md-mobile md:text-headline-md font-bold text-primary dark:text-primary-fixed-dim">CommUnity</h1>
+</div>
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container overflow-hidden">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a young adult resident with a friendly expression. The lighting is soft and natural, emphasizing a high-end lifestyle aesthetic. The background is a blurred modern architectural space with neutral tones and clean lines. The overall mood is welcoming, professional, and sophisticated, matching the CommUnity brand's minimalist and efficient persona." src="https://lh3.googleusercontent.com/aida/AP1WRLtQJVnp0qC8ZeDSSjWuQ5Af1_n75GJWfK2K18t19EIsEhkthGzojxTwtTvN_yVoKMbxtIvdH-KPoQBxXdiDkw2X2uvF_UEA-HQXerFMu860aDnxC_MEy_TkD8peBdG622TELsyQ8lN34IDAD_J1CWq2R7iQPV7y7KPL7HoNRWLc3s4uH8SairM2VMGT3sQAkCoFAzzdZ2JTlYm0o3Nbd6Qj4ekolS9bLyaHTg_q2JRA-MxDROuKhHSrevg"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto p-md md:p-lg lg:p-xl space-y-xl">
+<!-- Welcome Section -->
+<section class="space-y-sm">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Good Morning, Alex</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Here is what is happening in your community today.</p>
+</section>
+<!-- Metrics Grid: Bento Style -->
+<section class="grid grid-cols-2 md:grid-cols-4 gap-md">
+<div class="p-md md:p-lg rounded-xl bg-surface-container-low border border-outline-variant flex flex-col justify-between h-32 md:h-40 transition-transform hover:scale-[1.02]">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">report_problem</span>
+<span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm">Action Needed</span>
+</div>
+<div>
+<div class="font-headline-md text-headline-md text-on-surface">2</div>
+<div class="font-label-md text-label-md text-on-surface-variant">Open Complaints</div>
+</div>
+</div>
+<div class="p-md md:p-lg rounded-xl bg-surface-container border border-outline-variant flex flex-col justify-between h-32 md:h-40 transition-transform hover:scale-[1.02]">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">notifications</span>
+</div>
+<div>
+<div class="font-headline-md text-headline-md text-on-surface">5</div>
+<div class="font-label-md text-label-md text-on-surface-variant">Unread Notices</div>
+</div>
+</div>
+<div class="p-md md:p-lg rounded-xl bg-surface-container-high border border-outline-variant flex flex-col justify-between h-32 md:h-40 transition-transform hover:scale-[1.02]">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">poll</span>
+<span class="px-2 py-0.5 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm">Active</span>
+</div>
+<div>
+<div class="font-headline-md text-headline-md text-on-surface">1</div>
+<div class="font-label-md text-label-md text-on-surface-variant">Active Poll</div>
+</div>
+</div>
+<div class="p-md md:p-lg rounded-xl bg-surface-container-highest border border-outline-variant flex flex-col justify-between h-32 md:h-40 transition-transform hover:scale-[1.02]">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-outline">event_available</span>
+</div>
+<div>
+<div class="font-headline-md text-headline-md text-on-surface">0</div>
+<div class="font-label-md text-label-md text-on-surface-variant">Pending Bookings</div>
+</div>
+</div>
+</section>
+<!-- Quick Actions -->
+<section class="space-y-md">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Quick Actions</h3>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-md">
+<button class="flex items-center gap-md p-md bg-surface-container-lowest border border-outline-variant rounded-xl hover:bg-surface-container-low transition-all active:scale-95 text-left group">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-on-primary-container group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">add_circle</span>
+</div>
+<span class="font-label-md text-label-md font-bold">Raise Complaint</span>
+</button>
+<button class="flex items-center gap-md p-md bg-surface-container-lowest border border-outline-variant rounded-xl hover:bg-surface-container-low transition-all active:scale-95 text-left group">
+<div class="w-10 h-10 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">campaign</span>
+</div>
+<span class="font-label-md text-label-md font-bold">View Notices</span>
+</button>
+<button class="flex items-center gap-md p-md bg-surface-container-lowest border border-outline-variant rounded-xl hover:bg-surface-container-low transition-all active:scale-95 text-left group">
+<div class="w-10 h-10 rounded-lg bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed-variant group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">how_to_vote</span>
+</div>
+<span class="font-label-md text-label-md font-bold">Vote in Polls</span>
+</button>
+<button class="flex items-center gap-md p-md bg-surface-container-lowest border border-outline-variant rounded-xl hover:bg-surface-container-low transition-all active:scale-95 text-left group">
+<div class="w-10 h-10 rounded-lg bg-surface-variant flex items-center justify-center text-on-secondary-container group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">calendar_month</span>
+</div>
+<span class="font-label-md text-label-md font-bold">Book Facility</span>
+</button>
+</div>
+</section>
+<!-- Two Column Layout: Feed & Highlights -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter items-start">
+<!-- Activity Feed -->
+<section class="lg:col-span-2 space-y-md">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Recent Activity</h3>
+<button class="text-primary font-label-md text-label-md hover:underline">View All</button>
+</div>
+<div class="space-y-sm">
+<!-- Feed Card 1 -->
+<div class="p-md bg-surface-container-lowest border border-outline-variant rounded-xl flex gap-md items-start">
+<div class="mt-1 w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="flex-1 space-y-xs">
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-on-surface-variant">Complaint #CP-1024</span>
+<span class="font-label-sm text-label-sm text-outline">2h ago</span>
+</div>
+<h4 class="font-body-lg text-body-lg font-semibold text-on-surface">Issue Resolved</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Maintenance completed: The leaky pipe in Block C hallway has been fixed and tested.</p>
+<div class="pt-sm flex items-center gap-sm">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">Maintenance</span>
+<span class="px-2 py-0.5 rounded bg-green-100 text-green-800 font-label-sm text-label-sm">Resolved</span>
+</div>
+</div>
+</div>
+<!-- Feed Card 2 -->
+<div class="p-md bg-surface-container-lowest border border-outline-variant rounded-xl flex gap-md items-start">
+<div class="mt-1 w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">pending_actions</span>
+</div>
+<div class="flex-1 space-y-xs">
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-on-surface-variant">Complaint #CP-1029</span>
+<span class="font-label-sm text-label-sm text-outline">Yesterday</span>
+</div>
+<h4 class="font-body-lg text-body-lg font-semibold text-on-surface">Update Pending</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Status change: Your report 'Security gate glitch' is now under investigation by technical staff.</p>
+<div class="pt-sm flex items-center gap-sm">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">Security</span>
+<span class="px-2 py-0.5 rounded bg-yellow-100 text-yellow-800 font-label-sm text-label-sm">In Progress</span>
+</div>
+</div>
+</div>
+<!-- Feed Card 3 -->
+<div class="p-md bg-surface-container-lowest border border-outline-variant rounded-xl flex gap-md items-start">
+<div class="mt-1 w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-outline" style="font-variation-settings: 'FILL' 1;">history</span>
+</div>
+<div class="flex-1 space-y-xs">
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-on-surface-variant">System Log</span>
+<span class="font-label-sm text-label-sm text-outline">Oct 24</span>
+</div>
+<h4 class="font-body-lg text-body-lg font-semibold text-on-surface">Facility Booking Confirmed</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">You have successfully booked the Tennis Court for Oct 28 at 18:00.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Sidebar Context -->
+<section class="space-y-xl">
+<!-- Upcoming Event Glass Card -->
+<div class="p-lg rounded-2xl relative overflow-hidden bg-primary text-on-primary">
+<div class="relative z-10 space-y-md">
+<span class="font-label-md text-label-md bg-white/20 px-2 py-1 rounded">Featured Event</span>
+<h4 class="font-headline-sm text-headline-sm">Annual Resident Gala</h4>
+<p class="font-body-md text-body-md text-on-primary-container">Join us for a night of community bonding at the Grand Plaza. Refreshments provided.</p>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-label-md text-label-md">Friday, 15 Nov • 7:00 PM</span>
+</div>
+<button class="w-full py-3 bg-white text-primary rounded-xl font-bold font-label-md text-label-md active:scale-95 transition-transform">RSVP Now</button>
+</div>
+<!-- Abstract Background Pattern -->
+<div class="absolute -right-8 -bottom-8 w-32 h-32 bg-white/10 rounded-full blur-3xl"></div>
+</div>
+<!-- Featured Image Card -->
+<div class="rounded-xl overflow-hidden border border-outline-variant bg-surface-container-lowest group cursor-pointer">
+<div class="h-48 overflow-hidden">
+<img alt="Community Living" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A luxurious modern apartment complex with lush green vertical gardens and a clear blue swimming pool in the foreground. The lighting is golden hour, casting long, warm shadows and highlighting the premium glass and steel architecture. The scene represents a serene, high-end residential environment that feels secure and peaceful, perfectly embodying the CommUnity lifestyle." src="https://lh3.googleusercontent.com/aida/AP1WRLveTeKQPhMsfVTyz-9drIs6Mg_2SQAjkRVtVC2GDHTlKPZacytuZVheP6tKnWKXURwzJC6LGf448Nf94SF3g14XwsYinjftXaAr7yVfRqSYHHEAk9c-5e0_tbZccaN6aenM9mJn7gjYkwIj5_fZRvrSp19jM21ia_rw-Z0q2PUM5PQ4ThkESGp1AJyCqxRpmARxwjpfYR3Ky4Ci-0p5MYsc_dmMUccTkQ7yRvSlgur0ZfhL5foh3b5vjg"/>
+</div>
+<div class="p-md space-y-xs">
+<h4 class="font-body-lg text-body-lg font-bold">New Gym Equipment</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">The fitness center has been upgraded with state-of-the-art cardio machines.</p>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Navigation Drawer (Desktop) -->
+<aside class="hidden md:flex flex-col p-md gap-sm fixed left-0 top-0 h-full w-[280px] bg-surface-container-low dark:bg-inverse-surface border-r border-outline-variant dark:border-outline z-50">
+<div class="font-headline-sm text-headline-sm text-primary dark:text-primary-fixed-dim mb-lg font-bold flex items-center gap-sm px-md">
+<span class="material-symbols-outlined">location_city</span>
+            CommUnity Admin
+        </div>
+<nav class="space-y-1">
+<a class="flex items-center gap-md p-md bg-primary-container text-on-primary-container dark:bg-primary dark:text-on-primary rounded-lg font-bold transition-all active:translate-x-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high transition-all active:translate-x-1" href="#">
+<span class="material-symbols-outlined">assignment_late</span>
+<span class="font-body-md text-body-md">Complaints</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high transition-all active:translate-x-1" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-body-md text-body-md">Residents</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high transition-all active:translate-x-1" href="#">
+<span class="material-symbols-outlined">poll</span>
+<span class="font-body-md text-body-md">Polls</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high transition-all active:translate-x-1" href="#">
+<span class="material-symbols-outlined">event_available</span>
+<span class="font-body-md text-body-md">Bookings</span>
+</a>
+</nav>
+</aside>
+<!-- BottomNavBar (Mobile) -->
+<nav class="md:hidden flex justify-around items-center h-20 w-full px-4 pb-safe bg-surface-container-lowest dark:bg-inverse-surface fixed bottom-0 z-50 border-t border-outline-variant dark:border-outline">
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed-dim font-bold active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">report_problem</span>
+<span class="font-label-md text-label-md">Complaints</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">notifications</span>
+<span class="font-label-md text-label-md">Notices</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</nav>
+<!-- FAB for Quick Complaint -->
+<button class="fixed right-md bottom-24 md:bottom-md md:right-md w-14 h-14 bg-primary text-on-primary rounded-2xl shadow-xl flex items-center justify-center active:scale-90 transition-transform z-40">
+<span class="material-symbols-outlined" style="font-variation-settings: 'wght' 600;">add</span>
+</button>
+<script>
+        // Simple micro-interaction for cards
+        document.querySelectorAll('.transition-transform').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.classList.add('shadow-md');
+            });
+            card.addEventListener('mouseleave', () => {
+                card.classList.remove('shadow-md');
+            });
+        });
+    </script>
+</body></html>

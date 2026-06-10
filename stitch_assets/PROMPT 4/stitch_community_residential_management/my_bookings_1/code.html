@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Bookings</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#006591",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "tertiary-fixed-dim": "#ffb695",
+                        "primary-container": "#4f46e5",
+                        "primary": "#3525cd",
+                        "inverse-surface": "#213145",
+                        "error": "#ba1a1a",
+                        "tertiary": "#7e3000",
+                        "tertiary-container": "#a44100",
+                        "surface-dim": "#cbdbf5",
+                        "surface-tint": "#4d44e3",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#ffdbcc",
+                        "on-surface": "#0b1c30",
+                        "on-surface-variant": "#464555",
+                        "on-primary-container": "#dad7ff",
+                        "on-secondary-fixed": "#001e2f",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "primary-fixed": "#e2dfff",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#d3e4fe",
+                        "on-background": "#0b1c30",
+                        "on-tertiary-fixed": "#351000",
+                        "on-secondary-container": "#004666",
+                        "surface-container": "#e5eeff",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-container": "#ffd2be",
+                        "surface-container-high": "#dce9ff",
+                        "secondary-container": "#39b8fd",
+                        "surface-container-low": "#eff4ff",
+                        "surface-container-highest": "#d3e4fe",
+                        "secondary-fixed-dim": "#89ceff",
+                        "surface-bright": "#f8f9ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#7b2f00",
+                        "on-primary-fixed": "#0f0069",
+                        "secondary-fixed": "#c9e6ff",
+                        "outline": "#777587",
+                        "surface": "#f8f9ff",
+                        "background": "#f8f9ff",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "on-secondary-fixed-variant": "#004c6e",
+                        "inverse-primary": "#c3c0ff",
+                        "outline-variant": "#c7c4d8",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "3xl": "64px",
+                        "base": "4px",
+                        "xs": "4px",
+                        "xl": "32px",
+                        "margin-mobile": "16px",
+                        "md": "16px",
+                        "container-max": "1440px",
+                        "2xl": "48px",
+                        "sm": "8px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-sm": ["11px", { "lineHeight": "1", "fontWeight": "600" }],
+                        "headline-sm": ["18px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            -webkit-tap-highlight-color: transparent;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased min-h-screen pb-[80px]">
+<!-- TopAppBar -->
+<header class="bg-surface-container-lowest text-primary flex justify-between items-center px-margin-mobile md:px-lg h-16 w-full fixed top-0 z-50 border-b border-outline-variant flat no shadows md:hidden">
+<div class="flex items-center gap-sm cursor-pointer hover:bg-surface-variant transition-colors rounded-full p-1">
+<div class="w-8 h-8 rounded-full bg-surface-variant overflow-hidden border border-outline-variant">
+<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="A close-up, professional headshot of a smiling young woman with light brown hair, set against a clean, minimal white background. The lighting is soft and natural, evoking a friendly, approachable, and trustworthy community resident persona within a bright, modern application interface." src="https://lh3.googleusercontent.com/aida/AP1WRLtWJdQT-Qad1Qw341pOz4gB-LLb66NIq_8BpFgWruMRnJ6B2yAI3NHgtMJGXUM_euZroRTkOZx9gRASJV_2c7_x6KuniokSeb4dXs0BsluHayiVOtCeRI4LqB6ejXzv-aj5naof4f1oEPmuk3iUYhctEzyvDGKB5eApa4cAUYVRxgyLZn7TQWCa5pZ7-uq4mz4aXiwLJYBxoe_MlKMpaOz1y4M9bynUv6almqyCD21MFfou0iK-X7m6nvQ"/>
+</div>
+</div>
+<div class="font-headline-md text-headline-md text-primary tracking-tight">
+            CommUnity
+        </div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-variant transition-colors active:scale-95 duration-100">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</header>
+<!-- Desktop Navigation Drawer (Hidden on Mobile) -->
+<nav class="bg-surface-container-low text-primary hidden md:flex flex-col p-lg gap-sm fixed left-0 top-0 h-full w-[280px] border-r border-outline-variant z-40">
+<div class="flex items-center gap-md mb-xl pl-2">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant">
+<img alt="Admin user profile" class="w-full h-full object-cover" data-alt="A professional headshot of an administrative user, slightly out of focus to serve as a placeholder avatar. The lighting is bright and corporate, aligning with a high-end, efficient property management portal design." src="https://lh3.googleusercontent.com/aida/AP1WRLuewYUoSR1QTcAF4HAppl3o3_Bl-BW41vpglih0tLGm0b_-HiSdZwL-BG_I_6BuMQP9SHAcyjJTfQG3kai7E34BSIjpo9VyKghXqmgpYrk1osmWU9rBp_Nlr1CmMOhSyRmgSVnCILXa8jQKbaxbkm2_lBeDpxDZ45jR3ez8Mst4Uqz8fj81saNY4xqUZVFUSWgqyEpBbJh34O4iqcmrgC-6A7SwENUdXE2Iil7ntQ3oWAF2PKmSfG3BCgA"/>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-primary font-bold">Admin Portal</div>
+<div class="font-label-md text-label-md text-on-surface-variant">Property Manager</div>
+</div>
+</div>
+<div class="flex flex-col gap-1 flex-1">
+<a class="flex items-center gap-md px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">analytics</span> Overview
+            </a>
+<a class="flex items-center gap-md px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">domain</span> Units
+            </a>
+<a class="flex items-center gap-md px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">group</span> Residents
+            </a>
+<!-- Approximating "My Bookings" intent to a generic active state for demo purposes if viewed on desktop, though requested mobile screen -->
+<a class="flex items-center gap-md px-4 py-3 rounded-lg text-primary font-bold border-r-4 border-primary bg-surface-container-highest font-body-md text-body-md active:translate-x-1 duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">book_online</span> Bookings
+            </a>
+<a class="flex items-center gap-md px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">payments</span> Finances
+            </a>
+<a class="flex items-center gap-md px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">build</span> Maintenance
+            </a>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant">
+<a class="flex items-center gap-md px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">settings</span> Settings
+            </a>
+<div class="px-4 py-2 font-label-sm text-label-sm text-outline">V1.0.2</div>
+</div>
+</nav>
+<!-- Main Canvas -->
+<main class="pt-20 md:pt-lg md:ml-[280px] px-margin-mobile md:px-xl max-w-container-max mx-auto">
+<!-- Page Header -->
+<div class="mb-lg flex justify-between items-end">
+<div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-surface mb-xs">My Bookings</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage your facility reservations.</p>
+</div>
+<button class="hidden md:flex items-center gap-xs bg-primary text-on-primary px-4 py-2 rounded-lg hover:bg-surface-tint transition-colors font-label-md text-label-md shadow-sm">
+<span class="material-symbols-outlined text-[18px]">add</span> New Booking
+            </button>
+</div>
+<!-- Segmented Tabs -->
+<div class="flex gap-sm mb-lg overflow-x-auto hide-scrollbar pb-1">
+<button class="whitespace-nowrap px-lg py-2 rounded-full bg-primary text-on-primary font-label-md text-label-md shadow-sm transition-all">
+                Pending
+            </button>
+<button class="whitespace-nowrap px-lg py-2 rounded-full bg-surface-container border border-outline-variant text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-all">
+                Approved
+            </button>
+<button class="whitespace-nowrap px-lg py-2 rounded-full bg-surface-container border border-outline-variant text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-all">
+                Rejected
+            </button>
+</div>
+<!-- Bookings List (Bento-inspired minimal cards) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md">
+<!-- Card 1: Pending -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col gap-md relative group hover:border-primary/30 transition-colors">
+<div class="absolute top-md right-md bg-surface-variant text-on-surface-variant px-2 py-1 rounded-full font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">schedule</span> Pending
+                </div>
+<div class="flex items-start gap-md">
+<div class="w-16 h-16 rounded-lg bg-surface-container overflow-hidden shrink-0">
+<div class="w-full h-full bg-gradient-to-br from-secondary-container/20 to-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[32px]">pool</span>
+</div>
+</div>
+<div class="pt-1 pr-16">
+<h3 class="font-headline-sm text-headline-sm-mobile text-on-surface mb-xs">Community Pool</h3>
+<div class="flex flex-col gap-1 text-on-surface-variant font-body-md text-body-md">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px] text-outline">calendar_today</span> Oct 24, 2023
+                            </div>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px] text-outline">schedule</span> 14:00 - 16:00
+                            </div>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-sm flex gap-xs">
+<button class="flex-1 py-2 rounded-lg border border-outline-variant text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low transition-colors">
+                        Cancel
+                    </button>
+<button class="flex-1 py-2 rounded-lg bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors">
+                        Modify
+                    </button>
+</div>
+</div>
+<!-- Card 2: Approved (Simulated mixed view for demonstration) -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col gap-md relative group hover:border-primary/30 transition-colors">
+<div class="absolute top-md right-md bg-primary-container/10 text-primary px-2 py-1 rounded-full font-label-sm text-label-sm flex items-center gap-1 border border-primary/20">
+<span class="material-symbols-outlined text-[12px]">check_circle</span> Approved
+                </div>
+<div class="flex items-start gap-md">
+<div class="w-16 h-16 rounded-lg bg-surface-container overflow-hidden shrink-0">
+<div class="w-full h-full bg-gradient-to-br from-tertiary-container/10 to-primary-container/10 flex items-center justify-center text-tertiary-container">
+<span class="material-symbols-outlined text-[32px]">fitness_center</span>
+</div>
+</div>
+<div class="pt-1 pr-16">
+<h3 class="font-headline-sm text-headline-sm-mobile text-on-surface mb-xs">Gym - Cardio Zone</h3>
+<div class="flex flex-col gap-1 text-on-surface-variant font-body-md text-body-md">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px] text-outline">calendar_today</span> Oct 25, 2023
+                            </div>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px] text-outline">schedule</span> 07:00 - 08:30
+                            </div>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-sm flex gap-xs">
+<button class="flex-1 py-2 rounded-lg border border-outline-variant text-error font-label-md text-label-md hover:bg-error-container/50 transition-colors">
+                        Cancel Booking
+                    </button>
+</div>
+</div>
+<!-- Card 3: Pending -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col gap-md relative group hover:border-primary/30 transition-colors">
+<div class="absolute top-md right-md bg-surface-variant text-on-surface-variant px-2 py-1 rounded-full font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">schedule</span> Pending
+                </div>
+<div class="flex items-start gap-md">
+<div class="w-16 h-16 rounded-lg bg-surface-container overflow-hidden shrink-0">
+<div class="w-full h-full bg-gradient-to-br from-secondary/10 to-primary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[32px]">sports_tennis</span>
+</div>
+</div>
+<div class="pt-1 pr-16">
+<h3 class="font-headline-sm text-headline-sm-mobile text-on-surface mb-xs">Tennis Court 2</h3>
+<div class="flex flex-col gap-1 text-on-surface-variant font-body-md text-body-md">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px] text-outline">calendar_today</span> Oct 28, 2023
+                            </div>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px] text-outline">schedule</span> 18:00 - 19:00
+                            </div>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-sm flex gap-xs">
+<button class="flex-1 py-2 rounded-lg border border-outline-variant text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low transition-colors">
+                        Cancel
+                    </button>
+<button class="flex-1 py-2 rounded-lg bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors">
+                        Modify
+                    </button>
+</div>
+</div>
+</div>
+<!-- Empty State (Hidden, but structured for demonstration) -->
+<div class="hidden flex-col items-center justify-center py-3xl text-center">
+<div class="w-24 h-24 mb-lg rounded-full bg-surface-container flex items-center justify-center text-outline">
+<span class="material-symbols-outlined text-[48px]">event_busy</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">No pending bookings</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-[280px]">You don't have any facility reservations awaiting approval right now.</p>
+</div>
+</main>
+<!-- Floating Action Button (Mobile) -->
+<button class="md:hidden fixed bottom-[90px] right-margin-mobile w-14 h-14 bg-primary text-on-primary rounded-xl shadow-lg flex items-center justify-center hover:bg-surface-tint active:scale-95 transition-all z-40">
+<span class="material-symbols-outlined text-[24px]">add</span>
+</button>
+<!-- BottomNavBar -->
+<nav class="bg-surface-container-lowest fixed bottom-0 left-0 w-full flex justify-around items-center py-2 pb-safe border-t border-outline-variant shadow-lg rounded-t-xl z-50 md:hidden">
+<!-- Dashboard (Active logic fallback since Bookings isn't a top level tab in JSON, representing general app usage) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-label-sm text-label-sm mt-1">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">report_problem</span>
+<span class="font-label-sm text-label-sm mt-1">Complaints</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">campaign</span>
+<span class="font-label-sm text-label-sm mt-1">Notices</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm mt-1">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple script to handle segmented tab visual toggle
+        const tabs = document.querySelectorAll('.overflow-x-auto button');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Reset all
+                tabs.forEach(t => {
+                    t.className = 'whitespace-nowrap px-lg py-2 rounded-full bg-surface-container border border-outline-variant text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-all';
+                });
+                // Set active
+                tab.className = 'whitespace-nowrap px-lg py-2 rounded-full bg-primary text-on-primary font-label-md text-label-md shadow-sm transition-all';
+            });
+        });
+    </script>
+</body></html>

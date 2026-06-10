@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Notice Details</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#a44100",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#eff4ff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "inverse-primary": "#c3c0ff",
+                        "tertiary-fixed-dim": "#ffb695",
+                        "surface": "#f8f9ff",
+                        "tertiary-fixed": "#ffdbcc",
+                        "secondary": "#006591",
+                        "on-secondary-fixed-variant": "#004c6e",
+                        "on-tertiary-container": "#ffd2be",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#e5eeff",
+                        "on-tertiary-fixed-variant": "#7b2f00",
+                        "on-background": "#0b1c30",
+                        "surface-container-highest": "#d3e4fe",
+                        "tertiary": "#7e3000",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-container": "#dad7ff",
+                        "surface-tint": "#4d44e3",
+                        "on-secondary-container": "#004666",
+                        "secondary-fixed": "#c9e6ff",
+                        "primary-fixed": "#e2dfff",
+                        "inverse-surface": "#213145",
+                        "surface-container-high": "#dce9ff",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#39b8fd",
+                        "on-tertiary-fixed": "#351000",
+                        "surface-bright": "#f8f9ff",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "secondary-fixed-dim": "#89ceff",
+                        "on-surface": "#0b1c30",
+                        "surface-dim": "#cbdbf5",
+                        "outline-variant": "#c7c4d8",
+                        "outline": "#777587",
+                        "surface-variant": "#d3e4fe",
+                        "primary": "#3525cd",
+                        "on-surface-variant": "#464555",
+                        "on-primary-fixed": "#0f0069",
+                        "background": "#f8f9ff",
+                        "on-secondary-fixed": "#001e2f",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#4f46e5",
+                        "on-secondary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "2xl": "48px",
+                        "3xl": "64px",
+                        "sm": "8px",
+                        "gutter": "24px",
+                        "xl": "32px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "xs": "4px",
+                        "margin-mobile": "16px",
+                        "container-max": "1440px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", { "lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "label-sm": ["11px", { "lineHeight": "1", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "headline-sm": ["18px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-dim min-h-screen flex justify-center text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<!-- Mobile Container Simulation -->
+<div class="w-full max-w-md bg-surface min-h-screen relative shadow-2xl flex flex-col">
+<!-- Top Header (Task-Focused, Nav Suppressed) -->
+<header class="sticky top-0 z-50 w-full bg-surface/90 backdrop-blur-md border-b border-outline-variant flex justify-between items-center px-margin-mobile py-sm">
+<button aria-label="Go back" class="p-2 -ml-2 rounded-full hover:bg-surface-container-highest active:bg-surface-container transition-colors flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm text-on-surface absolute left-1/2 transform -translate-x-1/2">Notice</h1>
+<div class="w-10 h-10"></div> <!-- Empty spacer for centering title -->
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col gap-lg px-margin-mobile py-lg pb-3xl overflow-y-auto">
+<!-- Header Section (Title & Meta) -->
+<section class="flex flex-col gap-sm">
+<div class="flex items-center gap-xs">
+<span class="bg-error-container text-on-error-container font-label-sm text-label-sm px-2 py-1 rounded-full uppercase tracking-widest">Urgent Maintenance</span>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mt-1">Planned Water Shut-off for Block B</h2>
+<div class="flex flex-wrap items-center gap-x-md gap-y-xs mt-2 text-on-surface-variant font-body-md text-body-md">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">person</span>
+<span>Society Management</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<span>Oct 28, 2023</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>09:00 AM</span>
+</div>
+</div>
+</section>
+<!-- Divider -->
+<hr class="border-t border-outline-variant w-full"/>
+<!-- Rich Text Content Section -->
+<article class="font-body-lg text-body-lg text-on-surface flex flex-col gap-md">
+<p>Dear Residents,</p>
+<p>Please be informed that there will be a scheduled water supply interruption on <strong class="font-semibold text-primary">Thursday, November 2nd, 2023</strong>, between <strong class="font-semibold">10:00 AM and 2:00 PM</strong>.</p>
+<p>This interruption is necessary to perform essential upgrade maintenance on the main pumping station located in the basement of Block B. During this time, both hot and cold water services will be entirely unavailable across all apartments in Block B.</p>
+<!-- Stylized Image Placeholder -->
+<div class="w-full aspect-video rounded-xl overflow-hidden my-sm border border-outline-variant bg-surface-container-low shadow-sm">
+<img alt="Maintenance Work" class="w-full h-full object-cover" data-alt="A bright, close-up photograph of modern, clean metallic plumbing pipes and a shiny brass valve set against a pristine white concrete wall. The lighting is soft and diffused, emphasizing a high-quality, professional maintenance aesthetic suitable for a premium property management application. The colors are strictly cool silver, warm brass, and stark white." src="https://lh3.googleusercontent.com/aida/AP1WRLvulqgsEaPWOw8GRinP7QM-dWGQ-rOYvcZZENOnTGimFtP-oCx_Dmz01guskUImURiy6zSXdUnpSRggp_u1aWnD4pYSOVV9gKAukJD2euDFLgwfEoUAB8CypxGZhDJCyoVHiMe56z2lwQrH8dAVIKdmQYFwzJlA9zyAurYLV7P8jfafAiQpOFs979doJlwBLLuLLvQNnDQ-Xa-ehp2f323azbo9ORCheHY2H-NeHn2qO6STUSp1KVBPRuo"/>
+</div>
+<!-- Highlight Quote/Callout Box -->
+<div class="bg-surface-container border-l-4 border-primary p-md rounded-r-lg my-xs">
+<p class="font-body-md text-body-md text-on-surface-variant flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5">info</span>
+<span>We highly recommend storing sufficient water for drinking, cooking, and basic sanitary needs prior to the shut-off time to minimize disruption.</span>
+</p>
+</div>
+<p>We apologize for any inconvenience this may cause and sincerely appreciate your cooperation as we work to maintain and improve the building's infrastructure. If you have any immediate concerns or require special assistance during this window, please contact the facilities helpdesk immediately.</p>
+<p class="mt-sm">Sincerely,<br/><span class="font-semibold">The Property Management Team</span></p>
+</article>
+<!-- Attachments Section -->
+<section class="flex flex-col gap-md mt-sm bg-surface-container-lowest rounded-xl p-md border border-outline-variant shadow-sm">
+<div class="flex items-center gap-sm mb-xs">
+<span class="material-symbols-outlined text-on-surface">attachment</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Attachments (2)</h3>
+</div>
+<!-- Attachment Item 1 (PDF) -->
+<div class="flex items-center gap-md p-sm rounded-lg hover:bg-surface-container transition-colors group cursor-pointer border border-transparent hover:border-outline-variant">
+<div class="w-10 h-10 rounded bg-error-container text-on-error-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+</div>
+<div class="flex flex-col flex-grow min-w-0">
+<span class="font-body-md text-body-md text-on-surface font-medium truncate group-hover:text-primary transition-colors">Official_Notice_Water_Shutoff.pdf</span>
+<span class="font-label-md text-label-md text-on-surface-variant mt-0.5">1.2 MB • PDF Document</span>
+</div>
+<button aria-label="Download PDF" class="w-8 h-8 rounded-full text-on-surface-variant group-hover:text-primary group-hover:bg-primary-container/20 flex items-center justify-center transition-all shrink-0">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</div>
+<!-- Attachment Item 2 (Image) -->
+<div class="flex items-center gap-md p-sm rounded-lg hover:bg-surface-container transition-colors group cursor-pointer border border-transparent hover:border-outline-variant">
+<div class="w-10 h-10 rounded bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">image</span>
+</div>
+<div class="flex flex-col flex-grow min-w-0">
+<span class="font-body-md text-body-md text-on-surface font-medium truncate group-hover:text-primary transition-colors">Affected_Zones_Map.jpg</span>
+<span class="font-label-md text-label-md text-on-surface-variant mt-0.5">850 KB • Image File</span>
+</div>
+<button aria-label="Download Image" class="w-8 h-8 rounded-full text-on-surface-variant group-hover:text-primary group-hover:bg-primary-container/20 flex items-center justify-center transition-all shrink-0">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</div>
+</section>
+<!-- Bottom spacing padding -->
+<div class="h-md"></div>
+</main>
+</div>
+</body></html>

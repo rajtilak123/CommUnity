@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CommUnity - My Complaints</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#eff4ff",
+                        "on-error": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface-container": "#e5eeff",
+                        "secondary-fixed": "#c9e6ff",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#dad7ff",
+                        "on-surface-variant": "#464555",
+                        "background": "#f8f9ff",
+                        "tertiary": "#7e3000",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#4d44e3",
+                        "tertiary-fixed-dim": "#ffb695",
+                        "tertiary-container": "#a44100",
+                        "on-secondary-fixed": "#001e2f",
+                        "surface-bright": "#f8f9ff",
+                        "on-primary-fixed": "#0f0069",
+                        "surface": "#f8f9ff",
+                        "surface-container-high": "#dce9ff",
+                        "on-secondary-container": "#004666",
+                        "surface-variant": "#d3e4fe",
+                        "on-tertiary-fixed-variant": "#7b2f00",
+                        "on-tertiary": "#ffffff",
+                        "on-surface": "#0b1c30",
+                        "error-container": "#ffdad6",
+                        "inverse-on-surface": "#eaf1ff",
+                        "tertiary-fixed": "#ffdbcc",
+                        "on-background": "#0b1c30",
+                        "surface-container-highest": "#d3e4fe",
+                        "secondary-container": "#39b8fd",
+                        "primary-container": "#4f46e5",
+                        "secondary": "#006591",
+                        "on-tertiary-container": "#ffd2be",
+                        "primary-fixed": "#e2dfff",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "outline-variant": "#c7c4d8",
+                        "surface-dim": "#cbdbf5",
+                        "inverse-surface": "#213145",
+                        "on-tertiary-fixed": "#351000",
+                        "secondary-fixed-dim": "#89ceff",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#004c6e",
+                        "outline": "#777587",
+                        "primary": "#3525cd",
+                        "inverse-primary": "#c3c0ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "2xl": "48px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "base": "4px",
+                        "xs": "4px",
+                        "3xl": "64px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "container-max": "1440px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-sm": ["18px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "label-sm": ["11px", {"lineHeight": "1", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col md:flex-row">
+<!-- Desktop Navigation Drawer -->
+<aside class="hidden md:flex flex-col p-md gap-sm fixed left-0 top-0 h-full w-[280px] bg-surface-container-low border-r border-outline-variant z-40">
+<div class="font-headline-sm text-headline-sm text-primary mb-lg px-2">CommUnity Admin</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all active:translate-x-1" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container rounded-lg font-bold transition-all active:translate-x-1" href="#">
+<span class="material-symbols-outlined">assignment_late</span>
+<span class="font-body-md text-body-md">Complaints</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all active:translate-x-1" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-body-md text-body-md">Residents</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all active:translate-x-1" href="#">
+<span class="material-symbols-outlined">poll</span>
+<span class="font-body-md text-body-md">Polls</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all active:translate-x-1" href="#">
+<span class="material-symbols-outlined">event_available</span>
+<span class="font-body-md text-body-md">Bookings</span>
+</a>
+</nav>
+</aside>
+<!-- Top App Bar -->
+<header class="w-full top-0 sticky flex justify-between items-center px-margin-mobile md:px-lg h-16 bg-surface border-b border-outline-variant z-40 md:ml-[280px] md:w-[calc(100%-280px)]">
+<div class="flex items-center gap-4">
+<button class="md:hidden p-2 hover:bg-surface-container-high rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined text-primary">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md-mobile md:text-headline-md font-bold text-primary">Complaints</h1>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant bg-surface-container-high">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A clean professional headshot of a person with a friendly expression in a brightly lit studio. The lighting is soft and high-key, creating a modern and premium corporate aesthetic. The background is a minimalist, out-of-focus office setting in cool blue and white tones, matching a professional community management app interface." src="https://lh3.googleusercontent.com/aida/AP1WRLue1tZMIiYA_0mHYlxE644qYfTtrbf0ci8CSQOeooi76jzY9G1nzMoBbTMX6xSPh56s1KYof8Wgn_drchoYemS8Vbd2VeYPN6-eq2b75rapWH14H8iKkvnLwH4CBTeFfVpGdgQPW9cD5Ghcoz6WJgyNKYKxQs58IEmbrk_XOydmPcGQYtm9CmsL3nGWuRyYhQcETnHbZu5RNkOHYdKz1TBycMQSmcko1iPhHVNnfjz6oAoyZnw0qg5YfA"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-[280px] p-margin-mobile md:p-lg pb-32 md:pb-lg max-w-container-max mx-auto w-full">
+<!-- Filter & Search Section -->
+<div class="flex flex-col gap-md mb-xl">
+<!-- Search Bar -->
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full pl-12 pr-4 py-3 bg-surface border border-outline-variant rounded-xl font-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all shadow-sm" placeholder="Search for complaints..." type="text"/>
+</div>
+<!-- Horizontal Chips (Status Filters) -->
+<div class="flex gap-sm overflow-x-auto pb-2 custom-scrollbar no-scrollbar">
+<button class="whitespace-nowrap px-md py-2 rounded-full font-label-md text-label-md bg-primary text-on-primary shadow-sm hover:bg-primary-container hover:text-on-primary-container transition-all">All</button>
+<button class="whitespace-nowrap px-md py-2 rounded-full font-label-md text-label-md bg-surface border border-outline-variant text-on-surface-variant hover:bg-surface-container-high transition-all">Open</button>
+<button class="whitespace-nowrap px-md py-2 rounded-full font-label-md text-label-md bg-surface border border-outline-variant text-on-surface-variant hover:bg-surface-container-high transition-all">In Progress</button>
+<button class="whitespace-nowrap px-md py-2 rounded-full font-label-md text-label-md bg-surface border border-outline-variant text-on-surface-variant hover:bg-surface-container-high transition-all">Resolved</button>
+<button class="whitespace-nowrap px-md py-2 rounded-full font-label-md text-label-md bg-surface border border-outline-variant text-on-surface-variant hover:bg-surface-container-high transition-all">Closed</button>
+</div>
+</div>
+<!-- Complaint Cards Grid (Asymmetric/Premium Layout) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Complaint Card 1 - High Priority -->
+<div class="lg:col-span-8 group cursor-pointer">
+<div class="bg-surface border border-outline-variant rounded-xl p-md md:p-lg hover:border-primary hover:shadow-lg transition-all duration-300 flex flex-col md:flex-row gap-md items-start">
+<div class="w-full md:w-48 h-32 md:h-auto md:aspect-square bg-surface-container-high rounded-lg overflow-hidden shrink-0">
+<img alt="Leakage Image" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A close-up photograph of a leaking plumbing fixture in a modern bathroom with grey tiles. The lighting is natural and crisp, highlighting the water droplets. The image is clean and illustrative of a common household maintenance issue, following the professional community app style." src="https://lh3.googleusercontent.com/aida/AP1WRLuEs03BIE-j6_AgRgIUPqysYqIf4xEnVDvC97BdX4O_zNpzK4zbFNp4iC4xP0Zy00JZ8uuDkFwHnr_f8MCO_H-dUWaPa5j_5VSml1G3OohuL-8pmUDiYLjNQ-AKSE--6QFW2_fKdz1TMe_3rkVcOS7tKvxxInK95AT33w7GCG7vVTgnitdRiqL__xe3Orf47qlygRMcLapthppJMdxBfj7I3pBJCeTD7YAEXG7jwLp2dEbsvQYcc2yJ5w"/>
+</div>
+<div class="flex-1 w-full space-y-3">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Water leakage in the main pipeline - Wing B</h3>
+<span class="material-symbols-outlined text-outline group-hover:text-primary">arrow_forward_ios</span>
+</div>
+<div class="flex flex-wrap gap-xs">
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-error-container text-on-error-container font-label-sm text-label-sm uppercase tracking-wider">High Priority</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-surface-container text-primary font-label-sm text-label-sm uppercase tracking-wider">In Progress</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">The leakage has started to affect the lower floors. Multiple residents in Wing B have reported low water pressure since early this morning.</p>
+<div class="pt-2 flex items-center justify-between border-t border-outline-variant mt-2">
+<span class="font-label-md text-label-md text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span> Oct 24, 2023
+                            </span>
+<span class="font-label-md text-label-md text-outline">Ref: #CM-4029</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Complaint Card 2 - Status Info -->
+<div class="lg:col-span-4 group cursor-pointer">
+<div class="h-full bg-surface-container-low border border-outline-variant rounded-xl p-md md:p-lg hover:bg-surface-container-high hover:border-primary transition-all duration-300">
+<div class="flex justify-between mb-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-surface-variant text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">Medium</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm uppercase tracking-wider">Open</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Street light flickering near Entrance 2</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">The light has been flickering since Monday night, making the walkway feel unsafe for residents during night hours.</p>
+<div class="flex items-center gap-3 mt-auto pt-4">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-[12px]">JD</div>
+<span class="font-label-md text-label-md text-on-surface">Assigned to: Maintenance Dept</span>
+</div>
+</div>
+</div>
+<!-- Complaint Card 3 - Regular Row -->
+<div class="lg:col-span-6 group cursor-pointer">
+<div class="bg-surface border border-outline-variant rounded-xl p-md hover:border-primary transition-all shadow-sm">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary">noise_control_off</span>
+</div>
+<div class="flex-1 overflow-hidden">
+<div class="flex justify-between items-center mb-1">
+<span class="font-label-sm text-label-sm text-outline">Oct 22, 2023</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-variant text-on-surface-variant text-[10px] font-bold uppercase">Resolved</span>
+</div>
+<h3 class="font-body-lg text-body-lg font-semibold truncate">Noise complaint: Apartment 402</h3>
+</div>
+</div>
+</div>
+</div>
+<!-- Complaint Card 4 - Regular Row -->
+<div class="lg:col-span-6 group cursor-pointer">
+<div class="bg-surface border border-outline-variant rounded-xl p-md hover:border-primary transition-all shadow-sm">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary">garage</span>
+</div>
+<div class="flex-1 overflow-hidden">
+<div class="flex justify-between items-center mb-1">
+<span class="font-label-sm text-label-sm text-outline">Oct 21, 2023</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-variant text-on-surface-variant text-[10px] font-bold uppercase">Closed</span>
+</div>
+<h3 class="font-body-lg text-body-lg font-semibold truncate">Garbage disposal pickup delayed</h3>
+</div>
+</div>
+</div>
+</div>
+<!-- Dashboard Style Stats Card -->
+<div class="lg:col-span-12 mt-md">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-md">
+<div class="p-md bg-white border border-outline-variant rounded-xl shadow-sm text-center">
+<div class="text-primary font-bold text-2xl">12</div>
+<div class="text-on-surface-variant font-label-md text-label-md uppercase">Total Open</div>
+</div>
+<div class="p-md bg-white border border-outline-variant rounded-xl shadow-sm text-center">
+<div class="text-secondary font-bold text-2xl">08</div>
+<div class="text-on-surface-variant font-label-md text-label-md uppercase">In Progress</div>
+</div>
+<div class="p-md bg-white border border-outline-variant rounded-xl shadow-sm text-center">
+<div class="text-green-600 font-bold text-2xl">45</div>
+<div class="text-on-surface-variant font-label-md text-label-md uppercase">Resolved</div>
+</div>
+<div class="p-md bg-white border border-outline-variant rounded-xl shadow-sm text-center">
+<div class="text-error font-bold text-2xl">03</div>
+<div class="text-on-surface-variant font-label-md text-label-md uppercase">High Priority</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button (FAB) -->
+<button class="fixed bottom-24 right-margin-mobile md:bottom-lg md:right-lg flex items-center gap-2 bg-primary text-on-primary px-6 py-4 rounded-full shadow-2xl hover:bg-primary-container hover:text-on-primary-container transition-all active:scale-90 group z-50">
+<span class="material-symbols-outlined">add</span>
+<span class="font-label-md text-label-md font-bold">Raise Complaint</span>
+</button>
+<!-- Mobile Bottom Navigation -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 bg-surface-container-lowest border-t border-outline-variant flex justify-around items-center h-20 px-4 pb-safe">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors active:scale-90" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary font-bold active:scale-90" href="#">
+<span class="material-symbols-outlined">report_problem</span>
+<span class="font-label-md text-label-md">Complaints</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors active:scale-90" href="#">
+<span class="material-symbols-outlined">notifications</span>
+<span class="font-label-md text-label-md">Notices</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors active:scale-90" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple Interaction: Filter Chip selection
+        document.querySelectorAll('.flex.gap-sm button').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelectorAll('.flex.gap-sm button').forEach(btn => {
+                    btn.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
+                    btn.classList.add('bg-surface', 'border', 'border-outline-variant', 'text-on-surface-variant');
+                });
+                this.classList.remove('bg-surface', 'border', 'border-outline-variant', 'text-on-surface-variant');
+                this.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
+            });
+        });
+
+        // Add a subtle scroll animation for FAB hide/show
+        let lastScroll = 0;
+        const fab = document.querySelector('button.fixed.bottom-24');
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                fab.classList.add('translate-y-32', 'opacity-0');
+            } else {
+                fab.classList.remove('translate-y-32', 'opacity-0');
+            }
+            lastScroll = currentScroll;
+        });
+    </script>
+</body></html>

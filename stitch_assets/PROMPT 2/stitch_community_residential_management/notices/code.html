@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CommunityHub - Notices</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#a44100",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#eff4ff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "inverse-primary": "#c3c0ff",
+                        "tertiary-fixed-dim": "#ffb695",
+                        "surface": "#f8f9ff",
+                        "tertiary-fixed": "#ffdbcc",
+                        "secondary": "#006591",
+                        "on-secondary-fixed-variant": "#004c6e",
+                        "on-tertiary-container": "#ffd2be",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#e5eeff",
+                        "on-tertiary-fixed-variant": "#7b2f00",
+                        "on-background": "#0b1c30",
+                        "surface-container-highest": "#d3e4fe",
+                        "tertiary": "#7e3000",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-container": "#dad7ff",
+                        "surface-tint": "#4d44e3",
+                        "on-secondary-container": "#004666",
+                        "secondary-fixed": "#c9e6ff",
+                        "primary-fixed": "#e2dfff",
+                        "inverse-surface": "#213145",
+                        "surface-container-high": "#dce9ff",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#39b8fd",
+                        "on-tertiary-fixed": "#351000",
+                        "surface-bright": "#f8f9ff",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "secondary-fixed-dim": "#89ceff",
+                        "on-surface": "#0b1c30",
+                        "surface-dim": "#cbdbf5",
+                        "outline-variant": "#c7c4d8",
+                        "outline": "#777587",
+                        "surface-variant": "#d3e4fe",
+                        "primary": "#3525cd",
+                        "on-surface-variant": "#464555",
+                        "on-primary-fixed": "#0f0069",
+                        "background": "#f8f9ff",
+                        "on-secondary-fixed": "#001e2f",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#4f46e5",
+                        "on-secondary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "2xl": "48px",
+                        "3xl": "64px",
+                        "sm": "8px",
+                        "gutter": "24px",
+                        "xl": "32px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "xs": "4px",
+                        "margin-mobile": "16px",
+                        "container-max": "1440px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", { "lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "label-sm": ["11px", { "lineHeight": "1", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "headline-sm": ["18px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+        }
+        /* Hide scrollbar for horizontal scroll areas */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="antialiased min-h-screen flex flex-col md:flex-row">
+<!-- Desktop Navigation Drawer (Hidden on Mobile) -->
+<nav class="hidden md:flex flex-col gap-sm py-xl w-[280px] h-screen fixed left-0 top-0 bg-surface-container-low border-r border-outline-variant z-40">
+<div class="px-lg pb-lg">
+<h1 class="font-headline-md text-headline-md text-primary font-bold">Admin Portal</h1>
+</div>
+<div class="flex-1 flex flex-col gap-sm px-md">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="emergency">emergency</span>
+<span class="font-body-md text-body-md">Complaints</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-body-md text-body-md">Residents</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="ballot">ballot</span>
+<span class="font-body-md text-body-md">Polls</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="event_available">event_available</span>
+<span class="font-body-md text-body-md">Bookings</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col md:ml-[280px] w-full pb-[80px] md:pb-0">
+<!-- TopAppBar (Mobile & Desktop Header) -->
+<header class="w-full top-0 sticky bg-surface border-b border-outline-variant z-30 flex justify-between items-center px-margin-mobile md:px-gutter py-sm">
+<div class="flex items-center gap-md md:hidden">
+<button class="text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-full p-xs">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm-mobile text-primary font-bold">CommunityHub</h1>
+</div>
+<div class="hidden md:block">
+<h1 class="font-headline-sm text-headline-sm text-primary font-bold">Notices</h1>
+</div>
+<div class="flex items-center cursor-pointer active:opacity-80 transition-opacity">
+<div class="w-8 h-8 rounded-full bg-surface-variant overflow-hidden border border-outline-variant">
+<img alt="User profile photo" class="w-full h-full object-cover" data-alt="A close-up portrait of a young professional woman with dark hair, smiling subtly. The lighting is soft and natural, typical of a bright, modern office setting. She wears a minimal, elegant blouse, aligning with a corporate modern aesthetic. The image conveys a professional, efficient, and friendly mood." src="https://lh3.googleusercontent.com/aida/AP1WRLufjBoZVMcgACIzzV1MkLD88EhyBJQXdyEamMs8vqOY05zYCPiSGIqkxTD0jVyqgj-hrV7ReZQTNRbrYFE5h-iQByHbg2TTZa-qt5LrQQCcR3mu-lK7syzZP3Qdeksu_8NscfW6iVgxddA2-fBNUHauSf6fL9lmjB4-YCnbjy5Igj0APvcNzZ9BJby-yEBKfafLjtOKrktZw5y0WeOwwL_cF7s0RqHt8iqmFmIKeGFOANbDWbWNR_0jb-Y"/>
+</div>
+</div>
+</header>
+<!-- Page Content Canvas -->
+<main class="flex-1 w-full max-w-container-max mx-auto px-margin-mobile md:px-gutter py-lg md:py-xl flex flex-col gap-lg md:gap-xl">
+<!-- Search & Filters -->
+<section class="flex flex-col gap-md">
+<div class="relative w-full max-w-2xl">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="w-full pl-[40px] pr-md py-sm bg-surface-container-lowest border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-shadow" placeholder="Search notices..." type="text"/>
+</div>
+<div class="flex items-center gap-sm overflow-x-auto no-scrollbar pb-xs">
+<button class="whitespace-nowrap px-md py-[6px] rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md border border-primary-container transition-colors">
+                        All
+                    </button>
+<button class="whitespace-nowrap px-md py-[6px] rounded-full bg-surface-container-lowest text-on-surface-variant border border-outline-variant hover:bg-surface-container-low transition-colors font-label-md text-label-md">
+                        Maintenance
+                    </button>
+<button class="whitespace-nowrap px-md py-[6px] rounded-full bg-surface-container-lowest text-on-surface-variant border border-outline-variant hover:bg-surface-container-low transition-colors font-label-md text-label-md">
+                        Security
+                    </button>
+<button class="whitespace-nowrap px-md py-[6px] rounded-full bg-surface-container-lowest text-on-surface-variant border border-outline-variant hover:bg-surface-container-low transition-colors font-label-md text-label-md">
+                        General
+                    </button>
+</div>
+</section>
+<!-- Pinned Notices (Horizontal Scroll) -->
+<section class="flex flex-col gap-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="push_pin" data-weight="fill" style="font-variation-settings: 'FILL' 1;">push_pin</span>
+<h2 class="font-headline-sm text-headline-sm-mobile md:text-headline-sm text-on-surface font-semibold">Pinned Notices</h2>
+</div>
+<div class="flex gap-md overflow-x-auto no-scrollbar pb-sm snap-x">
+<!-- Pinned Card 1 -->
+<div class="min-w-[280px] md:min-w-[320px] bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col gap-sm snap-start hover:shadow-[0_4px_24px_rgba(0,0,0,0.05)] transition-shadow">
+<div class="flex justify-between items-start mb-xs">
+<span class="inline-flex items-center px-2 py-1 rounded-md bg-secondary/10 text-secondary font-label-sm text-label-sm">Maintenance</span>
+<span class="material-symbols-outlined text-outline-variant text-[18px]" data-icon="push_pin" data-weight="fill" style="font-variation-settings: 'FILL' 1;">push_pin</span>
+</div>
+<h3 class="font-body-lg text-body-lg text-on-surface font-semibold leading-tight">Water Shutoff - Building A</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Scheduled maintenance for the main water line. Water will be unavailable between 10 AM and 2 PM tomorrow.</p>
+<div class="mt-auto pt-sm flex items-center gap-xs text-outline">
+<span class="material-symbols-outlined text-[16px]" data-icon="calendar_today">calendar_today</span>
+<span class="font-label-sm text-label-sm">Oct 24, 2023</span>
+</div>
+</div>
+<!-- Pinned Card 2 -->
+<div class="min-w-[280px] md:min-w-[320px] bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col gap-sm snap-start hover:shadow-[0_4px_24px_rgba(0,0,0,0.05)] transition-shadow">
+<div class="flex justify-between items-start mb-xs">
+<span class="inline-flex items-center px-2 py-1 rounded-md bg-error/10 text-error font-label-sm text-label-sm">Security</span>
+<span class="material-symbols-outlined text-outline-variant text-[18px]" data-icon="push_pin" data-weight="fill" style="font-variation-settings: 'FILL' 1;">push_pin</span>
+</div>
+<h3 class="font-body-lg text-body-lg text-on-surface font-semibold leading-tight">New Gate Access Codes</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">The main gate access codes will be updated this weekend. Please check your email for your specific unit code.</p>
+<div class="mt-auto pt-sm flex items-center gap-xs text-outline">
+<span class="material-symbols-outlined text-[16px]" data-icon="calendar_today">calendar_today</span>
+<span class="font-label-sm text-label-sm">Oct 22, 2023</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Recent Notices (Vertical List) -->
+<section class="flex flex-col gap-md flex-1">
+<h2 class="font-headline-sm text-headline-sm-mobile md:text-headline-sm text-on-surface font-semibold">Recent Notices</h2>
+<div class="flex flex-col gap-md">
+<!-- Notice List Item 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col md:flex-row md:items-center gap-md hover:bg-surface-container-low transition-colors cursor-pointer">
+<div class="flex-1 flex flex-col gap-xs">
+<div class="flex items-center gap-sm mb-xs">
+<span class="inline-flex items-center px-2 py-1 rounded-md bg-primary/10 text-primary font-label-sm text-label-sm">General</span>
+<span class="font-label-sm text-label-sm text-outline">Yesterday</span>
+</div>
+<h3 class="font-body-lg text-body-lg text-on-surface font-semibold">Community Pool Cleaning Schedule</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">The pool will be closed for deep cleaning every Monday morning until noon.</p>
+</div>
+<div class="hidden md:flex items-center justify-center p-sm rounded-full bg-surface-variant text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- Notice List Item 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col md:flex-row md:items-center gap-md hover:bg-surface-container-low transition-colors cursor-pointer">
+<div class="flex-1 flex flex-col gap-xs">
+<div class="flex items-center gap-sm mb-xs">
+<span class="inline-flex items-center px-2 py-1 rounded-md bg-secondary/10 text-secondary font-label-sm text-label-sm">Maintenance</span>
+<span class="font-label-sm text-label-sm text-outline">Oct 20, 2023</span>
+</div>
+<h3 class="font-body-lg text-body-lg text-on-surface font-semibold">Elevator B Repair Update</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Parts have been ordered for Elevator B. Expected completion by end of next week.</p>
+</div>
+<div class="hidden md:flex items-center justify-center p-sm rounded-full bg-surface-variant text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- Notice List Item 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col md:flex-row md:items-center gap-md hover:bg-surface-container-low transition-colors cursor-pointer">
+<div class="flex-1 flex flex-col gap-xs">
+<div class="flex items-center gap-sm mb-xs">
+<span class="inline-flex items-center px-2 py-1 rounded-md bg-primary/10 text-primary font-label-sm text-label-sm">General</span>
+<span class="font-label-sm text-label-sm text-outline">Oct 18, 2023</span>
+</div>
+<h3 class="font-body-lg text-body-lg text-on-surface font-semibold">Annual HOA Meeting Minutes</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">The minutes from last week's annual meeting are now available for review.</p>
+</div>
+<div class="hidden md:flex items-center justify-center p-sm rounded-full bg-surface-variant text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- Mobile BottomNavBar (Hidden on Desktop) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center h-16 bg-surface px-2 border-t border-outline-variant z-50 md:hidden">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary scale-95 active:scale-90 transition-transform duration-150 p-sm" href="#">
+<span class="material-symbols-outlined mb-xs" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary scale-95 active:scale-90 transition-transform duration-150 p-sm" href="#">
+<span class="material-symbols-outlined mb-xs" data-icon="report_problem">report_problem</span>
+<span class="font-label-md text-label-md">Complaints</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary font-semibold bg-primary-container/10 rounded-xl px-4 py-1 scale-95 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined mb-xs" data-icon="campaign" data-weight="fill" style="font-variation-settings: 'FILL' 1;">campaign</span>
+<span class="font-label-md text-label-md">Notices</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary scale-95 active:scale-90 transition-transform duration-150 p-sm" href="#">
+<span class="material-symbols-outlined mb-xs" data-icon="person">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</nav>
+</body></html>

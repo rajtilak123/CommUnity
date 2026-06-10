@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Complaint Details - CommUnity</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #e2e8f0;
+      border-radius: 10px;
+    }
+  </style>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-low": "#eff4ff",
+            "on-error": "#ffffff",
+            "error": "#ba1a1a",
+            "surface-container": "#e5eeff",
+            "secondary-fixed": "#c9e6ff",
+            "on-secondary": "#ffffff",
+            "on-error-container": "#93000a",
+            "on-primary-container": "#dad7ff",
+            "on-surface-variant": "#464555",
+            "background": "#f8f9ff",
+            "tertiary": "#7e3000",
+            "primary-fixed-dim": "#c3c0ff",
+            "surface-container-lowest": "#ffffff",
+            "surface-tint": "#4d44e3",
+            "tertiary-fixed-dim": "#ffb695",
+            "tertiary-container": "#a44100",
+            "on-secondary-fixed": "#001e2f",
+            "surface-bright": "#f8f9ff",
+            "on-primary-fixed": "#0f0069",
+            "surface": "#f8f9ff",
+            "surface-container-high": "#dce9ff",
+            "on-secondary-container": "#004666",
+            "surface-variant": "#d3e4fe",
+            "on-tertiary-fixed-variant": "#7b2f00",
+            "on-tertiary": "#ffffff",
+            "on-surface": "#0b1c30",
+            "error-container": "#ffdad6",
+            "inverse-on-surface": "#eaf1ff",
+            "tertiary-fixed": "#ffdbcc",
+            "on-background": "#0b1c30",
+            "surface-container-highest": "#d3e4fe",
+            "secondary-container": "#39b8fd",
+            "primary-container": "#4f46e5",
+            "secondary": "#006591",
+            "on-tertiary-container": "#ffd2be",
+            "primary-fixed": "#e2dfff",
+            "on-primary-fixed-variant": "#3323cc",
+            "outline-variant": "#c7c4d8",
+            "surface-dim": "#cbdbf5",
+            "inverse-surface": "#213145",
+            "on-tertiary-fixed": "#351000",
+            "secondary-fixed-dim": "#89ceff",
+            "on-primary": "#ffffff",
+            "on-secondary-fixed-variant": "#004c6e",
+            "outline": "#777587",
+            "primary": "#3525cd",
+            "inverse-primary": "#c3c0ff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "md": "16px",
+            "2xl": "48px",
+            "margin-mobile": "16px",
+            "gutter": "24px",
+            "base": "4px",
+            "xs": "4px",
+            "3xl": "64px",
+            "lg": "24px",
+            "sm": "8px",
+            "container-max": "1440px",
+            "xl": "32px"
+          },
+          "fontFamily": {
+            "headline-lg-mobile": ["Inter"],
+            "body-lg": ["Inter"],
+            "body-md": ["Inter"],
+            "headline-sm": ["Inter"],
+            "label-md": ["Inter"],
+            "display-lg": ["Inter"],
+            "headline-lg": ["Inter"],
+            "headline-md": ["Inter"],
+            "label-sm": ["Inter"]
+          },
+          "fontSize": {
+            "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
+            "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+            "body-md": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+            "headline-sm": ["18px", {"lineHeight": "1.4", "fontWeight": "600"}],
+            "label-md": ["12px", {"lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "500"}],
+            "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+            "label-sm": ["11px", {"lineHeight": "1", "fontWeight": "600"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface">
+<!-- Top Navigation Shell -->
+<header class="w-full top-0 sticky bg-surface border-b border-outline-variant z-40 flex justify-between items-center px-margin-mobile md:px-lg h-16">
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-high p-2 rounded-full transition-colors active:scale-95">arrow_back</button>
+<h1 class="font-headline-md text-headline-md-mobile md:text-headline-md font-bold text-primary">CommUnity</h1>
+</div>
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A professional close-up portrait of a friendly woman in her 30s with a warm smile, set against a blurred modern office background. The lighting is soft and natural, emphasizing a high-end corporate yet approachable aesthetic. The color palette is composed of clean whites and subtle blue tones, maintaining the light-mode UI theme." src="https://lh3.googleusercontent.com/aida/AP1WRLur70jzVaanSCKhjRXpwdhyqIPFzGAZuSBShk_Ahfp3knvmYa4XQYg70sybqCfxLm7fiPRQ0lx8-03qm4YW-GOHIM-CjaaCX4lqAJc4K9m0lTJNmjuZQ_PwdcAG8GX7oC_5zF40PdZGvXIHT3eKAlz2-GcQaq0m_CnIMi3ekkELCxD0et1QsKhe-ypX0owHHdAaHuVz9c8IWkNlMgt2JfOoIVosqMjSgoufVQYEFA1b2gBfLIxsFuNCrbU"/>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto p-margin-mobile md:p-lg lg:grid lg:grid-cols-12 lg:gap-gutter pb-32">
+<!-- Left Column: Primary Details & Timeline -->
+<div class="lg:col-span-8 space-y-lg">
+<!-- Header Section -->
+<section class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant">
+<div class="flex flex-col md:flex-row md:items-start justify-between gap-md mb-md">
+<div class="space-y-sm">
+<span class="font-label-md text-label-md text-primary uppercase tracking-wider">Complaint #REF-8842</span>
+<h2 class="font-headline-md text-headline-md-mobile md:text-headline-md font-bold text-on-surface">Water Leakage in Main Lobby</h2>
+<div class="flex flex-wrap gap-sm pt-base">
+<span class="bg-surface-container-high text-on-surface-variant px-3 py-1 rounded-full font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">category</span> Maintenance
+              </span>
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">check_circle</span> Resolved
+              </span>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed-variant px-3 py-1 rounded-full font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">priority_high</span> Medium Priority
+              </span>
+</div>
+</div>
+<button class="bg-primary text-on-primary px-lg py-sm rounded-lg font-label-md text-label-md hover:opacity-90 transition-all active:scale-95 shadow-sm">
+            Download Report
+          </button>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+          I noticed significant water pooling near the south entrance of the main lobby this morning around 8:30 AM. It seems to be dripping from the HVAC vent above the concierge desk. This is a potential slipping hazard for residents.
+        </p>
+</section>
+<!-- Reference Images -->
+<section>
+<h3 class="font-headline-sm text-headline-sm font-semibold mb-md px-base">Reference Images</h3>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-md">
+<div class="aspect-square rounded-lg overflow-hidden border border-outline-variant hover:border-primary transition-colors cursor-pointer group">
+<img alt="Reference 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A detailed close-up shot of water droplets forming on a clean, white modern ceiling vent in a corporate building lobby. The lighting is crisp and cool, highlighting the texture of the metal vent and the clarity of the water. The surrounding environment is minimalist and high-end, fitting a modern property management interface." src="https://lh3.googleusercontent.com/aida/AP1WRLv_rAYEIyX2KMEyyPffjISeYQ87DUk8ccV9ptROPc7svzCB8gcrWh3uuR2ADWI64qiTm-8D_oiZOBPm2JMWTzlQoiTdrwCmgnjIf3fhZfjWFfhjH6OaHTQTzHsJlUSDgEHSZRqefaj7tqjc869dDQYiM9Z53kJRZE8SjRgxKnIY1wmu0G1Hi0SPCuNjkB4XTVhqqIsM1RI0c6kL1KIqoM7ZxobYxUCMoJN6SI9P6ooOJbass_SOnbePoL0"/>
+</div>
+<div class="aspect-square rounded-lg overflow-hidden border border-outline-variant hover:border-primary transition-colors cursor-pointer group">
+<img alt="Reference 2" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A wide-angle interior view of a contemporary apartment lobby with polished marble floors showing a reflection of water. The space is filled with natural light from large windows, featuring minimalist furniture and lush indoor plants. The scene is clean, professional, and captures a specific maintenance issue within a luxury residential context." src="https://lh3.googleusercontent.com/aida/AP1WRLstC1dqun_Hf-psSNo7plne-zULRMj9heULYZ7AummUINuTF_IW99RNPmqLQYBYB-RzbbiLGeq4LS5R9KNl5OR3yJk_lwdXyeozLG2S_iCjn2WfZfC91CUA1jNokrkuS-hGXf01ChT3bUynaMcUU3jSLAfkEbUyFdF1fqPaLn_JC6QfqXjUageo0JA0sYppLr4dc0-1yq4_X_GUj1Vlss1KxX-xWtH_lh8szukx_x98zt4_ta1Oa3kZ4XE"/>
+</div>
+<div class="aspect-square rounded-lg overflow-hidden border border-outline-variant bg-surface-container flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-3xl">add_a_photo</span>
+<span class="font-label-sm text-label-sm mt-xs">Add Photos</span>
+</div>
+</div>
+</section>
+<!-- Visual Timeline -->
+<section class="bg-surface-container-low p-lg rounded-xl border border-outline-variant">
+<h3 class="font-headline-sm text-headline-sm font-semibold mb-lg">Status Timeline</h3>
+<div class="relative">
+<!-- Connector Line -->
+<div class="absolute left-4 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-0.5 bg-outline-variant"></div>
+<div class="space-y-xl">
+<!-- Timeline Item 1 -->
+<div class="relative flex items-center md:justify-center">
+<div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-8 h-8 rounded-full bg-primary flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-on-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<div class="ml-12 md:ml-0 md:w-1/2 md:pr-12 md:text-right">
+<h4 class="font-headline-sm text-headline-sm font-bold text-on-surface">Complaint Created</h4>
+<p class="font-label-md text-label-md text-on-surface-variant">Oct 12, 2023 • 08:45 AM</p>
+</div>
+<div class="hidden md:block md:w-1/2 md:pl-12"></div>
+</div>
+<!-- Timeline Item 2 -->
+<div class="relative flex items-center md:justify-center">
+<div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-8 h-8 rounded-full bg-primary flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-on-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<div class="hidden md:block md:w-1/2 md:pr-12"></div>
+<div class="ml-12 md:ml-0 md:w-1/2 md:pl-12">
+<h4 class="font-headline-sm text-headline-sm font-bold text-on-surface">In Progress</h4>
+<p class="font-label-md text-label-md text-on-surface-variant">Oct 12, 2023 • 10:15 AM</p>
+<p class="font-body-md text-body-md mt-xs text-on-surface-variant italic">Maintenance team dispatched to site.</p>
+</div>
+</div>
+<!-- Timeline Item 3 -->
+<div class="relative flex items-center md:justify-center">
+<div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center z-10 border-4 border-surface">
+<span class="material-symbols-outlined text-on-secondary-container text-[18px]" style="font-variation-settings: 'FILL' 1;">task_alt</span>
+</div>
+<div class="ml-12 md:ml-0 md:w-1/2 md:pr-12 md:text-right">
+<h4 class="font-headline-sm text-headline-sm font-bold text-on-surface">Resolved</h4>
+<p class="font-label-md text-label-md text-on-surface-variant">Oct 13, 2023 • 02:30 PM</p>
+</div>
+<div class="hidden md:block md:w-1/2 md:pl-12"></div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Comments Thread -->
+<aside class="lg:col-span-4 mt-xl lg:mt-0">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl flex flex-col h-[600px] shadow-sm">
+<div class="p-md border-b border-outline-variant flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm font-semibold">Comments</h3>
+<span class="bg-surface-container text-on-surface-variant px-2 py-0.5 rounded text-label-sm font-label-sm">3 Messages</span>
+</div>
+<div class="flex-1 overflow-y-auto p-md space-y-md custom-scrollbar">
+<!-- Message: Management -->
+<div class="flex flex-col items-start max-w-[85%]">
+<div class="flex items-center gap-xs mb-xs">
+<span class="font-label-sm text-label-sm font-bold text-primary">Management</span>
+<span class="text-[10px] text-outline">10:20 AM</span>
+</div>
+<div class="bg-surface-container-high p-md rounded-tr-xl rounded-br-xl rounded-bl-xl">
+<p class="font-body-md text-body-md text-on-surface">Hello! We've received your report. A technician has been assigned and is on the way to investigate the HVAC unit.</p>
+</div>
+</div>
+<!-- Message: Resident -->
+<div class="flex flex-col items-end ml-auto max-w-[85%]">
+<div class="flex items-center gap-xs mb-xs">
+<span class="text-[10px] text-outline">11:05 AM</span>
+<span class="font-label-sm text-label-sm font-bold text-secondary">You</span>
+</div>
+<div class="bg-primary text-on-primary p-md rounded-tl-xl rounded-bl-xl rounded-br-xl">
+<p class="font-body-md text-body-md">Thank you. Please ensure the area is cordoned off as it's quite slippery.</p>
+</div>
+</div>
+<!-- Message: Management -->
+<div class="flex flex-col items-start max-w-[85%]">
+<div class="flex items-center gap-xs mb-xs">
+<span class="font-label-sm text-label-sm font-bold text-primary">Management</span>
+<span class="text-[10px] text-outline">Yesterday</span>
+</div>
+<div class="bg-surface-container-high p-md rounded-tr-xl rounded-br-xl rounded-bl-xl">
+<p class="font-body-md text-body-md text-on-surface">Update: The leak was due to a clogged condensation line. It has been cleared and the area has been dried. Closing this ticket now.</p>
+</div>
+</div>
+</div>
+<!-- Input Area -->
+<div class="p-md border-t border-outline-variant">
+<div class="relative">
+<textarea class="w-full bg-surface border border-outline-variant rounded-lg p-md pr-12 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none font-body-md text-body-md" placeholder="Type your message..." rows="2"></textarea>
+<button class="absolute right-3 bottom-3 text-primary hover:bg-surface-container-high p-1 rounded-full transition-colors active:scale-90">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</div>
+</aside>
+</main>
+<!-- Mobile Bottom Navigation -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 bg-surface-container-lowest border-t border-outline-variant flex justify-around items-center h-20 px-4 pb-safe">
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors active:scale-90 flex-1 h-full">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md mt-1">Dashboard</span>
+</button>
+<button class="flex flex-col items-center justify-center text-primary font-bold hover:bg-surface-container-low transition-colors active:scale-90 flex-1 h-full">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">report_problem</span>
+<span class="font-label-md text-label-md mt-1">Complaints</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors active:scale-90 flex-1 h-full">
+<span class="material-symbols-outlined">notifications</span>
+<span class="font-label-md text-label-md mt-1">Notices</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors active:scale-90 flex-1 h-full">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md mt-1">Profile</span>
+</button>
+</nav>
+<!-- Desktop Sidebar Navigation -->
+<nav class="hidden md:flex fixed left-0 top-0 h-full w-[280px] bg-surface-container-low border-r border-outline-variant flex-col p-md gap-sm z-40">
+<div class="mb-lg px-md">
+<h1 class="font-headline-sm text-headline-sm text-primary font-bold">CommUnity Admin</h1>
+</div>
+<a class="flex items-center gap-md px-md py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all active:translate-x-1 group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">grid_view</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-3 bg-primary-container text-on-primary-container rounded-lg font-bold transition-all active:translate-x-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">assignment_late</span>
+<span class="font-body-md text-body-md">Complaints</span>
+</a>
+<a class="flex items-center gap-md px-md py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all active:translate-x-1 group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">group</span>
+<span class="font-body-md text-body-md">Residents</span>
+</a>
+<a class="flex items-center gap-md px-md py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all active:translate-x-1 group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">poll</span>
+<span class="font-body-md text-body-md">Polls</span>
+</a>
+<a class="flex items-center gap-md px-md py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all active:translate-x-1 group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">event_available</span>
+<span class="font-body-md text-body-md">Bookings</span>
+</a>
+</nav>
+<script>
+    // Micro-interactions
+    document.querySelectorAll('button, a').forEach(el => {
+      el.addEventListener('click', (e) => {
+        if(el.classList.contains('active:scale-95') || el.classList.contains('active:scale-90')) {
+          // Visual feedback handled by CSS
+        }
+      });
+    });
+
+    // Simple scroll behavior for comments
+    const commentBox = document.querySelector('.custom-scrollbar');
+    if(commentBox) {
+      commentBox.scrollTop = commentBox.scrollHeight;
+    }
+  </script>
+</body></html>

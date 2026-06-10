@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CommUnity - Facilities</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary": "#006591",
+                    "primary-fixed-dim": "#c3c0ff",
+                    "tertiary-fixed-dim": "#ffb695",
+                    "primary-container": "#4f46e5",
+                    "primary": "#3525cd",
+                    "inverse-surface": "#213145",
+                    "error": "#ba1a1a",
+                    "tertiary": "#7e3000",
+                    "tertiary-container": "#a44100",
+                    "surface-dim": "#cbdbf5",
+                    "surface-tint": "#4d44e3",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed": "#ffdbcc",
+                    "on-surface": "#0b1c30",
+                    "on-surface-variant": "#464555",
+                    "on-primary-container": "#dad7ff",
+                    "on-secondary-fixed": "#001e2f",
+                    "on-primary": "#ffffff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "primary-fixed": "#e2dfff",
+                    "on-secondary": "#ffffff",
+                    "surface-variant": "#d3e4fe",
+                    "on-background": "#0b1c30",
+                    "on-tertiary-fixed": "#351000",
+                    "on-secondary-container": "#004666",
+                    "surface-container": "#e5eeff",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-container": "#ffd2be",
+                    "surface-container-high": "#dce9ff",
+                    "secondary-container": "#39b8fd",
+                    "surface-container-low": "#eff4ff",
+                    "surface-container-highest": "#d3e4fe",
+                    "secondary-fixed-dim": "#89ceff",
+                    "surface-bright": "#f8f9ff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#7b2f00",
+                    "on-primary-fixed": "#0f0069",
+                    "secondary-fixed": "#c9e6ff",
+                    "outline": "#777587",
+                    "surface": "#f8f9ff",
+                    "background": "#f8f9ff",
+                    "on-primary-fixed-variant": "#3323cc",
+                    "on-secondary-fixed-variant": "#004c6e",
+                    "inverse-primary": "#c3c0ff",
+                    "outline-variant": "#c7c4d8",
+                    "on-error": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "3xl": "64px",
+                    "base": "4px",
+                    "xs": "4px",
+                    "xl": "32px",
+                    "margin-mobile": "16px",
+                    "md": "16px",
+                    "container-max": "1440px",
+                    "2xl": "48px",
+                    "sm": "8px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "display-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "label-sm": ["11px", {"lineHeight": "1", "fontWeight": "600"}],
+                    "headline-sm": ["18px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-20">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface-container-lowest border-b border-outline-variant flex justify-between items-center px-margin-mobile md:px-lg h-16 transition-colors">
+<div class="flex items-center gap-sm">
+<img alt="User profile avatar" class="w-8 h-8 rounded-full border border-outline-variant object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLu9SUI6cLQjfPkgECbtrgN99FL1x9k99ctPT6UAg9GKW_kx0Dgus3vxXmXBXjoBPn2R8cB8OtrDSPj5kuRdZ-OZGGuD8u8Kt2-79DBMhzMa6qi1Zt7J_tHfZThV_1HZEEDez5tlzrdwR755RbhqZ5YIis6r6dS96SnS1rYx0Bz2umRbcbTJbVmuAmxj_GnQ1nEVM8alH2pmy7af8LjQROzhiEMLjkNo7QxHbC5lEjd6QEJHJNY90cw6Ag"/>
+</div>
+<div class="font-headline-md text-headline-md text-primary tracking-tight">CommUnity</div>
+<button class="text-on-surface-variant hover:bg-surface-variant p-2 rounded-full transition-colors active:scale-95 duration-100 flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-24 px-margin-mobile max-w-md mx-auto flex flex-col gap-xl">
+<!-- Header Section -->
+<section class="flex flex-col gap-sm">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Community Facilities</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Reserve spaces for your next event or gathering.</p>
+</section>
+<!-- Facilities List (Bento-inspired vertical stack) -->
+<section class="flex flex-col gap-lg">
+<!-- Facility Card 1 -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden flex flex-col hover:border-primary transition-colors cursor-pointer group">
+<div class="h-48 relative overflow-hidden">
+<img alt="Community Hall" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A spacious, well-lit modern community hall with high ceilings and large windows letting in abundant natural light. The room features elegant, minimalist furniture, polished wooden floors, and subtle indoor plants. The atmosphere is welcoming and premium, embodying a clean SaaS aesthetic. Deep indigo accents are subtly present in the decor." src="https://lh3.googleusercontent.com/aida/AP1WRLsEFZlOvoY9KPkp5sk6i7DPZN7WaszMXXR7EdMqR_dcTegd3mSvXP2rCY5eVxcx0AEcO8JaXTFoIgvKUpPxh-TAY1Gbx4F3uH6Aa7bq5TzMjxZHeOFUiPrYVII9ePcUqMBUdmGnvNObs0KkMKgG8r-zWfASxRHqmJqV1NomGuKDucwJpRK_9bIvQDb-ELqdTlsE7l4vaEVRBuBzsMwybBVgAE7XBfwzOK3WEzZNuxFBX59DB59cZqHphDc"/>
+<div class="absolute top-sm right-sm bg-surface-container-lowest/90 backdrop-blur-sm border border-outline-variant rounded-full px-3 py-1 flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="font-label-md text-label-md text-on-surface">Available Today</span>
+</div>
+</div>
+<div class="p-md flex flex-col gap-sm">
+<div class="flex justify-between items-center">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Community Hall</h2>
+<span class="font-label-md text-label-md text-on-surface-variant bg-surface-container-low px-2 py-1 rounded">Max 100 pax</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Perfect for large gatherings, parties, and community events. Features a full kitchen and sound system.</p>
+<div class="pt-sm mt-sm border-t border-outline-variant flex justify-between items-center">
+<span class="font-label-md text-label-md text-primary">$50 / hr</span>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-4 py-2 rounded-lg hover:bg-primary-container transition-colors">Book Now</button>
+</div>
+</div>
+</article>
+<!-- Facility Card 2 -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden flex flex-col hover:border-primary transition-colors cursor-pointer group">
+<div class="h-48 relative overflow-hidden">
+<img alt="Club House" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A luxurious, contemporary club house lounge area. Soft, plush seating arrangements in neutral tones are contrasted by deep indigo throw pillows. A sleek, modern fireplace serves as the centerpiece, surrounded by architectural lighting that creates a warm, inviting glow. The setting feels exclusive yet community-focused, reflecting a high-end corporate minimalism." src="https://lh3.googleusercontent.com/aida/AP1WRLtxPlKigJH1T_sM0vNP0Y_yDasQmE-TDxOYF6AC6yznMomIygZQNaxmOHb8kkB0jFQ_oIloQMdBQLrixNOVuHa0KaWyxqgKixA1xc8AUaGRtNEZz1C3ScRmVAiiPcfT_dorluvjImrPSZZsVojmgFKh3Me0rQ_5B3w7RGpPpWsFk6efoUgeXbGqaUxNFEnwCf20mGqgP035QGMFy1ZepbnwqaJhDHGdNjS9_i_nb8QiHWaIFVzsQH9u7OQ"/>
+<div class="absolute top-sm right-sm bg-surface-container-lowest/90 backdrop-blur-sm border border-outline-variant rounded-full px-3 py-1 flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+<span class="font-label-md text-label-md text-on-surface-variant">Booked until 4PM</span>
+</div>
+</div>
+<div class="p-md flex flex-col gap-sm">
+<div class="flex justify-between items-center">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Club House</h2>
+<span class="font-label-md text-label-md text-on-surface-variant bg-surface-container-low px-2 py-1 rounded">Max 40 pax</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">A comfortable lounge area for casual meetings, book clubs, or relaxing with neighbors. Includes a coffee bar.</p>
+<div class="pt-sm mt-sm border-t border-outline-variant flex justify-between items-center">
+<span class="font-label-md text-label-md text-primary">$25 / hr</span>
+<button class="border border-primary text-primary font-label-md text-label-md px-4 py-2 rounded-lg hover:bg-surface-container transition-colors">Check Availability</button>
+</div>
+</div>
+</article>
+<!-- Facility Card 3 -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden flex flex-col hover:border-primary transition-colors cursor-pointer group">
+<div class="h-48 relative overflow-hidden">
+<img alt="Meeting Room" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A highly professional, minimalist corporate meeting room. A sleek glass table is surrounded by ergonomic chairs. High-tech presentation screens are seamlessly integrated into the walls. The lighting is crisp and cool, emphasizing a productive, efficient atmosphere. The color palette relies on pristine whites, deep grays, and precise touches of primary indigo for a modern SaaS vibe." src="https://lh3.googleusercontent.com/aida/AP1WRLt0cHnuAx17HiGY2DEx0SH3z1H0d8NsH53NpiTtZo6bGQFeA3j30nr8pUQufqc95DZHjRHVeDwq0wQH-hsWhDBqTKOYk3R6Hk216QwGqi4wiS0Y4dXCVHM_Ke1xb1-jKwbItWICnowxiX04DtzVTULM38P1sn8p62sCIpjMuxSgQGtw0gTl7Lg51-_E3NVFwUdUV7AgQhMyPy7jgWx1BvIClkN0VgLnqkK2uYdktHj9NSsI8epGeFJolrY"/>
+<div class="absolute top-sm right-sm bg-surface-container-lowest/90 backdrop-blur-sm border border-outline-variant rounded-full px-3 py-1 flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="font-label-md text-label-md text-on-surface">Available Today</span>
+</div>
+</div>
+<div class="p-md flex flex-col gap-sm">
+<div class="flex justify-between items-center">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Meeting Room</h2>
+<span class="font-label-md text-label-md text-on-surface-variant bg-surface-container-low px-2 py-1 rounded">Max 12 pax</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Professional space equipped with a projector and whiteboard for resident board meetings or remote work.</p>
+<div class="pt-sm mt-sm border-t border-outline-variant flex justify-between items-center">
+<span class="font-label-md text-label-md text-primary">Free</span>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-4 py-2 rounded-lg hover:bg-primary-container transition-colors">Book Now</button>
+</div>
+</div>
+</article>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center py-2 pb-safe bg-surface-container-lowest border-t border-outline-variant rounded-t-xl z-50 md:hidden">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="dashboard">dashboard</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="report_problem">report_problem</span>
+<span class="font-label-sm text-label-sm">Complaints</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="campaign">campaign</span>
+<span class="font-label-sm text-label-sm">Notices</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+</body></html>

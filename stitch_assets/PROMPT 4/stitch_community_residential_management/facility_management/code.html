@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Portal - Facility Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#006591",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "tertiary-fixed-dim": "#ffb695",
+                        "primary-container": "#4f46e5",
+                        "primary": "#3525cd",
+                        "inverse-surface": "#213145",
+                        "error": "#ba1a1a",
+                        "tertiary": "#7e3000",
+                        "tertiary-container": "#a44100",
+                        "surface-dim": "#cbdbf5",
+                        "surface-tint": "#4d44e3",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#ffdbcc",
+                        "on-surface": "#0b1c30",
+                        "on-surface-variant": "#464555",
+                        "on-primary-container": "#dad7ff",
+                        "on-secondary-fixed": "#001e2f",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "primary-fixed": "#e2dfff",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#d3e4fe",
+                        "on-background": "#0b1c30",
+                        "on-tertiary-fixed": "#351000",
+                        "on-secondary-container": "#004666",
+                        "surface-container": "#e5eeff",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-container": "#ffd2be",
+                        "surface-container-high": "#dce9ff",
+                        "secondary-container": "#39b8fd",
+                        "surface-container-low": "#eff4ff",
+                        "surface-container-highest": "#d3e4fe",
+                        "secondary-fixed-dim": "#89ceff",
+                        "surface-bright": "#f8f9ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#7b2f00",
+                        "on-primary-fixed": "#0f0069",
+                        "secondary-fixed": "#c9e6ff",
+                        "outline": "#777587",
+                        "surface": "#f8f9ff",
+                        "background": "#f8f9ff",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "on-secondary-fixed-variant": "#004c6e",
+                        "inverse-primary": "#c3c0ff",
+                        "outline-variant": "#c7c4d8",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "3xl": "64px",
+                        "base": "4px",
+                        "xs": "4px",
+                        "xl": "32px",
+                        "margin-mobile": "16px",
+                        "md": "16px",
+                        "container-max": "1440px",
+                        "2xl": "48px",
+                        "sm": "8px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-sm": ["11px", { "lineHeight": "1", "fontWeight": "600" }],
+                        "headline-sm": ["18px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased flex min-h-screen">
+<aside class="bg-surface-container-low fixed left-0 top-0 h-full w-[280px] border-r border-outline-variant hidden md:flex flex-col p-lg gap-sm z-40">
+<div class="flex items-center gap-md mb-xl px-sm">
+<div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-headline-sm font-bold overflow-hidden">
+<img alt="Admin user profile" class="w-full h-full object-cover" data-alt="A close-up, professional headshot of an administrative user, used as a profile avatar. The lighting is soft and studio-quality, emphasizing a modern, trustworthy corporate aesthetic. The background is completely out of focus, drawing all attention to the subject's face. The overall mood is confident and efficient, aligning with a high-end management portal interface." src="https://lh3.googleusercontent.com/aida/AP1WRLsJivT3d9arZpJo0rLDMi09H6RBsOZBhfvhh8bfp3d8-GJ3tTAFCbBqH25rx-EL6A6D-RzHxhc99K6RTYKlyKnvLDJPsO9P8ZQdLK3nIuGradSR1Aypgp5Nfe4qT__uZVCp_vp_UVKSEM3UQdpmRFpLIc-DQpmUePiGGwiXyl5UQtYWJgTH8uUArPYnsyJrsfEVZUBxxZ-_9n8QNt_LYiQ85NxSQpgXjcChHfheG8FpDtdNSM8OfwmytQ"/>
+</div>
+<div>
+<h1 class="font-headline-sm text-headline-sm text-primary font-bold">Admin Portal</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Property Manager</p>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-xs">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-primary font-bold border-r-4 border-primary bg-surface-container-highest hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-body-md text-body-md">Overview</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">domain</span>
+<span class="font-body-md text-body-md">Units</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-body-md text-body-md">Residents</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-body-md text-body-md">Finances</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">build</span>
+<span class="font-body-md text-body-md">Maintenance</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto pt-lg border-t border-outline-variant px-sm">
+<span class="font-label-sm text-label-sm text-outline">V1.0.2</span>
+</div>
+</aside>
+<main class="flex-1 md:ml-[280px] p-margin-mobile md:p-3xl min-h-screen">
+<header class="flex flex-col md:flex-row md:items-center justify-between gap-lg mb-xl">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-xs">Facility Management</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage property amenities, view operational status, and monitor booking activity.</p>
+</div>
+<div class="flex items-center gap-md">
+<button class="flex items-center gap-sm px-[20px] py-[10px] bg-primary text-on-primary rounded-lg font-label-md text-label-md hover:bg-surface-tint transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                    Create Facility
+                </button>
+</div>
+</header>
+<section class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-xl">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">domain</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">Total Facilities</p>
+<p class="font-headline-md text-headline-md text-on-surface">12</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">Active</p>
+<p class="font-headline-md text-headline-md text-on-surface">9</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">build</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">Under Maintenance</p>
+<p class="font-headline-md text-headline-md text-on-surface">3</p>
+</div>
+</div>
+</section>
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant bg-surface-container-low">
+<th class="py-sm px-lg font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Facility Name</th>
+<th class="py-sm px-lg font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Type</th>
+<th class="py-sm px-lg font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="py-sm px-lg font-label-md text-label-md text-on-surface-variant uppercase tracking-wider text-right">Total Bookings</th>
+<th class="py-sm px-lg font-label-md text-label-md text-on-surface-variant uppercase tracking-wider text-center">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-on-surface divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-md px-lg font-medium">Main Swimming Pool</td>
+<td class="py-md px-lg text-on-surface-variant">Recreation</td>
+<td class="py-md px-lg">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-[#e8f5e9] text-[#1b5e20] font-label-sm text-label-sm">Active</span>
+</td>
+<td class="py-md px-lg text-right font-medium">1,204</td>
+<td class="py-md px-lg text-center opacity-0 group-hover:opacity-100 transition-opacity">
+<div class="flex items-center justify-center gap-sm">
+<button class="p-xs text-on-surface-variant hover:text-primary transition-colors rounded hover:bg-surface-container-highest" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-xs text-on-surface-variant hover:text-error transition-colors rounded hover:bg-error-container" title="Delete">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-md px-lg font-medium">Tennis Court A</td>
+<td class="py-md px-lg text-on-surface-variant">Sports</td>
+<td class="py-md px-lg">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-[#e8f5e9] text-[#1b5e20] font-label-sm text-label-sm">Active</span>
+</td>
+<td class="py-md px-lg text-right font-medium">845</td>
+<td class="py-md px-lg text-center opacity-0 group-hover:opacity-100 transition-opacity">
+<div class="flex items-center justify-center gap-sm">
+<button class="p-xs text-on-surface-variant hover:text-primary transition-colors rounded hover:bg-surface-container-highest" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-xs text-on-surface-variant hover:text-error transition-colors rounded hover:bg-error-container" title="Delete">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-md px-lg font-medium">Community Hall</td>
+<td class="py-md px-lg text-on-surface-variant">Event Space</td>
+<td class="py-md px-lg">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-[#fff3e0] text-[#e65100] font-label-sm text-label-sm">Maintenance</span>
+</td>
+<td class="py-md px-lg text-right font-medium">412</td>
+<td class="py-md px-lg text-center opacity-0 group-hover:opacity-100 transition-opacity">
+<div class="flex items-center justify-center gap-sm">
+<button class="p-xs text-on-surface-variant hover:text-primary transition-colors rounded hover:bg-surface-container-highest" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-xs text-on-surface-variant hover:text-error transition-colors rounded hover:bg-error-container" title="Delete">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-md px-lg font-medium">Fitness Center</td>
+<td class="py-md px-lg text-on-surface-variant">Health</td>
+<td class="py-md px-lg">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-[#e8f5e9] text-[#1b5e20] font-label-sm text-label-sm">Active</span>
+</td>
+<td class="py-md px-lg text-right font-medium">3,102</td>
+<td class="py-md px-lg text-center opacity-0 group-hover:opacity-100 transition-opacity">
+<div class="flex items-center justify-center gap-sm">
+<button class="p-xs text-on-surface-variant hover:text-primary transition-colors rounded hover:bg-surface-container-highest" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-xs text-on-surface-variant hover:text-error transition-colors rounded hover:bg-error-container" title="Delete">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-md px-lg font-medium">BBQ Pavilion 1</td>
+<td class="py-md px-lg text-on-surface-variant">Recreation</td>
+<td class="py-md px-lg">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-[#e8f5e9] text-[#1b5e20] font-label-sm text-label-sm">Active</span>
+</td>
+<td class="py-md px-lg text-right font-medium">156</td>
+<td class="py-md px-lg text-center opacity-0 group-hover:opacity-100 transition-opacity">
+<div class="flex items-center justify-center gap-sm">
+<button class="p-xs text-on-surface-variant hover:text-primary transition-colors rounded hover:bg-surface-container-highest" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-xs text-on-surface-variant hover:text-error transition-colors rounded hover:bg-error-container" title="Delete">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-sm px-lg border-t border-outline-variant bg-surface-container-lowest flex items-center justify-between">
+<span class="font-body-md text-body-md text-on-surface-variant">Showing 1 to 5 of 12 entries</span>
+<div class="flex items-center gap-xs">
+<button class="p-xs rounded hover:bg-surface-container-low text-on-surface-variant disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="p-xs rounded hover:bg-surface-container-low text-on-surface-variant">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Facility Details - Club House</title>
+<!-- Google Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config defined by Design System -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#006591",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "tertiary-fixed-dim": "#ffb695",
+                        "primary-container": "#4f46e5",
+                        "primary": "#3525cd",
+                        "inverse-surface": "#213145",
+                        "error": "#ba1a1a",
+                        "tertiary": "#7e3000",
+                        "tertiary-container": "#a44100",
+                        "surface-dim": "#cbdbf5",
+                        "surface-tint": "#4d44e3",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#ffdbcc",
+                        "on-surface": "#0b1c30",
+                        "on-surface-variant": "#464555",
+                        "on-primary-container": "#dad7ff",
+                        "on-secondary-fixed": "#001e2f",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "primary-fixed": "#e2dfff",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#d3e4fe",
+                        "on-background": "#0b1c30",
+                        "on-tertiary-fixed": "#351000",
+                        "on-secondary-container": "#004666",
+                        "surface-container": "#e5eeff",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-container": "#ffd2be",
+                        "surface-container-high": "#dce9ff",
+                        "secondary-container": "#39b8fd",
+                        "surface-container-low": "#eff4ff",
+                        "surface-container-highest": "#d3e4fe",
+                        "secondary-fixed-dim": "#89ceff",
+                        "surface-bright": "#f8f9ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#7b2f00",
+                        "on-primary-fixed": "#0f0069",
+                        "secondary-fixed": "#c9e6ff",
+                        "outline": "#777587",
+                        "surface": "#f8f9ff",
+                        "background": "#f8f9ff",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "on-secondary-fixed-variant": "#004c6e",
+                        "inverse-primary": "#c3c0ff",
+                        "outline-variant": "#c7c4d8",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "3xl": "64px",
+                        "base": "4px",
+                        "xs": "4px",
+                        "xl": "32px",
+                        "margin-mobile": "16px",
+                        "md": "16px",
+                        "container-max": "1440px",
+                        "2xl": "48px",
+                        "sm": "8px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-sm": ["11px", { "lineHeight": "1", "fontWeight": "600" }],
+                        "headline-sm": ["18px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Hide scrollbar for clean horizontal scrolls */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased pb-32">
+<!-- Task-Focused Header: Floating Back Button & Transparent Hero Overlay -->
+<!-- Suppressing BottomNavBar and standard TopAppBar as this is a task-focused sub-page -->
+<header class="fixed top-0 w-full z-50 flex items-center justify-between p-margin-mobile bg-gradient-to-b from-black/50 to-transparent pointer-events-none">
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-on-surface pointer-events-auto border border-outline-variant shadow-sm active:scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'wght' 400;">arrow_back</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-on-surface pointer-events-auto border border-outline-variant shadow-sm active:scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'wght' 400;">favorite_border</span>
+</button>
+</header>
+<!-- Hero Section -->
+<section class="relative w-full h-[309px] min-h-[280px]">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A bright, modern residential club house interior during daytime. Large floor-to-ceiling windows let in abundant natural light, illuminating plush modern seating arrangements. The aesthetic is highly polished and premium, featuring a color palette of clean whites, soft warm greys, and sophisticated navy blue accents that align with a high-end corporate or residential identity. Minimalist light fixtures and carefully placed indoor plants create a welcoming yet refined atmosphere." style="background-image: url('https://lh3.googleusercontent.com/aida/AP1WRLsXLS3CVdhGW622Vca0ejQbd2RDxerHuQbBNoxHy1Jo-Dow0aAOhc74Llz8laokOVbArRV2lv88CSV3kcjvLbFFQBvHEuNbpP455QLcbb_tEGQcDSy0ahzLeRBOWu6lndku9L7uWvUALzVrEkxxrTzI2sBP2bs_O3pacikaBUgB8IGzoAKCk-pAeFnl6NXjG-zg1dRFu-EMM801eJ3v1jJ7YYbiOvKlg8yZjJaZK5qx4B2yL_K3Ds4Jnjs');">
+</div>
+</section>
+<!-- Main Content Canvas -->
+<main class="relative -mt-6 bg-surface-container-lowest rounded-t-xl px-margin-mobile pt-lg pb-xl flex flex-col gap-lg z-10">
+<!-- Title & Meta -->
+<div class="flex flex-col gap-sm">
+<div class="flex items-center justify-between">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface tracking-tight">Club House</h1>
+<div class="flex items-center gap-xs px-2 py-1 bg-surface-container rounded-full border border-surface-variant">
+<span class="material-symbols-outlined text-primary text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-sm text-label-sm text-on-surface">4.9</span>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-sm">
+<span class="inline-flex items-center gap-xs px-3 py-1 bg-primary/10 text-primary rounded-full font-label-md text-label-md border border-primary/20">
+<span class="material-symbols-outlined text-[14px]">meeting_room</span>
+                    Capacity: 50
+                </span>
+<span class="inline-flex items-center gap-xs text-on-surface-variant font-body-md text-body-md">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+                    08:00 AM - 10:00 PM
+                </span>
+</div>
+</div>
+<!-- Description -->
+<div class="flex flex-col gap-sm">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">About Facility</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                The Club House is a premium, multi-purpose space designed for resident gatherings, remote work, and private events. It features comfortable lounge seating, high-speed Wi-Fi, and a fully equipped kitchenette.
+            </p>
+</div>
+<!-- Amenities (Bento-style chips) -->
+<div class="flex flex-col gap-sm">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Amenities</h2>
+<div class="flex flex-wrap gap-sm">
+<div class="flex items-center gap-2 px-3 py-2 bg-surface rounded-lg border border-outline-variant">
+<span class="material-symbols-outlined text-primary">wifi</span>
+<span class="font-label-md text-label-md text-on-surface">High-Speed Wi-Fi</span>
+</div>
+<div class="flex items-center gap-2 px-3 py-2 bg-surface rounded-lg border border-outline-variant">
+<span class="material-symbols-outlined text-primary">kitchen</span>
+<span class="font-label-md text-label-md text-on-surface">Kitchenette</span>
+</div>
+<div class="flex items-center gap-2 px-3 py-2 bg-surface rounded-lg border border-outline-variant">
+<span class="material-symbols-outlined text-primary">tv</span>
+<span class="font-label-md text-label-md text-on-surface">Smart TV</span>
+</div>
+<div class="flex items-center gap-2 px-3 py-2 bg-surface rounded-lg border border-outline-variant">
+<span class="material-symbols-outlined text-primary">ac_unit</span>
+<span class="font-label-md text-label-md text-on-surface">Climate Control</span>
+</div>
+</div>
+</div>
+<hr class="border-t border-outline-variant/50"/>
+<!-- Availability Calendar View -->
+<div class="flex flex-col gap-md">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Select Date</h2>
+<span class="font-label-md text-label-md text-primary uppercase tracking-wider">October</span>
+</div>
+<!-- Date Selector Horizontal Scroll -->
+<div class="flex overflow-x-auto gap-sm pb-2 no-scrollbar snap-x">
+<!-- Past Date -->
+<button class="snap-start flex-shrink-0 flex flex-col items-center justify-center w-14 h-16 rounded-xl border border-outline-variant/50 bg-surface text-on-surface-variant opacity-50 cursor-not-allowed">
+<span class="font-label-sm text-label-sm">Mon</span>
+<span class="font-headline-sm text-headline-sm">16</span>
+</button>
+<!-- Active Date -->
+<button class="snap-start flex-shrink-0 flex flex-col items-center justify-center w-14 h-16 rounded-xl border border-primary bg-primary text-on-primary shadow-sm ring-2 ring-primary/20">
+<span class="font-label-sm text-label-sm text-on-primary/80">Tue</span>
+<span class="font-headline-sm text-headline-sm">17</span>
+</button>
+<!-- Available Dates -->
+<button class="snap-start flex-shrink-0 flex flex-col items-center justify-center w-14 h-16 rounded-xl border border-outline-variant bg-surface hover:bg-surface-variant transition-colors text-on-surface">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Wed</span>
+<span class="font-headline-sm text-headline-sm">18</span>
+</button>
+<button class="snap-start flex-shrink-0 flex flex-col items-center justify-center w-14 h-16 rounded-xl border border-outline-variant bg-surface hover:bg-surface-variant transition-colors text-on-surface">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Thu</span>
+<span class="font-headline-sm text-headline-sm">19</span>
+</button>
+<button class="snap-start flex-shrink-0 flex flex-col items-center justify-center w-14 h-16 rounded-xl border border-outline-variant bg-surface hover:bg-surface-variant transition-colors text-on-surface">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Fri</span>
+<span class="font-headline-sm text-headline-sm">20</span>
+</button>
+<button class="snap-start flex-shrink-0 flex flex-col items-center justify-center w-14 h-16 rounded-xl border border-outline-variant bg-surface hover:bg-surface-variant transition-colors text-on-surface">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Sat</span>
+<span class="font-headline-sm text-headline-sm">21</span>
+</button>
+</div>
+<h3 class="font-label-md text-label-md text-on-surface mt-sm">Available Slots</h3>
+<!-- Time Slots Grid -->
+<div class="grid grid-cols-3 gap-sm">
+<button class="py-2 px-1 rounded-lg border border-outline-variant bg-surface text-on-surface font-body-md text-body-md text-center hover:border-primary hover:text-primary transition-colors">
+                    10:00 AM
+                </button>
+<button class="py-2 px-1 rounded-lg border border-outline-variant bg-surface text-on-surface font-body-md text-body-md text-center hover:border-primary hover:text-primary transition-colors">
+                    12:00 PM
+                </button>
+<button class="py-2 px-1 rounded-lg border border-primary bg-primary/10 text-primary font-body-md text-body-md text-center font-medium ring-1 ring-primary/30">
+                    02:00 PM
+                </button>
+<button class="py-2 px-1 rounded-lg border border-outline-variant/30 bg-surface-variant text-on-surface-variant/50 font-body-md text-body-md text-center cursor-not-allowed line-through decoration-1">
+                    04:00 PM
+                </button>
+<button class="py-2 px-1 rounded-lg border border-outline-variant bg-surface text-on-surface font-body-md text-body-md text-center hover:border-primary hover:text-primary transition-colors">
+                    06:00 PM
+                </button>
+<button class="py-2 px-1 rounded-lg border border-outline-variant bg-surface text-on-surface font-body-md text-body-md text-center hover:border-primary hover:text-primary transition-colors">
+                    08:00 PM
+                </button>
+</div>
+</div>
+</main>
+<!-- Fixed Bottom Action Area -->
+<div class="fixed bottom-0 left-0 w-full bg-surface-container-lowest border-t border-outline-variant/50 px-margin-mobile py-lg pb-safe shadow-[0_-4px_24px_rgba(0,0,0,0.05)] z-50">
+<div class="flex items-center justify-between mb-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Total Price</span>
+<span class="font-headline-md text-headline-md text-on-surface">$45.00</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface-variant">2 Hours</span>
+</div>
+<button class="w-full flex items-center justify-center gap-2 bg-primary text-on-primary rounded-full py-4 px-6 font-headline-sm text-headline-sm hover:bg-primary/90 active:scale-[0.98] transition-all">
+            Book Facility
+            <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</body></html>
