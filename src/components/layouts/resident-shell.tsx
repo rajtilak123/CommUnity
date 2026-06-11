@@ -14,15 +14,14 @@ type ResidentShellProps = {
 
 export function ResidentShell({ children, profile, className }: ResidentShellProps) {
   return (
-    <div className={cn("flex min-h-screen flex-col bg-background text-on-background", className)}>
+    <div className={cn("flex h-screen overflow-hidden bg-background text-on-background", className)}>
       <ResidentSidebar />
-      <ResidentHeader profile={profile} />
 
-      <div className="flex flex-1 md:ml-sidebar">
-        <main className="flex-1 overflow-y-auto pb-24 md:pb-0">
-          <div className="mx-auto max-w-container-max space-y-xl p-margin-mobile md:p-lg lg:p-xl">
-            {children}
-          </div>
+      <div className="relative flex flex-1 flex-col overflow-y-auto md:ml-[280px]">
+        <ResidentHeader profile={profile} />
+
+        <main className="mx-auto flex w-full max-w-container-max flex-1 flex-col gap-lg px-margin-mobile pb-[100px] pt-[88px] md:gap-xl md:px-gutter md:pb-xl">
+          {children}
         </main>
       </div>
 

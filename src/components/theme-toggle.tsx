@@ -30,7 +30,7 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
     return (
       <div
         className={cn(
-          "h-10 max-w-md animate-pulse rounded-lg border border-outline-variant/50 bg-surface-container-low",
+          "h-[42px] w-full max-w-md animate-pulse rounded-lg border border-outline-variant/50 bg-surface-container-low",
           className,
         )}
       />
@@ -42,7 +42,7 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
   return (
     <div
       className={cn(
-        "flex items-center justify-between rounded-lg border border-outline-variant/50 bg-surface-container-low p-1",
+        "flex max-w-md items-center justify-between rounded-lg border border-outline-variant/50 bg-surface-container-low p-1",
         className,
       )}
       role="group"
@@ -64,8 +64,8 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
                 : "text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface",
             )}
           >
-            <Icon className="size-4" />
-            <span className="hidden sm:inline">{option.label}</span>
+            <Icon className="size-[18px] shrink-0" />
+            <span>{option.label}</span>
           </button>
         );
       })}

@@ -19,7 +19,7 @@ export function SignOutButton({ children, ...props }: SignOutButtonProps) {
       onClick={() => startTransition(() => signOutAction())}
       {...props}
     >
-      <LogOut className="size-4" />
+      <LogOut className="size-[18px] shrink-0" />
       {children ?? (isPending ? "Signing out..." : "Logout")}
     </Button>
   );
