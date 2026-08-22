@@ -98,6 +98,7 @@
 
   /* Layout */
   --spacing-sidebar: 280px;
+  --spacing-sidebar-admin: 220px;
 }
 
 :root {
@@ -185,6 +186,7 @@
   /* Layout */
   --container-max: 90rem;
   --width-sidebar: 280px;
+  --width-sidebar-admin: 220px;
 }
 
 .dark {
@@ -303,6 +305,14 @@
 
   .ml-sidebar {
     margin-left: var(--width-sidebar);
+  }
+
+  .w-sidebar-admin {
+    width: var(--width-sidebar-admin);
+  }
+
+  .ml-sidebar-admin {
+    margin-left: var(--width-sidebar-admin);
   }
 
   .pb-safe {

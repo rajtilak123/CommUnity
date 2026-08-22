@@ -50,7 +50,7 @@ export function ComplaintForm({ userId }: ComplaintFormProps) {
           rows={4}
           required
           placeholder="Provide more details about the problem..."
-          className="min-h-[120px] w-full resize-none rounded-lg border border-outline-variant bg-surface px-md py-sm text-body-md transition-all focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/10"
+          className="min-h-[120px] w-full resize-none rounded-lg border border-outline-variant bg-surface px-md py-sm text-body-lg md:text-body-md transition-all focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/10"
         />
       </div>
 
@@ -62,7 +62,7 @@ export function ComplaintForm({ userId }: ComplaintFormProps) {
           <select
             id="category"
             name="category"
-            className="w-full cursor-pointer appearance-none rounded-lg border border-outline-variant bg-surface px-md py-sm text-body-md transition-all focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/10"
+            className="w-full cursor-pointer appearance-none rounded-lg border border-outline-variant bg-surface px-md py-sm text-body-lg md:text-body-md transition-all focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/10"
             defaultValue="maintenance"
           >
             {complaintCategories.map((category) => (
@@ -83,7 +83,7 @@ export function ComplaintForm({ userId }: ComplaintFormProps) {
                 type="button"
                 onClick={() => setPriority(value)}
                 className={cn(
-                  "flex h-9 flex-1 items-center justify-center rounded-md text-label-md transition-all",
+                  "flex h-11 md:h-9 flex-1 items-center justify-center rounded-md text-label-md transition-all",
                   priority === value
                     ? "bg-surface-container-lowest text-primary shadow-sm"
                     : "text-on-surface-variant hover:text-on-surface",

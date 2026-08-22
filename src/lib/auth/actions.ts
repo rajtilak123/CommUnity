@@ -2,7 +2,6 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-
 import { getHomePathForRole } from "@/lib/auth/routes";
 import { createClient } from "@/lib/supabase/server";
 import { loginSchema, updateProfileSchema } from "@/lib/validations/auth";
@@ -33,19 +32,31 @@ export async function signInAction(
   }
 
   const { data: profile, error: profileError } = await supabase
-  .from("profiles")
-  .select("role")
-  .eq("id", data.user.id)
-  .single();
+    .from("profiles")
+    .select("role, status, is_active")
+    .eq("id", data.user.id)
+    .single();
 
-console.log("USER ID:", data.user.id);
-console.log("PROFILE:", profile);
-console.log("PROFILE ERROR:", profileError);
+  if (profileError || !profile) {
+    await supabase.auth.signOut();
+    return { error: "Profile not found. Contact your administrator." };
+  }
 
-if (profileError || !profile) {
-  await supabase.auth.signOut();
-  return { error: "Profile not found. Contact your administrator." };
-}
+  if (profile.status === "pending") {
+    await supabase.auth.signOut();
+    return { error: "Your account is pending administrator approval." };
+  }
+
+  if (profile.status === "rejected") {
+    await supabase.auth.signOut();
+    return { error: "Your registration request has been rejected. Please contact your administrator." };
+  }
+
+  if (!profile.is_active) {
+    await supabase.auth.signOut();
+    return { error: "Your account has been deactivated. Please contact your administrator." };
+  }
+
 
   revalidatePath("/", "layout");
   redirect(getHomePathForRole(profile.role));

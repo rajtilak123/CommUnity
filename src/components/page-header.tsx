@@ -13,18 +13,18 @@ type PageHeaderProps = {
 export function PageHeader({ title, description, breadcrumbs, actions, className }: PageHeaderProps) {
   return (
     <header
-      className={cn(
-        "flex flex-col gap-md md:flex-row md:items-start md:justify-between",
-        className,
-      )}
-    >
-      <div className="min-w-0 space-y-sm">
+  className={cn(
+    "block w-full min-w-0 max-w-none",
+    className,
+  )}
+>
+      <div className="block w-full min-w-0 max-w-none space-y-sm">
         {breadcrumbs ? (
           <div className="text-label-md text-on-surface-variant">{breadcrumbs}</div>
         ) : null}
         <h1 className="text-headline-lg-mobile text-on-surface md:text-headline-lg">{title}</h1>
         {description ? (
-          <p className="max-w-2xl text-body-md text-on-surface-variant">{description}</p>
+          <p className="block w-full max-w-none whitespace-normal break-words text-body-md text-on-surface-variant leading-relaxed">{description}</p>
         ) : null}
       </div>
       {actions ? (

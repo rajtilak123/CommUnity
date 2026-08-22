@@ -6,7 +6,6 @@ export const RESIDENT_ROUTE_PREFIXES = [
   "/notices",
   "/notifications",
   "/facilities",
-  "/bookings",
   "/profile",
 ] as const;
 
@@ -39,5 +38,5 @@ export function isProtectedRoute(pathname: string): boolean {
 }
 
 export function getHomePathForRole(role: "resident" | "admin"): string {
-  return role === "admin" ? "/admin" : "/profile";
+  return role === "admin" ? "/admin" : "/dashboard";
 }

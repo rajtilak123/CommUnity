@@ -13,3 +13,16 @@ export type {
   ComplaintWithRelations,
 } from "@/types/complaints";
 export { complaintCategories } from "@/types/complaints";
+
+export type {
+  Notice,
+  NoticeAttachment,
+  NoticeCategory,
+  NoticeListItem,
+  NoticePriority,
+  NoticeRead,
+  NoticeStats,
+  NoticeStatus,
+  NoticeWithRelations,
+} from "@/types/notices";
+export { noticeCategories, noticePriorities, noticeStatuses } from "@/types/notices";

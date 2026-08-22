@@ -30,7 +30,7 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
     return (
       <div
         className={cn(
-          "h-[42px] w-full max-w-md animate-pulse rounded-lg border border-outline-variant/50 bg-surface-container-low",
+          "h-[48px] w-full max-w-md animate-pulse rounded-lg border border-outline-variant/50 bg-surface-container-low",
           className,
         )}
       />
@@ -42,7 +42,7 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
   return (
     <div
       className={cn(
-        "flex max-w-md items-center justify-between rounded-lg border border-outline-variant/50 bg-surface-container-low p-1",
+        "flex w-full max-w-md items-center gap-1 rounded-lg border border-outline-variant/50 bg-surface-container-low p-1",
         className,
       )}
       role="group"
@@ -58,14 +58,14 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
             type="button"
             onClick={() => setTheme(option.value)}
             className={cn(
-              "flex flex-1 items-center justify-center gap-sm rounded-md py-2 text-label-md transition-all",
+              "flex h-10 flex-1 items-center justify-center gap-2 rounded-md text-label-md font-semibold transition-all cursor-pointer",
               isActive
                 ? "bg-surface-container-lowest text-on-surface shadow-sm"
-                : "text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface",
+                : "text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface",
             )}
           >
             <Icon className="size-[18px] shrink-0" />
-            <span>{option.label}</span>
+            <span className="whitespace-nowrap">{option.label}</span>
           </button>
         );
       })}

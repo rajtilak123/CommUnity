@@ -76,7 +76,7 @@ export function AdminComplaintsManager({ complaints }: AdminComplaintsManagerPro
         <select
           value={status}
           onChange={(e) => setStatus(e.target.value as ComplaintStatus | "all")}
-          className="min-w-[140px] rounded-lg border border-outline-variant bg-transparent px-3 py-1.5 text-body-md text-on-surface-variant"
+          className="min-w-[140px] rounded-lg border border-outline-variant bg-transparent px-3 py-1.5 text-body-lg md:text-body-md text-on-surface-variant"
         >
           <option value="all">All Statuses</option>
           {complaintStatuses.map((value) => (
@@ -88,7 +88,7 @@ export function AdminComplaintsManager({ complaints }: AdminComplaintsManagerPro
         <select
           value={priority}
           onChange={(e) => setPriority(e.target.value as ComplaintPriority | "all")}
-          className="min-w-[140px] rounded-lg border border-outline-variant bg-transparent px-3 py-1.5 text-body-md text-on-surface-variant"
+          className="min-w-[140px] rounded-lg border border-outline-variant bg-transparent px-3 py-1.5 text-body-lg md:text-body-md text-on-surface-variant"
         >
           <option value="all">All Priorities</option>
           {complaintPriorities.map((value) => (
@@ -100,7 +100,7 @@ export function AdminComplaintsManager({ complaints }: AdminComplaintsManagerPro
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-          className="min-w-[140px] rounded-lg border border-outline-variant bg-transparent px-3 py-1.5 text-body-md text-on-surface-variant"
+          className="min-w-[140px] rounded-lg border border-outline-variant bg-transparent px-3 py-1.5 text-body-lg md:text-body-md text-on-surface-variant"
         >
           <option value="all">All Categories</option>
           {Object.entries(complaintCategoryLabels).map(([value, label]) => (

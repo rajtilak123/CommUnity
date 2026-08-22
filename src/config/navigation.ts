@@ -2,6 +2,7 @@ import type { LucideIcon } from "lucide-react";
 import {
   AlertTriangle,
   Bell,
+  Calendar,
   LayoutDashboard,
   Megaphone,
   Settings,
@@ -29,7 +30,9 @@ export const residentNavItems: NavItem[] = [
   { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { label: "Complaints", href: "/complaints", icon: AlertTriangle },
   { label: "Notices", href: "/notices", icon: Bell },
+  { label: "Facilities", href: "/facilities", icon: Calendar },
   { label: "Profile", href: "/profile", icon: User },
 ];
 
 export const residentMobileNavItems = residentNavItems;
+

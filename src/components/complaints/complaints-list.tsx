@@ -74,7 +74,7 @@ export function ComplaintsList({ complaints, stats }: ComplaintsListProps) {
           }
         />
       ) : (
-        <div className="grid grid-cols-1 gap-gutter lg:grid-cols-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-gutter">
           {filtered.map((complaint, index) => {
             if (index === 0) {
               return <ComplaintCard key={complaint.id} complaint={complaint} variant="featured" />;

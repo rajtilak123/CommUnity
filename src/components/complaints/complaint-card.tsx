@@ -26,7 +26,7 @@ export function ComplaintCard({ complaint, variant = "compact", className }: Com
 
   if (variant === "featured") {
     return (
-      <Link href={href} className={cn("group cursor-pointer lg:col-span-8", className)}>
+      <Link href={href} className={cn("group cursor-pointer md:col-span-2 lg:col-span-8", className)}>
         <div className="flex flex-col items-start gap-md rounded-[0.75rem] border border-outline-variant bg-surface p-md transition-all duration-300 hover:border-primary hover:shadow-lg md:flex-row md:p-lg">
           {image ? (
             <div className="h-32 w-full shrink-0 overflow-hidden rounded-lg bg-surface-container-high md:aspect-square md:h-auto md:w-48">
@@ -60,7 +60,7 @@ export function ComplaintCard({ complaint, variant = "compact", className }: Com
 
   if (variant === "sidebar") {
     return (
-      <Link href={href} className={cn("group cursor-pointer lg:col-span-4", className)}>
+      <Link href={href} className={cn("group cursor-pointer md:col-span-2 lg:col-span-4", className)}>
         <div className="h-full rounded-[0.75rem] border border-outline-variant bg-surface-container-low p-md transition-all duration-300 hover:border-primary hover:bg-surface-container-high md:p-lg">
           <div className="mb-4 flex justify-between">
             <PriorityBadge priority={complaint.priority} />
@@ -80,7 +80,7 @@ export function ComplaintCard({ complaint, variant = "compact", className }: Com
   }
 
   return (
-    <Link href={href} className={cn("group cursor-pointer lg:col-span-6", className)}>
+    <Link href={href} className={cn("group cursor-pointer md:col-span-1 lg:col-span-6", className)}>
       <div className="rounded-[0.75rem] border border-outline-variant bg-surface p-md shadow-sm transition-all hover:border-primary">
         <div className="flex items-center gap-4">
           <div className="flex size-12 shrink-0 items-center justify-center rounded-lg bg-surface-container-high text-primary">

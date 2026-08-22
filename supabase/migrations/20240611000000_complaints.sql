@@ -1,8 +1,40 @@
 -- Phase 3: Complaints module
 
-create type public.complaint_status as enum ('open', 'in_progress', 'resolved', 'closed');
-create type public.complaint_priority as enum ('low', 'medium', 'high', 'urgent');
-create type public.complaint_category as enum (
+-- ==========================================
+-- PHASE 1: CLEANUP / PRE-FLIGHT DROPS
+-- ==========================================
+
+-- Drop RLS policies on storage.objects (not dropped by table cascades)
+DROP POLICY IF EXISTS "Authenticated users can upload complaint images" ON storage.objects;
+DROP POLICY IF EXISTS "Users can read own complaint images" ON storage.objects;
+DROP POLICY IF EXISTS "Users can delete own complaint images" ON storage.objects;
+
+-- Drop legacy tables (CASCADE drops constraints, triggers, indexes, and table RLS policies)
+DROP TABLE IF EXISTS public.complaint_status_history CASCADE;
+DROP TABLE IF EXISTS public.complaint_comments CASCADE;
+DROP TABLE IF EXISTS public.complaint_attachments CASCADE;
+DROP TABLE IF EXISTS public.complaints CASCADE;
+
+-- Drop legacy functions
+DROP FUNCTION IF EXISTS public.is_admin() CASCADE;
+DROP FUNCTION IF EXISTS public.get_auth_society_id() CASCADE;
+DROP FUNCTION IF EXISTS public.generate_complaint_reference() CASCADE;
+DROP FUNCTION IF EXISTS public.log_complaint_status_change() CASCADE;
+
+-- Drop legacy sequences and custom types
+DROP SEQUENCE IF EXISTS public.complaint_reference_seq CASCADE;
+DROP TYPE IF EXISTS public.complaint_status CASCADE;
+DROP TYPE IF EXISTS public.complaint_priority CASCADE;
+DROP TYPE IF EXISTS public.complaint_category CASCADE;
+
+-- ==========================================
+-- PHASE 2: ENUMS AND SEQUENCE
+-- ==========================================
+
+-- Create custom enums
+CREATE TYPE public.complaint_status AS ENUM ('open', 'in_progress', 'resolved', 'closed');
+CREATE TYPE public.complaint_priority AS ENUM ('low', 'medium', 'high', 'urgent');
+CREATE TYPE public.complaint_category AS ENUM (
   'plumbing',
   'electrical',
   'security',
@@ -14,353 +46,398 @@ create type public.complaint_category as enum (
   'other'
 );
 
-create sequence public.complaint_reference_seq start 1000;
+-- Create reference code sequence
+CREATE SEQUENCE public.complaint_reference_seq START 1000;
 
-create table if not exists public.complaints (
-  id uuid primary key default gen_random_uuid(),
-  society_id uuid not null references public.societies (id) on delete cascade,
-  created_by uuid not null references public.profiles (id) on delete cascade,
-  assigned_to uuid references public.profiles (id) on delete set null,
-  title text not null check (char_length(trim(title)) >= 3),
-  description text not null check (char_length(trim(description)) >= 10),
-  category public.complaint_category not null default 'other',
-  priority public.complaint_priority not null default 'medium',
-  status public.complaint_status not null default 'open',
-  reference_code text not null unique,
-  created_at timestamptz not null default now(),
-  updated_at timestamptz not null default now()
+-- ==========================================
+-- PHASE 3: TABLES
+-- ==========================================
+
+-- 3.1 Complaints Table
+CREATE TABLE public.complaints (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  society_id uuid NOT NULL REFERENCES public.societies (id) ON DELETE CASCADE,
+  created_by uuid NOT NULL REFERENCES public.profiles (id) ON DELETE CASCADE,
+  assigned_to uuid REFERENCES public.profiles (id) ON DELETE SET NULL,
+  title text NOT NULL CHECK (char_length(trim(title)) >= 3),
+  description text NOT NULL CHECK (char_length(trim(description)) >= 10),
+  category public.complaint_category NOT NULL DEFAULT 'other',
+  priority public.complaint_priority NOT NULL DEFAULT 'medium',
+  status public.complaint_status NOT NULL DEFAULT 'open',
+  reference_code text NOT NULL UNIQUE,
+  created_at timestamptz NOT NULL DEFAULT now(),
+  updated_at timestamptz NOT NULL DEFAULT now()
 );
 
-create index if not exists complaints_society_id_idx on public.complaints (society_id);
-create index if not exists complaints_created_by_idx on public.complaints (created_by);
-create index if not exists complaints_status_idx on public.complaints (status);
-create index if not exists complaints_priority_idx on public.complaints (priority);
-create index if not exists complaints_created_at_idx on public.complaints (created_at desc);
-
-create table if not exists public.complaint_attachments (
-  id uuid primary key default gen_random_uuid(),
-  complaint_id uuid not null references public.complaints (id) on delete cascade,
-  file_url text not null,
+-- 3.2 Complaint Attachments Table
+CREATE TABLE public.complaint_attachments (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  complaint_id uuid NOT NULL REFERENCES public.complaints (id) ON DELETE CASCADE,
+  file_url text NOT NULL,
   file_name text,
-  created_at timestamptz not null default now()
+  created_at timestamptz NOT NULL DEFAULT now()
 );
 
-create index if not exists complaint_attachments_complaint_id_idx
-  on public.complaint_attachments (complaint_id);
-
-create table if not exists public.complaint_comments (
-  id uuid primary key default gen_random_uuid(),
-  complaint_id uuid not null references public.complaints (id) on delete cascade,
-  author_id uuid not null references public.profiles (id) on delete cascade,
-  content text not null check (char_length(trim(content)) >= 1),
-  is_internal boolean not null default false,
-  created_at timestamptz not null default now()
+-- 3.3 Complaint Comments Table
+CREATE TABLE public.complaint_comments (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  complaint_id uuid NOT NULL REFERENCES public.complaints (id) ON DELETE CASCADE,
+  author_id uuid NOT NULL REFERENCES public.profiles (id) ON DELETE CASCADE,
+  content text NOT NULL CHECK (char_length(trim(content)) >= 1),
+  is_internal boolean NOT NULL DEFAULT false,
+  created_at timestamptz NOT NULL DEFAULT now()
 );
 
-create index if not exists complaint_comments_complaint_id_idx
-  on public.complaint_comments (complaint_id);
-
-create table if not exists public.complaint_status_history (
-  id uuid primary key default gen_random_uuid(),
-  complaint_id uuid not null references public.complaints (id) on delete cascade,
+-- 3.4 Complaint Status History Table
+CREATE TABLE public.complaint_status_history (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  complaint_id uuid NOT NULL REFERENCES public.complaints (id) ON DELETE CASCADE,
   old_status public.complaint_status,
-  new_status public.complaint_status not null,
-  changed_by uuid not null references public.profiles (id) on delete cascade,
+  new_status public.complaint_status NOT NULL,
+  changed_by uuid NOT NULL REFERENCES public.profiles (id) ON DELETE CASCADE,
   note text,
-  created_at timestamptz not null default now()
+  created_at timestamptz NOT NULL DEFAULT now()
 );
 
-create index if not exists complaint_status_history_complaint_id_idx
-  on public.complaint_status_history (complaint_id);
+-- ==========================================
+-- PHASE 4: INDEXES
+-- ==========================================
 
--- Helpers
-create or replace function public.is_admin()
-returns boolean
-language sql
-stable
-security definer
-set search_path = public
-as $$
-  select exists (
-    select 1
-    from public.profiles
-    where id = auth.uid()
-      and role = 'admin'
+CREATE INDEX IF NOT EXISTS complaints_society_id_idx ON public.complaints (society_id);
+CREATE INDEX IF NOT EXISTS complaints_created_by_idx ON public.complaints (created_by);
+CREATE INDEX IF NOT EXISTS complaints_status_idx ON public.complaints (status);
+CREATE INDEX IF NOT EXISTS complaints_priority_idx ON public.complaints (priority);
+CREATE INDEX IF NOT EXISTS complaints_created_at_idx ON public.complaints (created_at DESC);
+
+CREATE INDEX IF NOT EXISTS complaint_attachments_complaint_id_idx ON public.complaint_attachments (complaint_id);
+CREATE INDEX IF NOT EXISTS complaint_comments_complaint_id_idx ON public.complaint_comments (complaint_id);
+CREATE INDEX IF NOT EXISTS complaint_status_history_complaint_id_idx ON public.complaint_status_history (complaint_id);
+
+-- ==========================================
+-- PHASE 5: HELPER FUNCTIONS AND TRIGGERS
+-- ==========================================
+
+-- 5.1 Helper: Check if auth user is admin
+CREATE OR REPLACE FUNCTION public.is_admin()
+RETURNS boolean
+LANGUAGE sql
+STABLE
+SECURITY DEFINER
+SET search_path = public
+AS $$
+  SELECT EXISTS (
+    SELECT 1
+    FROM public.profiles
+    WHERE id = auth.uid()
+      AND role = 'admin'
   );
 $$;
 
-create or replace function public.get_auth_society_id()
-returns uuid
-language sql
-stable
-security definer
-set search_path = public
-as $$
-  select society_id
-  from public.profiles
-  where id = auth.uid();
+-- 5.2 Helper: Get auth user's society ID
+CREATE OR REPLACE FUNCTION public.get_auth_society_id()
+RETURNS uuid
+LANGUAGE sql
+STABLE
+SECURITY DEFINER
+SET search_path = public
+AS $$
+  SELECT society_id
+  FROM public.profiles
+  WHERE id = auth.uid();
 $$;
 
-create or replace function public.generate_complaint_reference()
-returns trigger
-language plpgsql
-as $$
-begin
-  if new.reference_code is null or new.reference_code = '' then
+-- 5.3 Trigger Function: Generate unique reference code
+CREATE OR REPLACE FUNCTION public.generate_complaint_reference()
+RETURNS trigger
+LANGUAGE plpgsql
+AS $$
+BEGIN
+  IF new.reference_code IS NULL OR new.reference_code = '' THEN
     new.reference_code := 'CMP-' || lpad(nextval('public.complaint_reference_seq')::text, 4, '0');
-  end if;
-  return new;
-end;
+  END IF;
+  RETURN new;
+END;
 $$;
 
-create trigger complaints_generate_reference
-  before insert on public.complaints
-  for each row
-  execute function public.generate_complaint_reference();
+-- Trigger: Generate Reference
+CREATE TRIGGER complaints_generate_reference
+  BEFORE INSERT ON public.complaints
+  FOR EACH ROW
+  EXECUTE FUNCTION public.generate_complaint_reference();
 
-create trigger complaints_updated_at
-  before update on public.complaints
-  for each row
-  execute function public.handle_updated_at();
-
-create or replace function public.log_complaint_status_change()
-returns trigger
-language plpgsql
-security definer
-set search_path = public
-as $$
-begin
-  if tg_op = 'INSERT' then
-    insert into public.complaint_status_history (complaint_id, old_status, new_status, changed_by, note)
-    values (new.id, null, new.status, new.created_by, 'Complaint created');
-  elsif tg_op = 'UPDATE' and old.status is distinct from new.status then
-    insert into public.complaint_status_history (complaint_id, old_status, new_status, changed_by, note)
-    values (new.id, old.status, new.status, auth.uid(), null);
-  end if;
-  return new;
-end;
+-- 5.4 Trigger Function: Handle updated_at
+CREATE OR REPLACE FUNCTION public.handle_updated_at()
+RETURNS trigger
+LANGUAGE plpgsql
+AS $$
+BEGIN
+  new.updated_at = now();
+  RETURN new;
+END;
 $$;
 
-create trigger complaints_status_history
-  after insert or update of status on public.complaints
-  for each row
-  execute function public.log_complaint_status_change();
+-- Trigger: Handle updated_at
+CREATE TRIGGER complaints_updated_at
+  BEFORE UPDATE ON public.complaints
+  FOR EACH ROW
+  EXECUTE FUNCTION public.handle_updated_at();
 
--- RLS
-alter table public.complaints enable row level security;
-alter table public.complaint_attachments enable row level security;
-alter table public.complaint_comments enable row level security;
-alter table public.complaint_status_history enable row level security;
+-- 5.5 Trigger Function: Log status history changes (Null Safe Fallback for system operations)
+CREATE OR REPLACE FUNCTION public.log_complaint_status_change()
+RETURNS trigger
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public
+AS $$
+BEGIN
+  IF tg_op = 'INSERT' THEN
+    INSERT INTO public.complaint_status_history (complaint_id, old_status, new_status, changed_by, note)
+    VALUES (new.id, null, new.status, new.created_by, 'Complaint created');
+  ELSIF tg_op = 'UPDATE' AND old.status IS DISTINCT FROM new.status THEN
+    INSERT INTO public.complaint_status_history (complaint_id, old_status, new_status, changed_by, note)
+    VALUES (new.id, old.status, new.status, coalesce(auth.uid(), new.created_by), null);
+  END IF;
+  RETURN new;
+END;
+$$;
 
--- complaints policies
-create policy "Residents can view own complaints"
-  on public.complaints
-  for select
-  to authenticated
-  using (created_by = auth.uid());
+-- Trigger: Log Status Changes
+CREATE TRIGGER complaints_status_history
+  AFTER INSERT OR UPDATE OF status ON public.complaints
+  FOR EACH ROW
+  EXECUTE FUNCTION public.log_complaint_status_change();
 
-create policy "Admins can view society complaints"
-  on public.complaints
-  for select
-  to authenticated
-  using (
+-- ==========================================
+-- PHASE 6: RLS POLICIES
+-- ==========================================
+
+-- Enable RLS
+ALTER TABLE public.complaints ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.complaint_attachments ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.complaint_comments ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.complaint_status_history ENABLE ROW LEVEL SECURITY;
+
+-- 6.1 complaints Policies
+CREATE POLICY "Residents can view own complaints"
+  ON public.complaints
+  FOR SELECT
+  TO authenticated
+  USING (created_by = auth.uid());
+
+CREATE POLICY "Admins can view society complaints"
+  ON public.complaints
+  FOR SELECT
+  TO authenticated
+  USING (
     public.is_admin()
-    and society_id = public.get_auth_society_id()
+    AND society_id = public.get_auth_society_id()
   );
 
-create policy "Residents can create complaints"
-  on public.complaints
-  for insert
-  to authenticated
-  with check (
+CREATE POLICY "Residents can create complaints"
+  ON public.complaints
+  FOR INSERT
+  TO authenticated
+  WITH CHECK (
     created_by = auth.uid()
-    and society_id = public.get_auth_society_id()
+    AND society_id = public.get_auth_society_id()
   );
 
-create policy "Admins can update society complaints"
-  on public.complaints
-  for update
-  to authenticated
-  using (
+CREATE POLICY "Admins can update society complaints"
+  ON public.complaints
+  FOR UPDATE
+  TO authenticated
+  USING (
     public.is_admin()
-    and society_id = public.get_auth_society_id()
+    AND society_id = public.get_auth_society_id()
   )
-  with check (
+  WITH CHECK (
     public.is_admin()
-    and society_id = public.get_auth_society_id()
+    AND society_id = public.get_auth_society_id()
   );
 
--- complaint_attachments policies
-create policy "Users can view attachments on accessible complaints"
-  on public.complaint_attachments
-  for select
-  to authenticated
-  using (
-    exists (
-      select 1
-      from public.complaints c
-      where c.id = complaint_id
-        and (
+-- 6.2 complaint_attachments Policies
+CREATE POLICY "Users can view attachments on accessible complaints"
+  ON public.complaint_attachments
+  FOR SELECT
+  TO authenticated
+  USING (
+    EXISTS (
+      SELECT 1
+      FROM public.complaints c
+      WHERE c.id = complaint_id
+        AND (
           c.created_by = auth.uid()
-          or (
+          OR (
             public.is_admin()
-            and c.society_id = public.get_auth_society_id()
+            AND c.society_id = public.get_auth_society_id()
           )
         )
     )
   );
 
-create policy "Residents can add attachments to own complaints"
-  on public.complaint_attachments
-  for insert
-  to authenticated
-  with check (
-    exists (
-      select 1
-      from public.complaints c
-      where c.id = complaint_id
-        and c.created_by = auth.uid()
+CREATE POLICY "Residents can add attachments to own complaints"
+  ON public.complaint_attachments
+  FOR INSERT
+  TO authenticated
+  WITH CHECK (
+    EXISTS (
+      SELECT 1
+      FROM public.complaints c
+      WHERE c.id = complaint_id
+        AND c.created_by = auth.uid()
     )
   );
 
-create policy "Admins can add attachments to society complaints"
-  on public.complaint_attachments
-  for insert
-  to authenticated
-  with check (
+CREATE POLICY "Admins can add attachments to society complaints"
+  ON public.complaint_attachments
+  FOR INSERT
+  TO authenticated
+  WITH CHECK (
     public.is_admin()
-    and exists (
-      select 1
-      from public.complaints c
-      where c.id = complaint_id
-        and c.society_id = public.get_auth_society_id()
+    AND EXISTS (
+      SELECT 1
+      FROM public.complaints c
+      WHERE c.id = complaint_id
+        AND c.society_id = public.get_auth_society_id()
     )
   );
 
--- complaint_comments policies
-create policy "Residents can view non-internal comments on own complaints"
-  on public.complaint_comments
-  for select
-  to authenticated
-  using (
+-- 6.3 complaint_comments Policies
+CREATE POLICY "Residents can view non-internal comments on own complaints"
+  ON public.complaint_comments
+  FOR SELECT
+  TO authenticated
+  USING (
     is_internal = false
-    and exists (
-      select 1
-      from public.complaints c
-      where c.id = complaint_id
-        and c.created_by = auth.uid()
+    AND EXISTS (
+      SELECT 1
+      FROM public.complaints c
+      WHERE c.id = complaint_id
+        AND c.created_by = auth.uid()
     )
   );
 
-create policy "Admins can view all comments on society complaints"
-  on public.complaint_comments
-  for select
-  to authenticated
-  using (
+CREATE POLICY "Admins can view all comments on society complaints"
+  ON public.complaint_comments
+  FOR SELECT
+  TO authenticated
+  USING (
     public.is_admin()
-    and exists (
-      select 1
-      from public.complaints c
-      where c.id = complaint_id
-        and c.society_id = public.get_auth_society_id()
+    AND EXISTS (
+      SELECT 1
+      FROM public.complaints c
+      WHERE c.id = complaint_id
+        AND c.society_id = public.get_auth_society_id()
     )
   );
 
-create policy "Residents can comment on own complaints"
-  on public.complaint_comments
-  for insert
-  to authenticated
-  with check (
+CREATE POLICY "Residents can comment on own complaints"
+  ON public.complaint_comments
+  FOR INSERT
+  TO authenticated
+  WITH CHECK (
     author_id = auth.uid()
-    and is_internal = false
-    and exists (
-      select 1
-      from public.complaints c
-      where c.id = complaint_id
-        and c.created_by = auth.uid()
+    AND is_internal = false
+    AND EXISTS (
+      SELECT 1
+      FROM public.complaints c
+      WHERE c.id = complaint_id
+        AND c.created_by = auth.uid()
     )
   );
 
-create policy "Admins can comment on society complaints"
-  on public.complaint_comments
-  for insert
-  to authenticated
-  with check (
+CREATE POLICY "Admins can comment on society complaints"
+  ON public.complaint_comments
+  FOR INSERT
+  TO authenticated
+  WITH CHECK (
     author_id = auth.uid()
-    and public.is_admin()
-    and exists (
-      select 1
-      from public.complaints c
-      where c.id = complaint_id
-        and c.society_id = public.get_auth_society_id()
+    AND public.is_admin()
+    AND EXISTS (
+      SELECT 1
+      FROM public.complaints c
+      WHERE c.id = complaint_id
+        AND c.society_id = public.get_auth_society_id()
     )
   );
 
--- complaint_status_history policies
-create policy "Residents can view history on own complaints"
-  on public.complaint_status_history
-  for select
-  to authenticated
-  using (
-    exists (
-      select 1
-      from public.complaints c
-      where c.id = complaint_id
-        and c.created_by = auth.uid()
+-- 6.4 complaint_status_history Policies
+CREATE POLICY "Residents can view history on own complaints"
+  ON public.complaint_status_history
+  FOR SELECT
+  TO authenticated
+  USING (
+    EXISTS (
+      SELECT 1
+      FROM public.complaints c
+      WHERE c.id = complaint_id
+        AND c.created_by = auth.uid()
     )
   );
 
-create policy "Admins can view history on society complaints"
-  on public.complaint_status_history
-  for select
-  to authenticated
-  using (
+CREATE POLICY "Admins can view history on society complaints"
+  ON public.complaint_status_history
+  FOR SELECT
+  TO authenticated
+  USING (
     public.is_admin()
-    and exists (
-      select 1
-      from public.complaints c
-      where c.id = complaint_id
-        and c.society_id = public.get_auth_society_id()
+    AND EXISTS (
+      SELECT 1
+      FROM public.complaints c
+      WHERE c.id = complaint_id
+        AND c.society_id = public.get_auth_society_id()
     )
   );
 
--- Storage bucket for complaint images
-insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
-values (
+-- ==========================================
+-- PHASE 7: STORAGE BUCKET AND STORAGE POLICIES
+-- ==========================================
+
+-- Register Storage Bucket
+INSERT INTO storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
+VALUES (
   'complaint-images',
   'complaint-images',
   false,
   10485760,
   array['image/jpeg', 'image/png', 'image/webp', 'image/heic', 'image/heif']
 )
-on conflict (id) do nothing;
+ON CONFLICT (id) DO NOTHING;
 
-create policy "Authenticated users can upload complaint images"
-  on storage.objects
-  for insert
-  to authenticated
-  with check (
+-- Storage Policies
+CREATE POLICY "Authenticated users can upload complaint images"
+  ON storage.objects
+  FOR INSERT
+  TO authenticated
+  WITH CHECK (
     bucket_id = 'complaint-images'
-    and (storage.foldername(name))[1] = auth.uid()::text
+    AND (storage.foldername(name))[1] = auth.uid()::text
   );
 
-create policy "Users can read own complaint images"
-  on storage.objects
-  for select
-  to authenticated
-  using (
+CREATE POLICY "Users can read own complaint images"
+  ON storage.objects
+  FOR SELECT
+  TO authenticated
+  USING (
     bucket_id = 'complaint-images'
-    and (
+    AND (
       (storage.foldername(name))[1] = auth.uid()::text
-      or public.is_admin()
+      OR (
+        public.is_admin()
+        AND EXISTS (
+          SELECT 1 FROM public.profiles p
+          WHERE p.id::text = (storage.foldername(name))[1]
+            AND p.society_id = public.get_auth_society_id()
+        )
+      )
     )
   );
 
-create policy "Users can delete own complaint images"
-  on storage.objects
-  for delete
-  to authenticated
-  using (
+CREATE POLICY "Users can delete own complaint images"
+  ON storage.objects
+  FOR DELETE
+  TO authenticated
+  USING (
     bucket_id = 'complaint-images'
-    and (storage.foldername(name))[1] = auth.uid()::text
+    AND (storage.foldername(name))[1] = auth.uid()::text
   );

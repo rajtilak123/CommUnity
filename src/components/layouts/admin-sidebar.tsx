@@ -18,10 +18,17 @@ export function AdminSidebar({ profile }: AdminSidebarProps) {
   const initials = getProfileInitials(profile);
 
   return (
-    <aside className="fixed left-0 top-0 z-50 hidden h-full w-sidebar flex-col gap-sm border-r border-outline-variant bg-surface-container-low p-md md:flex">
-      <div className="mb-lg px-2 text-headline-sm font-bold text-primary">CommUnity Admin</div>
+    <aside className="fixed left-0 top-0 z-50 hidden h-full w-sidebar-admin flex-col border-r border-outline-variant bg-surface-container-lowest px-md py-lg md:flex">
+      {/* Brand logo header */}
+      <div className="mb-lg px-2 flex items-center gap-2">
+        <div className="size-6 rounded-md bg-primary flex items-center justify-center text-on-primary text-xs font-black select-none">
+          C
+        </div>
+        <span className="text-body-md font-bold tracking-tight text-on-surface">CommUnity Admin</span>
+      </div>
 
-      <nav className="flex flex-1 flex-col gap-1">
+      {/* Navigation Links */}
+      <nav className="flex flex-1 flex-col gap-0.5">
         {adminNavItems.map((item) => {
           const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
           const Icon = item.icon;
@@ -31,32 +38,47 @@ export function AdminSidebar({ profile }: AdminSidebarProps) {
               key={item.href}
               href={item.href}
               className={cn(
-                "flex items-center gap-md rounded-lg p-md text-body-md transition-all active:translate-x-0.5",
+                "relative flex items-center gap-3 rounded-md px-3 py-2 text-body-sm font-semibold transition-all select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
                 isActive
-                  ? "bg-primary-container font-bold text-on-primary-container"
-                  : "text-on-surface-variant hover:bg-surface-container-high",
+                  ? "bg-surface-container-highest text-primary"
+                  : "text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface"
               )}
             >
-              <Icon className="size-5 shrink-0" />
+              {isActive && (
+                <span className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-4 rounded-r bg-primary" />
+              )}
+              <Icon
+                className={cn(
+                  "size-4 shrink-0 transition-colors",
+                  isActive ? "text-primary" : "text-outline group-hover:text-on-surface-variant"
+                )}
+              />
               <span>{item.label}</span>
             </Link>
           );
         })}
       </nav>
 
+      {/* Profile Footer */}
       <div className="mt-auto border-t border-outline-variant pt-md">
-        <div className="flex items-center gap-md px-2 py-md">
-          <div className="flex size-10 items-center justify-center rounded-full border border-outline-variant bg-primary-container text-label-md font-bold text-on-primary-container">
+        <div className="flex items-center gap-3 px-2 py-2 mb-3">
+          <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-label-md font-bold text-primary select-none">
             {initials}
           </div>
           <div className="min-w-0 flex-1">
-            <div className="truncate text-label-md font-bold text-on-surface">
+            <div className="truncate text-body-sm font-bold text-on-surface">
               {profile.full_name ?? "Admin User"}
             </div>
-            <div className="truncate text-label-sm text-on-surface-variant capitalize">{profile.role}</div>
+            <div className="truncate text-[10px] text-on-surface-variant font-semibold uppercase tracking-wider capitalize">
+              {profile.role}
+            </div>
           </div>
         </div>
-        <SignOutButton className="mt-sm w-full" variant="secondary" size="sm" />
+        <SignOutButton
+          className="w-full text-xs font-semibold text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low flex justify-center py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          variant="secondary"
+          size="sm"
+        />
       </div>
     </aside>
   );

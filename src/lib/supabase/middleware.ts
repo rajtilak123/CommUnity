@@ -8,7 +8,8 @@ import {
   isResidentRoute,
 } from "@/lib/auth/routes";
 import { getClientEnv } from "@/lib/env";
-import type { UserRole } from "@/types/auth";
+import type { UserRole, ProfileStatus } from "@/types/auth";
+
 
 type CookieToSet = {
   name: string;
@@ -53,15 +54,19 @@ export async function updateSession(request: NextRequest) {
       }),
     ]);
     user = result.data.user;
-  } catch {
+  } catch (err) {
+    console.error("getUser error:", err);
     user = null;
   }
 
   if (pathname === "/login" && user) {
-    const role = await getProfileRole(supabase, user.id);
+    const profile = await getProfileDetails(supabase, user.id);
 
-    if (role) {
-      return redirectTo(request, supabaseResponse, getHomePathForRole(role));
+    if (profile) {
+      if (!profile.society_id || profile.status !== "approved") {
+        return redirectTo(request, supabaseResponse, "/onboarding");
+      }
+      return redirectTo(request, supabaseResponse, getHomePathForRole(profile.role));
     }
   }
 
@@ -73,39 +78,61 @@ export async function updateSession(request: NextRequest) {
     return redirectTo(request, supabaseResponse, "/login");
   }
 
-  const role = await getProfileRole(supabase, user.id);
+  const profile = await getProfileDetails(supabase, user.id);
 
-  if (!role) {
+  if (!profile) {
     return redirectTo(request, supabaseResponse, "/login");
   }
 
+  // Onboarding firewall redirection logic (UX-only redirection)
+  if (!profile.society_id || profile.status !== "approved") {
+    if (pathname !== "/onboarding") {
+      return redirectTo(request, supabaseResponse, "/onboarding");
+    }
+    return supabaseResponse;
+  }
+
+  // If already onboarded and approved, redirect home if on onboarding
+  if (pathname === "/onboarding") {
+    return redirectTo(request, supabaseResponse, getHomePathForRole(profile.role));
+  }
+
   if (pathname === "/") {
-    return redirectTo(request, supabaseResponse, getHomePathForRole(role));
+    return redirectTo(request, supabaseResponse, getHomePathForRole(profile.role));
   }
 
-  if (isAdminRoute(pathname) && role !== "admin") {
-    return redirectTo(request, supabaseResponse, getHomePathForRole(role));
+  if (isAdminRoute(pathname) && profile.role !== "admin") {
+    return redirectTo(request, supabaseResponse, getHomePathForRole(profile.role));
   }
 
-  if (isResidentRoute(pathname) && role !== "resident") {
-    return redirectTo(request, supabaseResponse, getHomePathForRole(role));
+  if (isResidentRoute(pathname) && profile.role !== "resident") {
+    // Allow admins to preview resident facility pages
+    const isAdminPreview = profile.role === "admin" && pathname.startsWith("/facilities/");
+    if (!isAdminPreview) {
+      return redirectTo(request, supabaseResponse, getHomePathForRole(profile.role));
+    }
   }
 
   return supabaseResponse;
 }
 
-async function getProfileRole(
+async function getProfileDetails(
   supabase: ReturnType<typeof createServerClient>,
   userId: string,
-): Promise<UserRole | null> {
-  const { data } = await supabase.from("profiles").select("role").eq("id", userId).single();
+): Promise<{ role: UserRole; society_id: string | null; status: ProfileStatus } | null> {
+  const { data } = await supabase.from("profiles").select("role, society_id, status").eq("id", userId).single();
 
   if (!data?.role) {
     return null;
   }
 
-  return data.role as UserRole;
+  return {
+    role: data.role as UserRole,
+    society_id: data.society_id,
+    status: data.status as ProfileStatus,
+  };
 }
+
 
 function redirectTo(request: NextRequest, response: NextResponse, pathname: string) {
   const url = request.nextUrl.clone();
@@ -118,3 +145,4 @@ function redirectTo(request: NextRequest, response: NextResponse, pathname: stri
 
   return redirectResponse;
 }
+

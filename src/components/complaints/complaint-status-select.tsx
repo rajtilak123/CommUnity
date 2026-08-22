@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect, useState } from "react";
 
 import {
   updateComplaintStatusAction,
@@ -25,6 +25,11 @@ export function ComplaintStatusSelect({
   className,
 }: ComplaintStatusSelectProps) {
   const [state, formAction, isPending] = useActionState(updateComplaintStatusAction, initialState);
+  const [status, setStatus] = useState<ComplaintStatus>(currentStatus);
+
+  useEffect(() => {
+    setStatus(currentStatus);
+  }, [currentStatus]);
 
   return (
     <form action={formAction} className={cn("flex flex-col gap-md", className)}>
@@ -35,8 +40,9 @@ export function ComplaintStatusSelect({
         </span>
         <select
           name="status"
-          defaultValue={currentStatus}
-          className="rounded-lg border border-outline-variant bg-surface-container-lowest px-md py-sm text-label-md"
+          value={status}
+          onChange={(e) => setStatus(e.target.value as ComplaintStatus)}
+          className="rounded-lg border border-outline-variant bg-surface-container-lowest px-md py-sm text-body-lg md:text-label-md"
         >
           {complaintStatuses.map((status) => (
             <option key={status} value={status}>
@@ -49,7 +55,7 @@ export function ComplaintStatusSelect({
         name="note"
         rows={2}
         placeholder="Optional note for timeline..."
-        className="w-full resize-none rounded-lg border border-outline-variant bg-surface px-md py-sm text-body-md"
+        className="w-full resize-none rounded-lg border border-outline-variant bg-surface px-md py-sm text-body-lg md:text-body-md"
       />
       <button
         type="submit"

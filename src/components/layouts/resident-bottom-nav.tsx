@@ -27,7 +27,7 @@ export function ResidentBottomNav() {
             )}
           >
             <Icon className={cn("size-6 shrink-0", isActive && "fill-current")} />
-            <span>{item.label}</span>
+            <span className="max-[359px]:hidden truncate text-[10px] md:text-label-sm font-medium">{item.label}</span>
           </Link>
         );
       })}

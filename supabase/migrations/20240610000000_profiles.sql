@@ -20,12 +20,14 @@ create index if not exists profiles_society_id_idx on public.profiles (society_i
 
 alter table public.profiles enable row level security;
 
+DROP POLICY IF EXISTS "Users can view own profile" ON public.profiles;
 create policy "Users can view own profile"
   on public.profiles
   for select
   to authenticated
   using (auth.uid() = id);
 
+DROP POLICY IF EXISTS "Users can update own profile" ON public.profiles;
 create policy "Users can update own profile"
   on public.profiles
   for update
@@ -33,7 +35,9 @@ create policy "Users can update own profile"
   using (auth.uid() = id)
   with check (auth.uid() = id);
 
-create policy "Admins can view all profiles"
+DROP POLICY IF EXISTS "Admins can view all profiles" ON public.profiles;
+DROP POLICY IF EXISTS "Admins can view profiles in their society" ON public.profiles;
+create policy "Admins can view profiles in their society"
   on public.profiles
   for select
   to authenticated
@@ -43,6 +47,31 @@ create policy "Admins can view all profiles"
       from public.profiles admin_profile
       where admin_profile.id = auth.uid()
         and admin_profile.role = 'admin'
+        and admin_profile.society_id = public.profiles.society_id
+    )
+  );
+
+DROP POLICY IF EXISTS "Admins can update profiles in their society" ON public.profiles;
+create policy "Admins can update profiles in their society"
+  on public.profiles
+  for update
+  to authenticated
+  using (
+    exists (
+      select 1
+      from public.profiles admin_profile
+      where admin_profile.id = auth.uid()
+        and admin_profile.role = 'admin'
+        and admin_profile.society_id = public.profiles.society_id
+    )
+  )
+  with check (
+    exists (
+      select 1
+      from public.profiles admin_profile
+      where admin_profile.id = auth.uid()
+        and admin_profile.role = 'admin'
+        and admin_profile.society_id = public.profiles.society_id
     )
   );
 

@@ -1,10 +1,11 @@
 import { redirect } from "next/navigation";
+import { cache } from "react";
 
 import type { Profile, UserRole } from "@/types/auth";
 import { createClient } from "@/lib/supabase/server";
 import { getHomePathForRole } from "@/lib/auth/routes";
 
-export async function getAuthUser() {
+export const getAuthUser = cache(async () => {
   const supabase = await createClient();
   const {
     data: { user },
@@ -16,9 +17,9 @@ export async function getAuthUser() {
   }
 
   return user;
-}
+});
 
-export async function getProfile(): Promise<Profile | null> {
+export const getRawProfile = cache(async (): Promise<Profile | null> => {
   const user = await getAuthUser();
 
   if (!user) {
@@ -32,18 +33,47 @@ export async function getProfile(): Promise<Profile | null> {
     return null;
   }
 
-  return data as Profile;
+  const profile = data as Profile;
+
+  // Only block deactivated accounts at the raw level
+  if (!profile.is_active) {
+    return null;
+  }
+
+  return profile;
+});
+
+export async function getProfile(): Promise<Profile | null> {
+  const profile = await getRawProfile();
+
+  if (!profile) {
+    return null;
+  }
+
+  // Block unapproved or unassociated users
+  if (profile.status !== "approved" || !profile.society_id) {
+    return null;
+  }
+
+  return profile;
 }
 
+
+
 export async function requireProfile(): Promise<Profile> {
-  const profile = await getProfile();
+  const profile = await getRawProfile();
 
   if (!profile) {
     redirect("/login");
   }
 
+  if (!profile.society_id || profile.status !== "approved") {
+    redirect("/onboarding");
+  }
+
   return profile;
 }
+
 
 export async function requireRole(role: UserRole): Promise<Profile> {
   const profile = await requireProfile();

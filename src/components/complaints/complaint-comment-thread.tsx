@@ -68,11 +68,11 @@ export function ComplaintCommentThread({
           comments.map((comment) => {
             const isOwn = comment.author_id === currentUserId;
             const authorLabel =
-              comment.author.role === "admin"
+              comment.author?.role === "admin"
                 ? "Management"
                 : isOwn
                   ? "You"
-                  : comment.author.full_name ?? "Resident";
+                  : comment.author?.full_name ?? "Resident";
 
             return (
               <div
@@ -83,7 +83,7 @@ export function ComplaintCommentThread({
                   <span
                     className={cn(
                       "text-label-sm font-bold",
-                      comment.author.role === "admin" ? "text-primary" : "text-secondary",
+                      comment.author?.role === "admin" ? "text-primary" : "text-secondary",
                     )}
                   >
                     {authorLabel}
@@ -115,7 +115,7 @@ export function ComplaintCommentThread({
             rows={2}
             placeholder="Type your message..."
             required
-            className="w-full resize-none rounded-lg border border-outline-variant bg-surface p-md pr-12 text-body-md transition-all focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+            className="w-full resize-none rounded-lg border border-outline-variant bg-surface p-md pr-12 text-body-lg md:text-body-md transition-all focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
           />
           <button
             type="submit"

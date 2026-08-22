@@ -16,26 +16,16 @@ export type ComplaintActionState = {
   success?: string;
 };
 
-async function resolveSocietyId(profileSocietyId: string | null): Promise<string> {
-  if (profileSocietyId) {
-    return profileSocietyId;
-  }
-
-  const supabase = await createClient();
-  const { data, error } = await supabase.from("societies").select("id").limit(1).single();
-
-  if (error || !data) {
-    throw new Error("No society configured. Please contact your administrator.");
-  }
-
-  return data.id as string;
-}
-
 export async function createComplaintAction(
   _prevState: ComplaintActionState,
   formData: FormData,
 ): Promise<ComplaintActionState> {
   const profile = await requireResident();
+
+  if (!profile.society_id) {
+    return { error: "Your account is not associated with a society. Please complete onboarding." };
+  }
+
   const parsed = createComplaintSchema.safeParse({
     title: formData.get("title"),
     description: formData.get("description"),
@@ -47,26 +37,17 @@ export async function createComplaintAction(
     return { error: parsed.error.issues[0]?.message ?? "Invalid form data" };
   }
 
-  let societyId: string;
-
-  try {
-    societyId = await resolveSocietyId(profile.society_id);
-  } catch (err) {
-    return { error: err instanceof Error ? err.message : "Failed to resolve society" };
-  }
-
   const supabase = await createClient();
 
   const { data, error } = await supabase
     .from("complaints")
     .insert({
-      society_id: societyId,
+      society_id: profile.society_id,
       created_by: profile.id,
       title: parsed.data.title,
       description: parsed.data.description,
       category: parsed.data.category,
       priority: parsed.data.priority,
-      reference_code: "",
     })
     .select("id")
     .single();
