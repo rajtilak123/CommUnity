@@ -137,22 +137,22 @@ export default async function AdminDashboardPage() {
   return (
     <div className="space-y-xl max-w-container-max mx-auto px-margin-mobile sm:px-md py-md">
       {/* ── SECTION 1 — EDITORIAL WELCOME MASTHEAD ───────────────── */}
-      <div className="border-b-2 border-[#111111] pb-4">
-        <p className="font-mono text-[10px] uppercase tracking-widest text-[#737373] mb-1">
+      <div className="border-b-2 border-primary pb-4">
+        <p className="font-mono text-[10px] uppercase tracking-widest text-on-surface-variant mb-1">
           Administration Dashboard
         </p>
-        <hr className="border-t-2 border-[#111111] mb-3" />
+        <hr className="border-t-2 border-primary mb-3" />
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-sm">
           <div>
-            <h1 className="font-serif text-[28px] md:text-[36px] font-bold text-[#111111] tracking-tight leading-none">
+            <h1 className="font-serif text-[28px] md:text-[36px] font-bold text-on-surface tracking-tight leading-none">
               {greeting}, {adminFirstName}
             </h1>
-            <p className="text-body-sm text-[#525252] mt-1">
+            <p className="text-body-sm text-on-surface-variant mt-1">
               Manage residents, complaints, facilities, notices, and community operations.
             </p>
           </div>
           <div className="md:text-right flex flex-col md:items-end justify-center shrink-0">
-            <p className="font-mono text-[11px] text-[#525252]">{currentDateStr}</p>
+            <p className="font-mono text-[11px] text-on-surface-variant">{currentDateStr}</p>
             <span className="font-mono text-[10px] uppercase tracking-widest text-on-surface-variant border border-outline-variant px-2 py-0.5 mt-1 inline-block">
               {data.societyName && !data.societyName.toLowerCase().includes("demo")
                 ? data.societyName
@@ -163,9 +163,9 @@ export default async function AdminDashboardPage() {
       </div>
 
       {/* ── DAILY BRIEF STRIP ────────────────────────────── */}
-      <div className="border border-[#111111] bg-surface px-4 py-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono text-xs">
+      <div className="border border-primary bg-surface px-4 py-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono text-xs">
         <div className="flex items-center gap-2 shrink-0 border-b sm:border-b-0 border-outline-variant pb-2 sm:pb-0">
-          <span className="flex size-2 bg-[#CC0000]" />
+          <span className="flex size-2 bg-error" />
           <span className="font-mono text-xs font-bold uppercase tracking-widest text-on-surface">
             DAILY BRIEF
           </span>
@@ -197,21 +197,21 @@ export default async function AdminDashboardPage() {
       {/* ── SECTION 2 — EXECUTIVE KPI GRID ─────────────────────── */}
       <div className="grid grid-cols-1 gap-gutter sm:grid-cols-2 lg:grid-cols-5">
         {/* Card 1: Residents */}
-        <div className="border border-[#E5E5E0] bg-white p-md flex flex-col justify-between min-h-[145px]">
+        <div className="border border-outline-variant bg-surface-container-lowest p-md flex flex-col justify-between min-h-[145px]">
           <div className="flex items-center justify-between">
-            <span className="font-mono text-[10px] font-medium uppercase tracking-widest text-[#737373]">Residents</span>
-            <span className="text-[#525252]">
+            <span className="font-mono text-[10px] font-medium uppercase tracking-widest text-on-surface-variant">Residents</span>
+            <span className="text-on-surface-variant">
               <Users className="size-4" />
             </span>
           </div>
           <div className="mt-2">
-            <div className="font-mono text-[36px] font-bold text-[#111111] tracking-tight leading-none">
+            <div className="font-mono text-[36px] font-bold text-on-surface tracking-tight leading-none">
               {stats.residents.approved}
             </div>
-            <div className="mt-2 flex items-center justify-between font-mono text-[10px] text-[#737373]">
+            <div className="mt-2 flex items-center justify-between font-mono text-[10px] text-on-surface-variant">
               <span>+{stats.activity.newResidentsThisMonth} Joiners</span>
               <span>·</span>
-              <span className={stats.residents.pending > 0 ? "text-[#CC0000] font-semibold" : ""}>
+              <span className={stats.residents.pending > 0 ? "text-error font-semibold" : ""}>
                 {stats.residents.pending} Pending
               </span>
             </div>
@@ -219,18 +219,18 @@ export default async function AdminDashboardPage() {
         </div>
 
         {/* Card 2: Complaints */}
-        <div className="border border-[#E5E5E0] bg-white p-md flex flex-col justify-between min-h-[145px] border-l-4 border-l-[#CC0000]">
+        <div className="border border-outline-variant bg-surface-container-lowest p-md flex flex-col justify-between min-h-[145px] border-l-4 border-l-error">
           <div className="flex items-center justify-between">
-            <span className="font-mono text-[10px] font-medium uppercase tracking-widest text-[#737373]">Complaints</span>
-            <span className="text-[#CC0000]">
+            <span className="font-mono text-[10px] font-medium uppercase tracking-widest text-on-surface-variant">Complaints</span>
+            <span className="text-error">
               <AlertTriangle className="size-4" />
             </span>
           </div>
           <div className="mt-2">
-            <div className="font-mono text-[36px] font-bold text-[#111111] tracking-tight leading-none">
+            <div className="font-mono text-[36px] font-bold text-on-surface tracking-tight leading-none">
               {stats.complaints.open + stats.complaints.inProgress}
             </div>
-            <div className="mt-2 flex items-center justify-between font-mono text-[10px] text-[#737373]">
+            <div className="mt-2 flex items-center justify-between font-mono text-[10px] text-on-surface-variant">
               <span>{stats.complaints.resolved} Resolved</span>
               <span>·</span>
               <span>{stats.complaints.open} Open</span>
@@ -239,21 +239,21 @@ export default async function AdminDashboardPage() {
         </div>
 
         {/* Card 3: Facilities */}
-        <div className="border border-[#E5E5E0] bg-white p-md flex flex-col justify-between min-h-[145px]">
+        <div className="border border-outline-variant bg-surface-container-lowest p-md flex flex-col justify-between min-h-[145px]">
           <div className="flex items-center justify-between">
-            <span className="font-mono text-[10px] font-medium uppercase tracking-widest text-[#737373]">Facilities</span>
-            <span className="text-[#525252]">
+            <span className="font-mono text-[10px] font-medium uppercase tracking-widest text-on-surface-variant">Facilities</span>
+            <span className="text-on-surface-variant">
               <Building className="size-4" />
             </span>
           </div>
           <div className="mt-2">
-            <div className="font-mono text-[36px] font-bold text-[#111111] tracking-tight leading-none">
+            <div className="font-mono text-[36px] font-bold text-on-surface tracking-tight leading-none">
               {stats.facilities.active}
             </div>
-            <div className="mt-2 flex items-center justify-between font-mono text-[10px] text-[#737373]">
+            <div className="mt-2 flex items-center justify-between font-mono text-[10px] text-on-surface-variant">
               <span>{stats.facilities.upcomingBookings} Upcoming</span>
               <span>·</span>
-              <span className={stats.facilities.pendingApprovals > 0 ? "text-[#D97706] font-semibold" : ""}>
+              <span className={stats.facilities.pendingApprovals > 0 ? "text-amber-600 dark:text-amber-400 font-semibold" : ""}>
                 {stats.facilities.pendingApprovals} Pending
               </span>
             </div>
@@ -261,18 +261,18 @@ export default async function AdminDashboardPage() {
         </div>
 
         {/* Card 4: Community Activity */}
-        <div className="border border-[#E5E5E0] bg-white p-md flex flex-col justify-between min-h-[145px]">
+        <div className="border border-outline-variant bg-surface-container-lowest p-md flex flex-col justify-between min-h-[145px]">
           <div className="flex items-center justify-between">
-            <span className="font-mono text-[10px] font-medium uppercase tracking-widest text-[#737373]">Alerts Board</span>
-            <span className="text-[#525252]">
+            <span className="font-mono text-[10px] font-medium uppercase tracking-widest text-on-surface-variant">Alerts Board</span>
+            <span className="text-on-surface-variant">
               <Megaphone className="size-4" />
             </span>
           </div>
           <div className="mt-2">
-            <div className="font-mono text-[36px] font-bold text-[#111111] tracking-tight leading-none">
+            <div className="font-mono text-[36px] font-bold text-on-surface tracking-tight leading-none">
               {stats.activity.noticesThisMonth}
             </div>
-            <div className="mt-2 flex items-center justify-between font-mono text-[10px] text-[#737373]">
+            <div className="mt-2 flex items-center justify-between font-mono text-[10px] text-on-surface-variant">
               <span>{stats.activity.notificationsSent} Notifications</span>
               <span>·</span>
               <span>This Month</span>
@@ -281,17 +281,17 @@ export default async function AdminDashboardPage() {
         </div>
 
         {/* Card 5: Community Health */}
-        <div className="border border-[#E5E5E0] bg-white p-md flex flex-col justify-between min-h-[145px]">
+        <div className="border border-outline-variant bg-surface-container-lowest p-md flex flex-col justify-between min-h-[145px]">
           <div className="flex items-center justify-between">
-            <span className="font-mono text-[10px] font-medium uppercase tracking-widest text-[#737373]">Health Score</span>
-            <span className="text-[#525252]">
+            <span className="font-mono text-[10px] font-medium uppercase tracking-widest text-on-surface-variant">Health Score</span>
+            <span className="text-on-surface-variant">
               <Heart className="size-4" />
             </span>
           </div>
           <div className="mt-2">
-            <div className="font-mono text-[36px] font-bold text-[#111111] tracking-tight leading-none flex items-baseline gap-0.5">
+            <div className="font-mono text-[36px] font-bold text-on-surface tracking-tight leading-none flex items-baseline gap-0.5">
               {healthScore}
-              <span className="text-body-sm font-bold text-[#737373]">%</span>
+              <span className="text-body-sm font-bold text-on-surface-variant">%</span>
             </div>
             <div className="mt-2 flex items-center gap-1.5">
               <span className={cn("font-mono text-[10px] font-extrabold px-1.5 py-0.5 border leading-none", healthColorClass)}>
@@ -305,87 +305,87 @@ export default async function AdminDashboardPage() {
 
       {/* ── SECTION 3 — QUICK ACTIONS (SINGLE ROW COMMAND PANELS) ── */}
       <section className="space-y-md">
-        <h2 className="font-mono text-[10px] font-bold uppercase tracking-widest text-[#737373]">
+        <h2 className="font-mono text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">
           Quick Shortcuts
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-5 gap-md">
           <Link
             href="/admin/residents"
-            className="group border border-[#E5E5E0] bg-white p-md flex flex-col justify-between gap-sm hover:border-[#111111] transition-colors"
+            className="group border border-outline-variant bg-surface-container-lowest p-md flex flex-col justify-between gap-sm hover:border-primary transition-colors"
           >
             <div className="flex items-center justify-between">
-              <span className="text-[#525252] group-hover:text-[#111111]">
+              <span className="text-on-surface-variant group-hover:text-primary">
                 <Users className="size-4" />
               </span>
-              <ChevronRight className="size-3.5 text-[#A3A3A3] group-hover:text-[#111111] transition-colors" />
+              <ChevronRight className="size-3.5 text-outline group-hover:text-primary transition-colors" />
             </div>
             <div className="mt-1">
-              <h3 className="text-body-sm font-bold text-[#111111]">Residents</h3>
-              <p className="text-[11px] font-medium text-[#737373] mt-0.5">Approve &amp; update profiles</p>
+              <h3 className="text-body-sm font-bold text-on-surface">Residents</h3>
+              <p className="text-[11px] font-medium text-on-surface-variant mt-0.5">Approve &amp; update profiles</p>
             </div>
           </Link>
 
           <Link
             href="/admin/complaints"
-            className="group border border-[#E5E5E0] bg-white p-md flex flex-col justify-between gap-sm hover:border-[#CC0000] transition-colors"
+            className="group border border-outline-variant bg-surface-container-lowest p-md flex flex-col justify-between gap-sm hover:border-error transition-colors"
           >
             <div className="flex items-center justify-between">
-              <span className="text-[#CC0000]">
+              <span className="text-error">
                 <AlertTriangle className="size-4" />
               </span>
-              <ChevronRight className="size-3.5 text-[#A3A3A3] group-hover:text-[#CC0000] transition-colors" />
+              <ChevronRight className="size-3.5 text-outline group-hover:text-error transition-colors" />
             </div>
             <div className="mt-1">
-              <h3 className="text-body-sm font-bold text-[#111111]">Complaints</h3>
-              <p className="text-[11px] font-medium text-[#737373] mt-0.5">Review &amp; resolve issues</p>
+              <h3 className="text-body-sm font-bold text-on-surface">Complaints</h3>
+              <p className="text-[11px] font-medium text-on-surface-variant mt-0.5">Review &amp; resolve issues</p>
             </div>
           </Link>
 
           <Link
             href="/admin/notices"
-            className="group border border-[#E5E5E0] bg-white p-md flex flex-col justify-between gap-sm hover:border-[#111111] transition-colors"
+            className="group border border-outline-variant bg-surface-container-lowest p-md flex flex-col justify-between gap-sm hover:border-primary transition-colors"
           >
             <div className="flex items-center justify-between">
-              <span className="text-[#525252] group-hover:text-[#111111]">
+              <span className="text-on-surface-variant group-hover:text-primary">
                 <Megaphone className="size-4" />
               </span>
-              <ChevronRight className="size-3.5 text-[#A3A3A3] group-hover:text-[#111111] transition-colors" />
+              <ChevronRight className="size-3.5 text-outline group-hover:text-primary transition-colors" />
             </div>
             <div className="mt-1">
-              <h3 className="text-body-sm font-bold text-[#111111]">Notices</h3>
-              <p className="text-[11px] font-medium text-[#737373] mt-0.5">Publish bulletins &amp; alerts</p>
+              <h3 className="text-body-sm font-bold text-on-surface">Notices</h3>
+              <p className="text-[11px] font-medium text-on-surface-variant mt-0.5">Publish bulletins &amp; alerts</p>
             </div>
           </Link>
 
           <Link
             href="/admin/facilities"
-            className="group border border-[#E5E5E0] bg-white p-md flex flex-col justify-between gap-sm hover:border-[#111111] transition-colors"
+            className="group border border-outline-variant bg-surface-container-lowest p-md flex flex-col justify-between gap-sm hover:border-primary transition-colors"
           >
             <div className="flex items-center justify-between">
-              <span className="text-[#525252] group-hover:text-[#111111]">
+              <span className="text-on-surface-variant group-hover:text-primary">
                 <Building className="size-4" />
               </span>
-              <ChevronRight className="size-3.5 text-[#A3A3A3] group-hover:text-[#111111] transition-colors" />
+              <ChevronRight className="size-3.5 text-outline group-hover:text-primary transition-colors" />
             </div>
             <div className="mt-1">
-              <h3 className="text-body-sm font-bold text-[#111111]">Facilities</h3>
-              <p className="text-[11px] font-medium text-[#737373] mt-0.5">Configure shared amenities</p>
+              <h3 className="text-body-sm font-bold text-on-surface">Facilities</h3>
+              <p className="text-[11px] font-medium text-on-surface-variant mt-0.5">Configure shared amenities</p>
             </div>
           </Link>
 
           <Link
             href="/admin/bookings"
-            className="group border border-[#E5E5E0] bg-white p-md flex flex-col justify-between gap-sm hover:border-[#111111] transition-colors"
+            className="group border border-outline-variant bg-surface-container-lowest p-md flex flex-col justify-between gap-sm hover:border-primary transition-colors"
           >
             <div className="flex items-center justify-between">
-              <span className="text-[#525252] group-hover:text-[#111111]">
+              <span className="text-on-surface-variant group-hover:text-primary">
                 <Calendar className="size-4" />
               </span>
-              <ChevronRight className="size-3.5 text-[#A3A3A3] group-hover:text-[#111111] transition-colors" />
+              <ChevronRight className="size-3.5 text-outline group-hover:text-primary transition-colors" />
             </div>
             <div className="mt-1">
-              <h3 className="text-body-sm font-bold text-[#111111]">Bookings</h3>
-              <p className="text-[11px] font-medium text-[#737373] mt-0.5">Manage amenity reservations</p>
+              <h3 className="text-body-sm font-bold text-on-surface">Bookings</h3>
+              <p className="text-[11px] font-medium text-on-surface-variant mt-0.5">Manage amenity reservations</p>
             </div>
           </Link>
         </div>

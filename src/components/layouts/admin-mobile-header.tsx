@@ -101,16 +101,16 @@ export function AdminMobileHeader({ profile }: AdminMobileHeaderProps) {
   return (
     <>
       {/* Mobile Top Header bar */}
-      <header className="fixed top-0 left-0 right-0 z-40 flex h-14 items-center justify-between border-b border-[#E5E5E0] bg-white px-margin-mobile md:hidden">
+      <header className="fixed top-0 left-0 right-0 z-40 flex h-14 items-center justify-between border-b border-outline-variant bg-surface px-margin-mobile md:hidden">
         <div className="flex items-center gap-2">
-          <span className="font-serif text-base font-bold text-[#111111]">CommUnity</span>
-          <span className="font-mono text-[9px] tracking-widest text-[#737373] uppercase">Admin</span>
+          <span className="font-serif text-base font-bold text-on-surface">CommUnity</span>
+          <span className="font-mono text-[9px] tracking-widest text-on-surface-variant uppercase">Admin</span>
         </div>
 
         <button
           type="button"
           onClick={() => setIsOpen(true)}
-          className="flex size-9 items-center justify-center text-[#525252] hover:text-[#111111] transition-colors"
+          className="flex size-9 items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors"
           aria-label="Open navigation menu"
           aria-expanded={isOpen}
           aria-controls="admin-mobile-drawer"

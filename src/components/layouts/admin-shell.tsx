@@ -17,7 +17,7 @@ export function AdminShell({
   className,
 }: AdminShellProps) {
   return (
-    <div className={cn("min-h-screen bg-[#F9F9F7] text-[#111111]", className)}>
+    <div className={cn("min-h-screen bg-background text-on-background", className)}>
       <AdminMobileHeader profile={profile} />
       <AdminSidebar profile={profile} />
 
