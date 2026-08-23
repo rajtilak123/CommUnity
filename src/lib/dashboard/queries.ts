@@ -60,7 +60,7 @@ export async function getResidentDashboardData(
       .eq("status", "approved"),
   ]);
 
-  const societyName = society?.name || "CommUnity Society";
+  const societyName = society?.name || "CommUnity";
 
   // Complaints stats
   const complaintsOpen = complaints.filter(

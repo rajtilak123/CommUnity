@@ -81,14 +81,14 @@ export function BookingCalendar({ bookings, blockedDates }: BookingCalendarProps
   };
 
   return (
-    <div className="rounded-[0.75rem] border border-outline-variant bg-surface-container-lowest p-md shadow-sm">
-      <div className="mb-md flex items-center gap-2 px-1">
-        <Calendar className="size-5 text-primary" />
-        <h3 className="text-body-lg font-bold text-on-surface">Availability Schedule</h3>
+    <div className="rounded-none border border-outline-variant bg-surface p-md">
+      <div className="mb-md flex items-center gap-2 border-b border-outline-variant pb-xs">
+        <Calendar className="size-4 text-primary" />
+        <h3 className="font-serif text-lg font-bold text-on-surface">Availability Schedule</h3>
       </div>
 
       {/* Date Horizontal selector */}
-      <div className="flex gap-sm overflow-x-auto pb-sm scrollbar-none border-b border-outline-variant/60 mb-md">
+      <div className="flex gap-sm overflow-x-auto pb-sm scrollbar-none border-b border-outline-variant mb-md">
         {dateTabs.map((tab) => {
           const isSelected = tab.isoString === selectedDateStr;
           return (
@@ -97,14 +97,14 @@ export function BookingCalendar({ bookings, blockedDates }: BookingCalendarProps
               type="button"
               onClick={() => setSelectedDateStr(tab.isoString)}
               className={cn(
-                "flex min-w-[70px] flex-col items-center gap-1.5 rounded-lg border py-2 px-3 transition-all cursor-pointer",
+                "flex min-w-[65px] flex-col items-center gap-1 rounded-none border py-2 px-3 transition-all cursor-pointer select-none",
                 isSelected
-                  ? "border-primary bg-primary/5 text-primary font-bold shadow-sm"
-                  : "border-outline-variant bg-surface text-on-surface-variant hover:bg-surface-container-low"
+                  ? "border-[#111111] bg-[#111111] text-[#F9F9F7] dark:bg-[#F0EEE8] dark:text-[#0E0E0C]"
+                  : "border-outline-variant bg-surface text-on-surface-variant hover:border-primary hover:text-on-surface"
               )}
             >
-              <span className="text-[11px] uppercase tracking-wider">{tab.label.split(" ")[0]}</span>
-              <span className="text-headline-sm leading-none font-bold">{tab.label.split(" ")[1]}</span>
+              <span className="font-mono text-[10px] uppercase tracking-wider">{tab.label.split(" ")[0]}</span>
+              <span className="font-mono text-sm leading-none font-bold">{tab.label.split(" ")[1]}</span>
             </button>
           );
         })}
@@ -114,37 +114,35 @@ export function BookingCalendar({ bookings, blockedDates }: BookingCalendarProps
       <div className="space-y-sm">
         {selectedDayEvents.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-6 text-center text-on-surface-variant">
-            <CheckCircle2 className="size-8 text-emerald-500 mb-2" />
-            <p className="text-body-md font-semibold">Available all day</p>
-            <p className="text-label-md text-outline">Select your desired hours in the form to book.</p>
+            <CheckCircle2 className="size-6 text-primary mb-2" />
+            <p className="font-serif text-base font-bold text-on-surface">Available All Day</p>
+            <p className="font-mono text-xs text-outline mt-1">Select your desired hours below to book.</p>
           </div>
         ) : (
-          <div className="relative border-l-2 border-outline-variant/80 ml-3 pl-6 py-1 space-y-md">
+          <div className="relative border-l-2 border-primary ml-3 pl-4 py-1 space-y-sm">
             {selectedDayEvents.map((event, index) => {
               const isBlocked = event.type === "blocked";
               return (
                 <div key={index} className="relative group">
                   {/* Timeline dot */}
                   <div className={cn(
-                    "absolute -left-[31px] top-1.5 flex size-4 items-center justify-center rounded-full border-2 bg-surface",
-                    isBlocked ? "border-error text-error" : "border-amber-500 text-amber-500"
-                  )}>
-                    <div className={cn("size-1.5 rounded-full", isBlocked ? "bg-error" : "bg-amber-500")} />
-                  </div>
+                    "absolute -left-[21px] top-2 flex size-2.5 items-center justify-center rounded-none border",
+                    isBlocked ? "border-accent bg-accent" : "border-primary bg-primary"
+                  )} />
 
                   <div className={cn(
-                    "rounded-lg border p-sm shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-2",
+                    "rounded-none border p-sm flex flex-col md:flex-row md:items-center justify-between gap-2",
                     isBlocked 
-                      ? "border-error/20 bg-error/5 text-error" 
-                      : "border-amber-500/20 bg-amber-500/5 text-on-surface"
+                      ? "border-accent/30 bg-accent/5 text-accent" 
+                      : "border-outline-variant bg-surface-container-low text-on-surface"
                   )}>
                     <div className="flex items-center gap-sm">
-                      <Clock className="size-4 shrink-0 text-outline-variant" />
+                      <Clock className="size-4 shrink-0 text-outline" />
                       <div>
-                        <p className="text-body-md font-bold leading-tight">
+                        <p className="font-mono text-xs font-bold leading-tight">
                           {formatHourRange(event.start, event.end)}
                         </p>
-                        <p className={cn("text-label-md mt-0.5 font-medium", isBlocked ? "text-error" : "text-on-surface-variant")}>
+                        <p className={cn("text-xs font-mono mt-0.5", isBlocked ? "text-accent" : "text-on-surface-variant")}>
                           {event.label}
                         </p>
                       </div>

@@ -44,13 +44,13 @@ export function FacilityImageGallery({ images, facilityName }: FacilityImageGall
 
   if (loading) {
     return (
-      <div className="aspect-video w-full rounded-xl bg-surface-container-high animate-pulse" />
+      <div className="aspect-video w-full rounded-none bg-surface-container-high animate-pulse" />
     );
   }
 
   if (signedUrls.length === 0) {
     return (
-      <div className="aspect-video w-full rounded-xl bg-surface-container-high flex items-center justify-center text-outline-variant">
+      <div className="aspect-video w-full rounded-none bg-surface-container-high flex items-center justify-center text-outline">
         <Users className="size-16" />
       </div>
     );
@@ -58,7 +58,7 @@ export function FacilityImageGallery({ images, facilityName }: FacilityImageGall
 
   return (
     <div className="grid grid-cols-1 gap-md">
-      <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-surface-container-high border border-outline-variant">
+      <div className="relative aspect-video max-h-[360px] w-full overflow-hidden rounded-none bg-surface-container-high border border-outline-variant">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={signedUrls[0]}
@@ -69,7 +69,7 @@ export function FacilityImageGallery({ images, facilityName }: FacilityImageGall
       {signedUrls.length > 1 && (
         <div className="grid grid-cols-4 gap-sm">
           {signedUrls.slice(1, 5).map((url, idx) => (
-            <div key={idx} className="relative aspect-video overflow-hidden rounded-lg bg-surface-container border border-outline-variant">
+            <div key={idx} className="relative aspect-video overflow-hidden rounded-none bg-surface-container border border-outline-variant">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={url}

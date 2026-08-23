@@ -15,10 +15,10 @@ export function LoginForm() {
   const [state, formAction, isPending] = useActionState(signInAction, initialState);
 
   return (
-    <div className="rounded-xl border border-outline-variant bg-surface-container-lowest p-xl shadow-[0_4px_60px_-12px_rgba(0,0,0,0.05)]">
+    <div className="rounded-none border border-outline-variant bg-surface p-xl">
       <form action={formAction} className="space-y-lg">
         <div className="space-y-xs">
-          <Label htmlFor="email">Email</Label>
+          <Label htmlFor="email" className="font-mono text-xs uppercase tracking-wider">Email Address</Label>
           <div className="group relative">
             <Mail className="absolute left-md top-1/2 size-4 -translate-y-1/2 text-outline transition-colors group-focus-within:text-primary" />
             <Input
@@ -27,7 +27,7 @@ export function LoginForm() {
               type="email"
               autoComplete="email"
               placeholder="you@example.com"
-              className="bg-surface-container-lowest py-3 pl-11"
+              className="bg-transparent py-3 pl-11 font-mono text-sm"
               required
             />
           </div>
@@ -35,7 +35,7 @@ export function LoginForm() {
 
         <div className="space-y-xs">
           <div className="flex items-center justify-between px-xs">
-            <Label htmlFor="password">Password</Label>
+            <Label htmlFor="password" className="font-mono text-xs uppercase tracking-wider">Password</Label>
           </div>
           <div className="group relative">
             <Lock className="absolute left-md top-1/2 size-4 -translate-y-1/2 text-outline transition-colors group-focus-within:text-primary" />
@@ -45,7 +45,7 @@ export function LoginForm() {
               type={showPassword ? "text" : "password"}
               autoComplete="current-password"
               placeholder="••••••••"
-              className="bg-surface-container-lowest py-3 pl-11 pr-11"
+              className="bg-transparent py-3 pl-11 pr-11 font-mono text-sm"
               required
             />
             <button
@@ -60,7 +60,7 @@ export function LoginForm() {
         </div>
 
         {state.error ? (
-          <p className="rounded-lg border border-error/30 bg-error-container/40 px-md py-sm text-body-md text-on-error-container">
+          <p className="rounded-none border border-accent bg-accent/10 px-md py-sm font-mono text-xs text-accent">
             {state.error}
           </p>
         ) : null}
@@ -68,9 +68,9 @@ export function LoginForm() {
         <Button
           type="submit"
           disabled={isPending}
-          className="w-full bg-primary-container py-3.5 text-on-primary-container shadow-md shadow-primary/10 hover:bg-primary-container/90"
+          className="w-full rounded-none border border-primary bg-primary py-3.5 font-mono text-xs font-bold uppercase tracking-wider text-on-primary hover:bg-surface hover:text-primary transition-all"
         >
-          {isPending ? "Signing in..." : "Login"}
+          {isPending ? "Signing in..." : "Login to Portal"}
           {!isPending ? <ArrowRight className="size-4" /> : null}
         </Button>
       </form>
@@ -81,14 +81,17 @@ export function LoginForm() {
 export function LoginBrand() {
   return (
     <div className="mb-xl flex flex-col items-center text-center">
-      <div className="mb-md flex size-14 items-center justify-center rounded-xl bg-primary shadow-lg shadow-primary/20">
-        <Building2 className="size-8 text-on-primary" />
+      <div className="mb-md flex size-12 items-center justify-center rounded-none border border-primary bg-primary text-on-primary">
+        <Building2 className="size-6" />
       </div>
-      <h1 className="text-headline-lg-mobile font-bold tracking-tight text-primary md:text-headline-lg">
+      <p className="font-mono text-xs uppercase tracking-widest text-on-surface-variant mb-1">
+        COMMUNITY SaaS
+      </p>
+      <h1 className="font-serif text-3xl font-bold tracking-tight text-on-surface md:text-4xl">
         CommUnity
       </h1>
       <p className="mt-xs text-body-md text-on-surface-variant">
-        Welcome back to your digital neighborhood.
+        Welcome back to your residential portal.
       </p>
     </div>
   );

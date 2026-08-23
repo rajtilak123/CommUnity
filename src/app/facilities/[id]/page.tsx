@@ -38,48 +38,48 @@ export default async function FacilityDetailPage({ params }: FacilityDetailPageP
       <div className="mb-lg">
         <Link
           href="/facilities"
-          className="inline-flex items-center gap-sm text-label-md text-on-surface-variant hover:text-primary"
+          className="inline-flex items-center gap-1 font-mono text-xs font-semibold uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors"
         >
           <ChevronLeft className="size-4" />
           Back to facilities
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 gap-gutter lg:grid-cols-3">
-        {/* Left Column: Facility Information & Images (Bento Grid Style) */}
-        <div className="lg:col-span-2 space-y-lg">
-          {/* Details Bento Box */}
-          <section className="rounded-[0.75rem] border border-outline-variant bg-surface p-md md:p-lg space-y-md">
+      <div className="grid grid-cols-1 gap-gutter lg:grid-cols-12">
+        {/* Left Column: Facility Information & Images */}
+        <div className="lg:col-span-7 space-y-lg">
+          {/* Details Box */}
+          <section className="rounded-none border border-outline-variant bg-surface p-md md:p-lg space-y-md">
             <div>
-              <div className="mb-sm flex flex-wrap items-center gap-xs text-label-sm font-semibold uppercase tracking-wider text-primary">
-                <span className="rounded bg-surface-container-high px-2 py-0.5 text-on-surface-variant font-medium">
+              <div className="mb-sm flex flex-wrap items-center gap-xs font-mono text-xs font-semibold uppercase tracking-wider text-primary">
+                <span className="border border-outline-variant px-2 py-0.5 text-on-surface-variant">
                   Amenity
                 </span>
-                <span className="rounded bg-surface-container-high px-2 py-0.5 text-on-surface-variant font-medium flex items-center gap-1">
+                <span className="border border-outline-variant px-2 py-0.5 text-on-surface-variant flex items-center gap-1">
                   <Users className="size-3" />
                   Capacity: {facility.capacity}
                 </span>
               </div>
-              <h2 className="text-headline-md font-bold text-on-surface leading-tight">
+              <h2 className="font-serif text-3xl font-bold text-on-surface leading-tight">
                 {facility.name}
               </h2>
             </div>
 
-            <p className="text-body-lg text-on-surface-variant leading-relaxed">
+            <p className="text-body-md text-on-surface-variant leading-relaxed">
               {facility.description}
             </p>
 
             <FacilityImageGallery images={facility.images} facilityName={facility.name} />
           </section>
 
-          {/* Rules Bento Box */}
+          {/* Rules Box */}
           {facility.rules ? (
-            <section className="rounded-[0.75rem] border border-outline-variant bg-surface-container/30 p-md md:p-lg space-y-sm">
+            <section className="rounded-none border border-outline-variant bg-surface-container-low p-md md:p-lg space-y-sm">
               <div className="flex items-center gap-2 text-primary font-bold">
-                <ScrollText className="size-5" />
-                <h3 className="text-body-lg">Booking &amp; Usage Rules</h3>
+                <ScrollText className="size-4" />
+                <h3 className="font-serif text-lg">Booking &amp; Usage Rules</h3>
               </div>
-              <div className="whitespace-pre-line text-body-md text-on-surface-variant leading-relaxed">
+              <div className="whitespace-pre-line text-body-md text-on-surface-variant leading-relaxed font-mono text-xs">
                 {facility.rules}
               </div>
             </section>
@@ -87,7 +87,7 @@ export default async function FacilityDetailPage({ params }: FacilityDetailPageP
         </div>
 
         {/* Right Column: Calendar & Booking Form */}
-        <div className="space-y-lg">
+        <div className="lg:col-span-5 space-y-lg">
           <BookingCalendar bookings={calendarBookings} blockedDates={facility.blocked_dates} />
           <BookingForm facilityId={facility.id} />
         </div>

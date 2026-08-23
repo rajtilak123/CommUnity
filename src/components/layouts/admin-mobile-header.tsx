@@ -101,59 +101,54 @@ export function AdminMobileHeader({ profile }: AdminMobileHeaderProps) {
   return (
     <>
       {/* Mobile Top Header bar */}
-      <header className="fixed top-0 left-0 right-0 z-40 flex h-16 items-center justify-between border-b border-outline-variant bg-surface-container-lowest px-margin-mobile md:hidden">
+      <header className="fixed top-0 left-0 right-0 z-40 flex h-14 items-center justify-between border-b border-[#E5E5E0] bg-white px-margin-mobile md:hidden">
         <div className="flex items-center gap-2">
-          <div className="size-6 rounded-md bg-primary flex items-center justify-center text-on-primary text-xs font-black select-none">
-            C
-          </div>
-          <span className="text-body-md font-bold tracking-tight text-on-surface">CommUnity Admin</span>
+          <span className="font-serif text-base font-bold text-[#111111]">CommUnity</span>
+          <span className="font-mono text-[9px] tracking-widest text-[#737373] uppercase">Admin</span>
         </div>
 
         <button
           type="button"
           onClick={() => setIsOpen(true)}
-          className="flex size-10 items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-variant/50 transition-colors"
+          className="flex size-9 items-center justify-center text-[#525252] hover:text-[#111111] transition-colors"
           aria-label="Open navigation menu"
           aria-expanded={isOpen}
           aria-controls="admin-mobile-drawer"
         >
-          <Menu className="size-6" />
+          <Menu className="size-5" />
         </button>
       </header>
 
       {/* Backdrop overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs transition-opacity duration-300 md:hidden"
+          className="fixed inset-0 z-50 bg-black/60 transition-opacity duration-300 md:hidden"
           onClick={() => setIsOpen(false)}
         />
       )}
 
-      {/* Slide-in drawer container */}
+      {/* Slide-in drawer container — dark ink */}
       <div
         id="admin-mobile-drawer"
         ref={drawerRef}
         className={cn(
-          "fixed inset-y-0 left-0 z-55 flex h-full w-sidebar-admin flex-col border-r border-outline-variant bg-surface-container-lowest px-md py-lg transition-transform duration-300 ease-in-out md:hidden",
+          "fixed inset-y-0 left-0 z-55 flex h-full w-sidebar-admin flex-col bg-[#111111] transition-transform duration-300 ease-in-out md:hidden",
           isOpen ? "translate-x-0" : "-translate-x-full"
         )}
         role="dialog"
         aria-modal="true"
         aria-label="Navigation Drawer"
       >
-        {/* Drawer Header with Close button */}
-        <div className="mb-lg flex items-center justify-between px-2">
-          <div className="flex items-center gap-2">
-            <div className="size-6 rounded-md bg-primary flex items-center justify-center text-on-primary text-xs font-black select-none">
-              C
-            </div>
-            <span className="text-body-md font-bold tracking-tight text-on-surface">CommUnity Admin</span>
+        {/* Drawer Header */}
+        <div className="flex items-center justify-between px-4 py-5 border-b border-[#333333]">
+          <div>
+            <div className="font-serif text-base font-bold text-[#F9F9F7] leading-none">CommUnity</div>
+            <div className="font-mono text-[9px] tracking-widest text-[#737373] uppercase mt-0.5">Administration</div>
           </div>
-
           <button
             type="button"
             onClick={() => setIsOpen(false)}
-            className="flex size-8 items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-variant/50 transition-colors"
+            className="flex size-8 items-center justify-center text-[#737373] hover:text-[#F9F9F7] transition-colors"
             aria-label="Close navigation menu"
           >
             <X className="size-5" />
@@ -161,7 +156,7 @@ export function AdminMobileHeader({ profile }: AdminMobileHeaderProps) {
         </div>
 
         {/* Navigation Links inside Drawer */}
-        <nav className="flex flex-1 flex-col gap-0.5">
+        <nav className="flex flex-1 flex-col py-2 overflow-y-auto">
           {adminNavItems.map((item) => {
             const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
             const Icon = item.icon;
@@ -171,19 +166,16 @@ export function AdminMobileHeader({ profile }: AdminMobileHeaderProps) {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "relative flex items-center gap-3 rounded-md px-3 py-2.5 text-body-sm font-semibold transition-all select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
+                  "relative flex items-center gap-3 px-4 py-2.5 text-sm font-medium transition-all select-none focus-visible:outline-none",
                   isActive
-                    ? "bg-surface-container-highest text-primary"
-                    : "text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface"
+                    ? "border-l-2 border-[#CC0000] text-[#F9F9F7] bg-white/5"
+                    : "text-[#A3A3A3] hover:text-[#F9F9F7] hover:bg-white/5"
                 )}
               >
-                {isActive && (
-                  <span className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-4 rounded-r bg-primary" />
-                )}
                 <Icon
                   className={cn(
-                    "size-4 shrink-0 transition-colors",
-                    isActive ? "text-primary" : "text-outline"
+                    "size-4 shrink-0",
+                    isActive ? "text-[#F9F9F7]" : "text-[#737373]"
                   )}
                 />
                 <span>{item.label}</span>
@@ -193,25 +185,27 @@ export function AdminMobileHeader({ profile }: AdminMobileHeaderProps) {
         </nav>
 
         {/* Profile Details & Logout Button */}
-        <div className="mt-auto border-t border-outline-variant pt-md">
-          <div className="flex items-center gap-3 px-2 py-2 mb-3">
-            <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-label-md font-bold text-primary select-none">
+        <div className="border-t border-[#333333] bg-[#0A0A0A]">
+          <div className="flex items-center gap-3 px-4 py-3">
+            <div className="flex size-7 shrink-0 items-center justify-center bg-[#333333] text-[10px] font-mono font-bold text-[#F9F9F7] select-none">
               {initials}
             </div>
             <div className="min-w-0 flex-1">
-              <div className="truncate text-body-sm font-bold text-on-surface">
+              <div className="truncate text-[12px] font-medium text-[#F9F9F7]">
                 {profile.full_name ?? "Admin User"}
               </div>
-              <div className="truncate text-[10px] text-on-surface-variant font-semibold uppercase tracking-wider capitalize">
+              <div className="truncate font-mono text-[9px] text-[#737373] uppercase tracking-wider capitalize">
                 {profile.role}
               </div>
             </div>
           </div>
-          <SignOutButton
-            className="w-full text-xs font-semibold text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low flex justify-center py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-            variant="secondary"
-            size="sm"
-          />
+          <div className="px-4 pb-4">
+            <SignOutButton
+              className="w-full text-xs font-medium text-[#A3A3A3] hover:text-[#F9F9F7] hover:bg-white/5 flex justify-center py-2 rounded-none border border-[#333333] transition-colors focus-visible:outline-none"
+              variant="ghost"
+              size="sm"
+            />
+          </div>
         </div>
       </div>
     </>

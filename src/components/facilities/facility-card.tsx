@@ -37,10 +37,10 @@ export function FacilityCard({ facility, className }: FacilityCardProps) {
   }, [primaryImage]);
 
   return (
-    <div className={cn("group relative flex flex-col justify-between overflow-hidden rounded-[0.75rem] border border-outline-variant bg-surface transition-all duration-300 hover:border-primary hover:shadow-lg", className)}>
+    <div className={cn("group relative flex flex-col justify-between overflow-hidden rounded-none border border-outline-variant bg-surface transition-all duration-200 hover:border-primary", className)}>
       <div>
         {/* Image Display */}
-        <div className="relative aspect-video w-full overflow-hidden bg-surface-container-high">
+        <div className="relative aspect-video w-full overflow-hidden bg-surface-container-high border-b border-outline-variant">
           {imageSrc ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
@@ -49,12 +49,12 @@ export function FacilityCard({ facility, className }: FacilityCardProps) {
               className="size-full object-cover transition-transform duration-300 group-hover:scale-105"
             />
           ) : (
-            <div className="flex size-full items-center justify-center text-outline-variant">
+            <div className="flex size-full items-center justify-center text-outline">
               <Users className="size-12" />
             </div>
           )}
           
-          <div className="absolute left-3 top-3 rounded-full bg-surface/90 px-3 py-1 text-label-md font-semibold text-on-surface flex items-center gap-1 shadow-sm">
+          <div className="absolute left-3 top-3 border border-outline-variant bg-surface px-3 py-1 font-mono text-xs font-semibold text-on-surface flex items-center gap-1">
             <Users className="size-3.5 text-primary" />
             <span>Cap: {facility.capacity}</span>
           </div>
@@ -62,7 +62,7 @@ export function FacilityCard({ facility, className }: FacilityCardProps) {
 
         {/* Content */}
         <div className="p-md md:p-lg">
-          <h3 className="text-headline-sm font-bold text-on-surface leading-tight transition-colors group-hover:text-primary mb-2">
+          <h3 className="font-serif text-xl font-bold text-on-surface leading-tight transition-colors group-hover:text-primary mb-2">
             {facility.name}
           </h3>
           <p className="line-clamp-2 text-body-md text-on-surface-variant leading-relaxed">
@@ -72,17 +72,17 @@ export function FacilityCard({ facility, className }: FacilityCardProps) {
       </div>
 
       {/* Footer CTA */}
-      <div className="border-t border-outline-variant/60 p-md flex items-center justify-between">
-        <span className="flex items-center gap-1 text-label-md text-outline font-medium">
-          <Info className="size-4" />
-          Click to view availability
+      <div className="border-t border-outline-variant p-md flex items-center justify-between">
+        <span className="flex items-center gap-1 font-mono text-xs text-outline">
+          <Info className="size-3.5" />
+          Availability on schedule
         </span>
         <Link
           href={`/facilities/${facility.id}`}
-          className="flex h-9 items-center justify-center rounded-lg bg-surface-container-high px-md text-label-md font-semibold text-primary group-hover:bg-primary group-hover:text-on-primary transition-all cursor-pointer gap-1"
+          className="flex h-9 items-center justify-center rounded-none border border-primary bg-primary px-md font-mono text-xs font-bold text-on-primary group-hover:bg-surface group-hover:text-primary transition-all cursor-pointer gap-1"
         >
           Book Now
-          <ArrowRight className="size-4" />
+          <ArrowRight className="size-3.5" />
         </Link>
       </div>
     </div>

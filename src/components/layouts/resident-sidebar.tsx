@@ -19,18 +19,14 @@ export function ResidentSidebar({ profile }: ResidentSidebarProps) {
   const initials = getProfileInitials(profile);
 
   return (
-    <aside className="fixed inset-y-0 left-0 z-40 hidden h-full w-sidebar flex-col gap-sm border-r border-outline-variant bg-surface-container-low p-lg md:flex">
-      <div className="mb-xl flex items-center gap-md px-md">
-        <div className="flex size-10 items-center justify-center rounded-full bg-primary-container text-headline-sm font-bold text-on-primary-container">
-          {siteConfig.name.charAt(0)}
-        </div>
-        <div>
-          <h2 className="text-headline-sm font-bold text-primary">{siteConfig.name}</h2>
-          <p className="text-label-md text-on-surface-variant">Resident Portal</p>
-        </div>
+    <aside className="fixed inset-y-0 left-0 z-40 hidden h-full w-sidebar flex-col border-r border-[#111111] bg-white md:flex">
+      {/* Brand header */}
+      <div className="px-6 py-5 border-b border-[#E5E5E0]">
+        <div className="font-serif text-lg font-bold text-[#111111] leading-none">{siteConfig.name}</div>
+        <div className="font-mono text-[9px] tracking-widest text-[#737373] uppercase mt-1">Resident Portal</div>
       </div>
 
-      <nav className="flex flex-grow flex-col gap-sm">
+      <nav className="flex flex-grow flex-col py-2 overflow-y-auto">
         {residentNavItems.map((item) => {
           const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
           const Icon = item.icon;
@@ -40,13 +36,13 @@ export function ResidentSidebar({ profile }: ResidentSidebarProps) {
               key={item.href}
               href={item.href}
               className={cn(
-                "flex items-center gap-md rounded-lg px-md py-sm text-body-md transition-all",
+                "flex items-center gap-3 px-4 py-2.5 text-sm transition-all",
                 isActive
-                  ? "border-r-4 border-primary bg-surface-container-highest font-bold text-primary"
-                  : "text-on-surface-variant hover:bg-surface-container-high hover:text-primary",
+                  ? "border-l-2 border-[#CC0000] text-[#111111] font-semibold bg-[#F5F5F5]"
+                  : "text-[#525252] hover:text-[#111111] hover:bg-[#F5F5F5]",
               )}
             >
-              <Icon className="size-5 shrink-0" />
+              <Icon className={cn("size-4 shrink-0", isActive ? "text-[#111111]" : "text-[#A3A3A3]")} />
               <span className="truncate">{item.label}</span>
             </Link>
           );
@@ -54,26 +50,29 @@ export function ResidentSidebar({ profile }: ResidentSidebarProps) {
       </nav>
 
       {/* User profile details and logout button */}
-      <div className="mt-auto border-t border-outline-variant pt-lg">
-        <div className="flex items-center gap-3 px-2 py-2 mb-3">
-          <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-label-md font-bold text-primary select-none">
+      <div className="border-t border-[#E5E5E0]">
+        <div className="flex items-center gap-3 px-4 py-3">
+          <div className="flex size-7 shrink-0 items-center justify-center border border-[#E5E5E0] text-[10px] font-mono font-bold text-[#525252] select-none">
             {initials}
           </div>
           <div className="min-w-0 flex-1">
-            <div className="truncate text-body-sm font-bold text-on-surface">
+            <div className="truncate text-[12px] font-medium text-[#111111]">
               {profile.full_name ?? "Resident User"}
             </div>
-            <div className="truncate text-[10px] text-on-surface-variant font-semibold uppercase tracking-wider">
+            <div className="truncate font-mono text-[9px] text-[#737373] uppercase tracking-wider">
               {profile.unit_label ? `Unit ${profile.unit_label}` : "Resident"}
             </div>
           </div>
         </div>
-        <SignOutButton
-          className="w-full text-xs font-semibold text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low flex justify-center py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-          variant="secondary"
-          size="sm"
-        />
+        <div className="px-4 pb-4">
+          <SignOutButton
+            className="w-full text-xs font-medium text-[#525252] hover:text-[#111111] hover:bg-[#F5F5F5] flex justify-center py-2 rounded-none border border-[#E5E5E0] transition-colors focus-visible:outline-none"
+            variant="ghost"
+            size="sm"
+          />
+        </div>
       </div>
     </aside>
   );
 }
+

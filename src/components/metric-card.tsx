@@ -1,7 +1,6 @@
 import type { LucideIcon } from "lucide-react";
 import type { ReactNode } from "react";
 
-import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
 type MetricCardProps = {
@@ -13,20 +12,12 @@ type MetricCardProps = {
   className?: string;
 };
 
-const accentStyles = {
-  primary: "hover:border-primary",
-  secondary: "hover:border-secondary",
-  tertiary: "hover:border-tertiary",
-  error: "hover:border-error",
-  default: "hover:border-outline",
-} as const;
-
-const iconAccentStyles = {
-  primary: "bg-primary-fixed text-primary",
-  secondary: "bg-secondary-fixed text-secondary",
-  tertiary: "bg-tertiary-fixed text-tertiary",
-  error: "bg-error-container text-error",
-  default: "bg-surface-container-high text-on-surface-variant",
+const accentBorderStyles = {
+  primary: "border-l-4 border-l-primary",
+  secondary: "border-l-4 border-l-secondary",
+  tertiary: "border-l-4 border-l-tertiary",
+  error: "border-l-4 border-l-accent",
+  default: "",
 } as const;
 
 export function MetricCard({
@@ -38,27 +29,28 @@ export function MetricCard({
   className,
 }: MetricCardProps) {
   return (
-    <Card
+    <div
       className={cn(
-        "flex flex-col justify-between p-lg transition-colors",
-        accentStyles[accent],
+        "flex flex-col justify-between p-5 bg-surface border border-outline-variant",
+        accentBorderStyles[accent],
         className,
       )}
     >
       <div className="flex items-center justify-between">
         {Icon ? (
-          <span className={cn("rounded-lg p-xs", iconAccentStyles[accent])}>
-            <Icon className="size-5" />
+          <span className="text-on-surface-variant">
+            <Icon className="size-4" />
           </span>
         ) : (
           <span />
         )}
-        {trend ? <span className="text-label-sm">{trend}</span> : null}
+        {trend ? <span className="font-mono text-[10px] text-on-surface-variant">{trend}</span> : null}
       </div>
-      <div className="mt-xl">
-        <div className="text-display-lg text-on-surface">{value}</div>
-        <div className="mt-1 text-label-md uppercase tracking-wider text-on-surface-variant">{label}</div>
+      <div className="mt-4">
+        <div className="font-mono text-4xl font-bold text-on-surface leading-none">{value}</div>
+        <div className="mt-1 font-mono text-[10px] uppercase tracking-widest text-on-surface-variant">{label}</div>
       </div>
-    </Card>
+    </div>
   );
 }
+

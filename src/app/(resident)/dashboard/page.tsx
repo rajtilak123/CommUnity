@@ -58,7 +58,6 @@ export default async function ResidentDashboardPage() {
   }
 
   const {
-    societyName,
     stats,
     latestNotices,
     latestComplaints,
@@ -110,34 +109,32 @@ export default async function ResidentDashboardPage() {
   return (
     <div className="w-full min-w-0 max-w-container-max mx-auto space-y-xl px-margin-mobile py-md sm:px-md">
       {/* ── SECTION 1 — WELCOME HEADER ─────────────────────────── */}
-      <div className="border-b border-outline-variant/60 pb-md">
-        <div className="flex flex-col gap-sm md:flex-row md:items-center md:justify-between">
+      <div className="border-b-2 border-primary pb-md">
+        <div className="flex flex-col gap-sm md:flex-row md:items-end md:justify-between">
           <div className="min-w-0">
-            <p className="text-label-md font-semibold uppercase tracking-wider text-primary">
-              Resident Portal
+            <p className="font-mono text-xs uppercase tracking-widest text-on-surface-variant mb-1">
+              RESIDENT PORTAL — EDITION {new Date().getFullYear()}
             </p>
 
-            <h1 className="mt-xs text-headline-lg font-bold leading-none text-on-surface">
+            <h1 className="font-serif text-3xl font-bold tracking-tight text-on-surface md:text-4xl">
               {greeting},{" "}
               {profile.full_name
                 ? profile.full_name.split(" ")[0]
                 : "Resident"}
             </h1>
 
-            <p className="mt-xs flex flex-wrap items-center gap-x-2 gap-y-1 text-body-md font-medium text-on-surface-variant">
-              <span>Unit {profile.unit_label || "N/A"}</span>
-              <span className="select-none text-outline-variant">•</span>
-              <span className="font-semibold text-primary">{societyName}</span>
+            <p className="mt-xs text-body-md font-medium text-on-surface-variant font-mono">
+              Unit {profile.unit_label || "N/A"}
             </p>
           </div>
 
           <div className="md:text-right">
-            <p className="text-label-md font-medium text-on-surface-variant">
+            <p className="font-mono text-xs font-semibold text-on-surface-variant">
               {formattedDate}
             </p>
 
-            <p className="mt-xs text-body-sm text-outline">
-              CommUnity Dashboard
+            <p className="mt-xs font-mono text-xs text-outline uppercase tracking-wider">
+              CommUnity Brief
             </p>
           </div>
         </div>
@@ -148,25 +145,25 @@ export default async function ResidentDashboardPage() {
         {/* CARD 1 — Open Complaints */}
         <Link
           href="/complaints"
-          className="group flex min-h-[140px] flex-col justify-between rounded-[0.75rem] border border-outline-variant bg-surface-container-lowest p-md transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:p-lg"
+          className="group flex min-h-[130px] flex-col justify-between rounded-none border border-outline-variant bg-surface p-md transition-all hover:border-primary hover:bg-surface-container-low"
         >
           <div className="flex items-center justify-between">
-            <span className="text-label-md font-semibold uppercase tracking-wider text-on-surface-variant">
+            <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">
               Open Complaints
             </span>
 
-            <span className="rounded-lg bg-amber-500/10 p-2 text-amber-600 dark:text-amber-400">
-              <AlertTriangle className="size-5" />
+            <span className="text-accent">
+              <AlertTriangle className="size-4" />
             </span>
           </div>
 
           <div className="mt-md">
-            <span className="text-display-lg font-bold leading-none text-on-surface">
+            <span className="font-mono text-3xl font-bold leading-none text-on-surface">
               {stats.complaintsOpen}
             </span>
 
             <p
-              className="mt-xs truncate text-body-sm font-medium text-outline"
+              className="mt-xs truncate text-xs font-mono text-outline"
               title={complaintUpdateText}
             >
               {complaintUpdateText}
@@ -177,25 +174,25 @@ export default async function ResidentDashboardPage() {
         {/* CARD 2 — Unread Notices */}
         <Link
           href="/notices"
-          className="group flex min-h-[140px] flex-col justify-between rounded-[0.75rem] border border-outline-variant bg-surface-container-lowest p-md transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:p-lg"
+          className="group flex min-h-[130px] flex-col justify-between rounded-none border border-outline-variant bg-surface p-md transition-all hover:border-primary hover:bg-surface-container-low"
         >
           <div className="flex items-center justify-between">
-            <span className="text-label-md font-semibold uppercase tracking-wider text-on-surface-variant">
+            <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">
               Unread Notices
             </span>
 
-            <span className="rounded-lg bg-primary/10 p-2 text-primary">
-              <Bell className="size-5" />
+            <span className="text-primary">
+              <Bell className="size-4" />
             </span>
           </div>
 
           <div className="mt-md">
-            <span className="text-display-lg font-bold leading-none text-on-surface">
+            <span className="font-mono text-3xl font-bold leading-none text-on-surface">
               {stats.unreadNotices}
             </span>
 
             <p
-              className="mt-xs truncate text-body-sm font-medium text-outline"
+              className="mt-xs truncate text-xs font-mono text-outline"
               title={stats.latestUnreadNoticeTitle || ""}
             >
               {noticeSubtext}
@@ -206,25 +203,25 @@ export default async function ResidentDashboardPage() {
         {/* CARD 3 — Upcoming Bookings */}
         <Link
           href="/facilities/bookings"
-          className="group flex min-h-[140px] flex-col justify-between rounded-[0.75rem] border border-outline-variant bg-surface-container-lowest p-md transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:p-lg"
+          className="group flex min-h-[130px] flex-col justify-between rounded-none border border-outline-variant bg-surface p-md transition-all hover:border-primary hover:bg-surface-container-low"
         >
           <div className="flex items-center justify-between">
-            <span className="text-label-md font-semibold uppercase tracking-wider text-on-surface-variant">
+            <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">
               Upcoming Bookings
             </span>
 
-            <span className="rounded-lg bg-violet-500/10 p-2 text-violet-600 dark:text-violet-400">
-              <CalendarRange className="size-5" />
+            <span className="text-primary">
+              <CalendarRange className="size-4" />
             </span>
           </div>
 
           <div className="mt-md">
-            <span className="text-display-lg font-bold leading-none text-on-surface">
+            <span className="font-mono text-3xl font-bold leading-none text-on-surface">
               {stats.upcomingBookings}
             </span>
 
             <p
-              className="mt-xs truncate text-body-sm font-medium text-outline"
+              className="mt-xs truncate text-xs font-mono text-outline"
               title={bookingSubtext}
             >
               {bookingSubtext}
@@ -235,24 +232,24 @@ export default async function ResidentDashboardPage() {
         {/* CARD 4 — Community Snapshot */}
         <Link
           href="/facilities"
-          className="group flex min-h-[140px] flex-col justify-between rounded-[0.75rem] border border-outline-variant bg-surface-container-lowest p-md transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:p-lg"
+          className="group flex min-h-[130px] flex-col justify-between rounded-none border border-outline-variant bg-surface p-md transition-all hover:border-primary hover:bg-surface-container-low"
         >
           <div className="flex items-center justify-between">
-            <span className="text-label-md font-semibold uppercase tracking-wider text-on-surface-variant">
+            <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">
               Community Summary
             </span>
 
-            <span className="rounded-lg bg-emerald-500/10 p-2 text-emerald-600 dark:text-emerald-400">
-              <Info className="size-5" />
+            <span className="text-primary">
+              <Info className="size-4" />
             </span>
           </div>
 
           <div className="mt-md">
-            <span className="text-display-lg font-bold leading-none text-on-surface">
+            <span className="font-mono text-3xl font-bold leading-none text-on-surface">
               {stats.activeFacilities}
             </span>
 
-            <p className="mt-xs text-body-sm font-medium text-outline">
+            <p className="mt-xs text-xs font-mono text-outline">
               {stats.noticesThisMonth} published this month
             </p>
           </div>

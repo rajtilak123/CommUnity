@@ -27,15 +27,15 @@ export function ComplaintCard({ complaint, variant = "compact", className }: Com
   if (variant === "featured") {
     return (
       <Link href={href} className={cn("group cursor-pointer md:col-span-2 lg:col-span-8", className)}>
-        <div className="flex flex-col items-start gap-md rounded-[0.75rem] border border-outline-variant bg-surface p-md transition-all duration-300 hover:border-primary hover:shadow-lg md:flex-row md:p-lg">
+        <div className="flex flex-col items-start gap-md rounded-none border border-outline-variant bg-surface p-md transition-all duration-300 hover:border-primary hover:bg-surface-container-low md:flex-row md:p-lg">
           {image ? (
-            <div className="h-32 w-full shrink-0 overflow-hidden rounded-lg bg-surface-container-high md:aspect-square md:h-auto md:w-48">
+            <div className="h-32 w-full shrink-0 overflow-hidden rounded-none border border-outline-variant bg-surface-container-high md:aspect-square md:h-auto md:w-48">
               <ComplaintImage path={image.file_url} alt={complaint.title} className="size-full object-cover transition-transform duration-500 group-hover:scale-105" />
             </div>
           ) : null}
           <div className="w-full flex-1 space-y-3">
             <div className="flex items-start justify-between">
-              <h3 className="text-headline-sm text-on-surface transition-colors group-hover:text-primary">
+              <h3 className="font-serif text-xl font-bold text-on-surface transition-colors group-hover:text-primary">
                 {complaint.title}
               </h3>
               <ArrowRight className="size-4 shrink-0 text-outline transition-colors group-hover:text-primary" />
@@ -46,11 +46,11 @@ export function ComplaintCard({ complaint, variant = "compact", className }: Com
             </div>
             <p className="line-clamp-2 text-body-md text-on-surface-variant">{complaint.description}</p>
             <div className="mt-2 flex items-center justify-between border-t border-outline-variant pt-2">
-              <span className="flex items-center gap-1 text-label-md text-outline">
-                <Calendar className="size-4" />
+              <span className="flex items-center gap-1 font-mono text-xs text-outline">
+                <Calendar className="size-3.5" />
                 {formatComplaintDate(complaint.created_at)}
               </span>
-              <span className="text-label-md text-outline">Ref: {reference}</span>
+              <span className="font-mono text-xs text-outline">Ref: {reference}</span>
             </div>
           </div>
         </div>
@@ -61,18 +61,18 @@ export function ComplaintCard({ complaint, variant = "compact", className }: Com
   if (variant === "sidebar") {
     return (
       <Link href={href} className={cn("group cursor-pointer md:col-span-2 lg:col-span-4", className)}>
-        <div className="h-full rounded-[0.75rem] border border-outline-variant bg-surface-container-low p-md transition-all duration-300 hover:border-primary hover:bg-surface-container-high md:p-lg">
+        <div className="h-full rounded-none border border-outline-variant bg-surface-container-low p-md transition-all duration-300 hover:border-primary hover:bg-surface-container-high md:p-lg">
           <div className="mb-4 flex justify-between">
             <PriorityBadge priority={complaint.priority} />
             <StatusBadge status={complaint.status} />
           </div>
-          <h3 className="mb-2 text-headline-sm text-on-surface">{complaint.title}</h3>
+          <h3 className="mb-2 font-serif text-lg font-bold text-on-surface">{complaint.title}</h3>
           <p className="mb-4 text-body-md text-on-surface-variant">{complaint.description}</p>
-          <div className="mt-auto flex items-center gap-3 pt-4">
-            <div className="flex size-8 items-center justify-center rounded-full bg-primary-container text-[12px] font-bold text-on-primary-container">
+          <div className="mt-auto flex items-center gap-3 pt-4 border-t border-outline-variant">
+            <div className="flex size-7 items-center justify-center rounded-none bg-primary text-xs font-mono font-bold text-on-primary">
               M
             </div>
-            <span className="text-label-md text-on-surface">Assigned to: Maintenance Dept</span>
+            <span className="font-mono text-xs text-on-surface">Assigned to: Maintenance Dept</span>
           </div>
         </div>
       </Link>
@@ -81,17 +81,17 @@ export function ComplaintCard({ complaint, variant = "compact", className }: Com
 
   return (
     <Link href={href} className={cn("group cursor-pointer md:col-span-1 lg:col-span-6", className)}>
-      <div className="rounded-[0.75rem] border border-outline-variant bg-surface p-md shadow-sm transition-all hover:border-primary">
+      <div className="rounded-none border border-outline-variant bg-surface p-md transition-all hover:border-primary">
         <div className="flex items-center gap-4">
-          <div className="flex size-12 shrink-0 items-center justify-center rounded-lg bg-surface-container-high text-primary">
-            <Home className="size-5" />
+          <div className="flex size-10 shrink-0 items-center justify-center rounded-none border border-outline-variant bg-surface-container-high text-primary">
+            <Home className="size-4" />
           </div>
           <div className="min-w-0 flex-1 overflow-hidden">
             <div className="mb-1 flex items-center justify-between">
-              <span className="text-label-sm text-outline">{formatComplaintDate(complaint.created_at)}</span>
-              <StatusBadge status={complaint.status} className="rounded-full px-2 py-0.5 text-[10px]" />
+              <span className="font-mono text-xs text-outline">{formatComplaintDate(complaint.created_at)}</span>
+              <StatusBadge status={complaint.status} />
             </div>
-            <h3 className="truncate text-body-lg font-semibold">{complaint.title}</h3>
+            <h3 className="truncate font-serif text-base font-bold text-on-surface group-hover:text-primary transition-colors">{complaint.title}</h3>
           </div>
         </div>
       </div>

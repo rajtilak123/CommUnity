@@ -22,13 +22,13 @@ export async function ResidentShell({ children, profile, className }: ResidentSh
   }
 
   return (
-    <div className={cn("flex h-screen overflow-hidden bg-background text-on-background", className)}>
+    <div className={cn("flex h-screen overflow-hidden bg-[#F9F9F7] text-[#111111]", className)}>
       <ResidentSidebar profile={profile} />
 
       <div className="relative flex flex-1 flex-col overflow-y-auto md:ml-sidebar">
         <ResidentHeader profile={profile} unreadCount={unreadCount} />
 
-        <main className="mx-auto flex w-full max-w-container-max flex-1 flex-col gap-lg px-margin-mobile pb-[100px] pt-[88px] md:gap-xl md:px-gutter md:pb-xl">
+        <main className="mx-auto flex w-full max-w-container-max flex-1 flex-col gap-lg px-margin-mobile pb-[100px] pt-[70px] md:gap-xl md:px-gutter md:pb-xl">
           {children}
         </main>
       </div>
@@ -37,3 +37,4 @@ export async function ResidentShell({ children, profile, className }: ResidentSh
     </div>
   );
 }
+
