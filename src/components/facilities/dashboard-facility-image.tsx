@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Building2 } from "lucide-react";
+import { getDefaultFacilityImage } from "@/lib/facilities/constants";
 import { getSignedFacilityImageUrl } from "@/lib/facilities/upload";
 
 type DashboardFacilityImageProps = {
@@ -10,26 +11,34 @@ type DashboardFacilityImageProps = {
 };
 
 export function DashboardFacilityImage({ fileUrl, facilityName }: DashboardFacilityImageProps) {
-  const [imageSrc, setImageSrc] = useState("");
+  const defaultImage = getDefaultFacilityImage(facilityName);
+  const primaryUrl = fileUrl || defaultImage || "";
+  const [imageSrc, setImageSrc] = useState(defaultImage || "");
 
   useEffect(() => {
     let active = true;
     async function loadImage() {
-      if (!fileUrl) return;
+      if (!primaryUrl) {
+        if (active) setImageSrc(defaultImage || "");
+        return;
+      }
       try {
-        const signed = await getSignedFacilityImageUrl(fileUrl);
+        const signed = await getSignedFacilityImageUrl(primaryUrl);
         if (active) {
-          setImageSrc(signed);
+          setImageSrc(signed || defaultImage || "");
         }
       } catch (err) {
         console.error("Failed to load signed URL for facility", err);
+        if (active) {
+          setImageSrc(defaultImage || "");
+        }
       }
     }
     void loadImage();
     return () => {
       active = false;
     };
-  }, [fileUrl]);
+  }, [primaryUrl, defaultImage]);
 
   if (imageSrc) {
     return (
@@ -37,7 +46,7 @@ export function DashboardFacilityImage({ fileUrl, facilityName }: DashboardFacil
       <img
         src={imageSrc}
         alt={facilityName}
-        onError={() => setImageSrc("")}
+        onError={() => setImageSrc(defaultImage || "")}
         className="size-12 rounded-lg object-cover shrink-0 border border-outline-variant"
       />
     );

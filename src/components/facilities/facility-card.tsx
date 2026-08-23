@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Users, Info, ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 
+import { getDefaultFacilityImage } from "@/lib/facilities/constants";
 import { getSignedFacilityImageUrl } from "@/lib/facilities/upload";
 import type { FacilityListItem } from "@/types/facilities";
 import { cn } from "@/lib/utils";
@@ -14,27 +15,34 @@ type FacilityCardProps = {
 };
 
 export function FacilityCard({ facility, className }: FacilityCardProps) {
-  const [imageSrc, setImageSrc] = useState("");
-  const primaryImage = facility.images?.[0]?.file_url;
+  const defaultImage = getDefaultFacilityImage(facility.name);
+  const primaryImage = facility.images?.[0]?.file_url || defaultImage || "";
+  const [imageSrc, setImageSrc] = useState(defaultImage || "");
 
   useEffect(() => {
     let active = true;
     async function loadImage() {
-      if (!primaryImage) return;
+      if (!primaryImage) {
+        if (active) setImageSrc(defaultImage || "");
+        return;
+      }
       try {
         const signed = await getSignedFacilityImageUrl(primaryImage);
         if (active) {
-          setImageSrc(signed);
+          setImageSrc(signed || defaultImage || "");
         }
       } catch (err) {
         console.error("Failed to load signed URL for facility", err);
+        if (active) {
+          setImageSrc(defaultImage || "");
+        }
       }
     }
     void loadImage();
     return () => {
       active = false;
     };
-  }, [primaryImage]);
+  }, [primaryImage, defaultImage]);
 
   return (
     <div className={cn("group relative flex flex-col justify-between overflow-hidden rounded-none border border-outline-variant bg-surface transition-all duration-200 hover:border-primary", className)}>
@@ -46,6 +54,7 @@ export function FacilityCard({ facility, className }: FacilityCardProps) {
             <img
               src={imageSrc}
               alt={facility.name}
+              onError={() => setImageSrc(defaultImage || "")}
               className="size-full object-cover transition-transform duration-300 group-hover:scale-105"
             />
           ) : (

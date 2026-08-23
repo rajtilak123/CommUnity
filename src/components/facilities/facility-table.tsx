@@ -5,6 +5,7 @@ import { Edit, Eye, CheckCircle2, XCircle } from "lucide-react";
 import Image from "next/image";
 
 import type { FacilityListItem } from "@/types/facilities";
+import { getDefaultFacilityImage } from "@/lib/facilities/constants";
 import { cn } from "@/lib/utils";
 
 type FacilityTableProps = {
@@ -38,7 +39,8 @@ export function FacilityTable({ facilities, className }: FacilityTableProps) {
           </thead>
           <tbody className="divide-y divide-outline-variant">
             {facilities.map((facility) => {
-              const thumbnail = facility.images?.[0]?.file_url;
+              const defaultImg = getDefaultFacilityImage(facility.name);
+              const thumbnail = facility.images?.[0]?.file_url || defaultImg;
               return (
                 <tr key={facility.id} className="group transition-colors hover:bg-surface-container-high">
                   <td className="px-md py-4">

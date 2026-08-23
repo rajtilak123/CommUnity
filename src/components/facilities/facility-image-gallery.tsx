@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { getDefaultFacilityImage } from "@/lib/facilities/constants";
 import { getSignedFacilityImageUrl } from "@/lib/facilities/upload";
 import type { FacilityImage } from "@/types/facilities";
 import { Users } from "lucide-react";
@@ -11,25 +12,36 @@ type FacilityImageGalleryProps = {
 };
 
 export function FacilityImageGallery({ images, facilityName }: FacilityImageGalleryProps) {
-  const [signedUrls, setSignedUrls] = useState<string[]>([]);
+  const defaultImage = getDefaultFacilityImage(facilityName);
+  const [signedUrls, setSignedUrls] = useState<string[]>(defaultImage ? [defaultImage] : []);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let active = true;
     async function load() {
-      if (images.length === 0) {
-        setLoading(false);
+      const urlsToLoad = images.length > 0
+        ? images.map((img) => img.file_url)
+        : defaultImage
+        ? [defaultImage]
+        : [];
+
+      if (urlsToLoad.length === 0) {
+        if (active) setLoading(false);
         return;
       }
       try {
         const urls = await Promise.all(
-          images.map((img) => getSignedFacilityImageUrl(img.file_url))
+          urlsToLoad.map((url) => getSignedFacilityImageUrl(url))
         );
         if (active) {
-          setSignedUrls(urls.filter(Boolean));
+          const validUrls = urls.filter(Boolean);
+          setSignedUrls(validUrls.length > 0 ? validUrls : defaultImage ? [defaultImage] : []);
         }
       } catch (err) {
         console.error("Failed to load facility gallery images", err);
+        if (active && defaultImage) {
+          setSignedUrls([defaultImage]);
+        }
       } finally {
         if (active) {
           setLoading(false);
@@ -40,7 +52,7 @@ export function FacilityImageGallery({ images, facilityName }: FacilityImageGall
     return () => {
       active = false;
     };
-  }, [images]);
+  }, [images, defaultImage]);
 
   if (loading) {
     return (
