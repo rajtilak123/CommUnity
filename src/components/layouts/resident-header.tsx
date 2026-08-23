@@ -1,7 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Bell } from "lucide-react";
 
-import { siteConfig } from "@/config/site";
 import { getProfileInitials } from "@/lib/auth/profile-utils";
 import type { Profile } from "@/types/auth";
 
@@ -19,7 +19,15 @@ export function ResidentHeader({ profile, unreadCount = 0 }: ResidentHeaderProps
         <div className="flex size-7 shrink-0 items-center justify-center border border-[#E5E5E0] font-mono text-[10px] font-semibold text-[#525252] md:hidden">
           {initials}
         </div>
-        <h1 className="font-serif text-base font-bold text-[#111111]">{siteConfig.name}</h1>
+        <Link href="/dashboard" className="flex items-center focus-visible:outline-none">
+          <Image
+            src="/branding/community-logo.png"
+            alt="CommUnity Logo"
+            width={120}
+            height={120}
+            className="h-7 w-auto object-contain"
+          />
+        </Link>
       </div>
 
       <Link

@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 import { SignOutButton } from "@/components/auth/sign-out-button";
 import { residentNavItems } from "@/config/navigation";
-import { siteConfig } from "@/config/site";
 import { getProfileInitials } from "@/lib/auth/profile-utils";
 import type { Profile } from "@/types/auth";
 import { cn } from "@/lib/utils";
@@ -22,8 +22,16 @@ export function ResidentSidebar({ profile }: ResidentSidebarProps) {
     <aside className="fixed inset-y-0 left-0 z-40 hidden h-full w-sidebar flex-col border-r border-primary bg-surface md:flex">
       {/* Brand header */}
       <div className="px-6 py-5 border-b border-outline-variant">
-        <div className="font-serif text-lg font-bold text-on-surface leading-none">{siteConfig.name}</div>
-        <div className="font-mono text-[9px] tracking-widest text-on-surface-variant uppercase mt-1">Resident Portal</div>
+        <Link href="/dashboard" className="inline-block focus-visible:outline-none">
+          <Image
+            src="/branding/community-logo.png"
+            alt="CommUnity Logo"
+            width={160}
+            height={160}
+            className="h-12 w-auto object-contain"
+            priority
+          />
+        </Link>
       </div>
 
       <nav className="flex flex-grow flex-col py-2 overflow-y-auto">

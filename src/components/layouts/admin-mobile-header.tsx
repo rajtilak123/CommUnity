@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
@@ -102,10 +103,16 @@ export function AdminMobileHeader({ profile }: AdminMobileHeaderProps) {
     <>
       {/* Mobile Top Header bar */}
       <header className="fixed top-0 left-0 right-0 z-40 flex h-14 items-center justify-between border-b border-outline-variant bg-surface px-margin-mobile md:hidden">
-        <div className="flex items-center gap-2">
-          <span className="font-serif text-base font-bold text-on-surface">CommUnity</span>
+        <Link href="/admin/dashboard" className="flex items-center gap-2 focus-visible:outline-none">
+          <Image
+            src="/branding/community-logo.png"
+            alt="CommUnity Logo"
+            width={120}
+            height={120}
+            className="h-7 w-auto object-contain"
+          />
           <span className="font-mono text-[9px] tracking-widest text-on-surface-variant uppercase">Admin</span>
-        </div>
+        </Link>
 
         <button
           type="button"
@@ -141,10 +148,17 @@ export function AdminMobileHeader({ profile }: AdminMobileHeaderProps) {
       >
         {/* Drawer Header */}
         <div className="flex items-center justify-between px-4 py-5 border-b border-[#333333]">
-          <div>
-            <div className="font-serif text-base font-bold text-[#F9F9F7] leading-none">CommUnity</div>
-            <div className="font-mono text-[9px] tracking-widest text-[#737373] uppercase mt-0.5">Administration</div>
-          </div>
+          <Link href="/admin/dashboard" className="inline-block focus-visible:outline-none">
+            <div className="inline-flex items-center justify-center bg-[#F9F9F7] p-1 rounded">
+              <Image
+                src="/branding/community-logo.png"
+                alt="CommUnity Logo"
+                width={120}
+                height={120}
+                className="h-8 w-auto object-contain"
+              />
+            </div>
+          </Link>
           <button
             type="button"
             onClick={() => setIsOpen(false)}

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 import { SignOutButton } from "@/components/auth/sign-out-button";
@@ -21,8 +22,18 @@ export function AdminSidebar({ profile }: AdminSidebarProps) {
     <aside className="fixed left-0 top-0 z-50 hidden h-full w-sidebar-admin flex-col bg-[#111111] md:flex">
       {/* Brand header */}
       <div className="px-4 py-5 border-b border-[#333333]">
-        <div className="font-serif text-lg font-bold text-[#F9F9F7] leading-none">CommUnity</div>
-        <div className="font-mono text-[9px] tracking-widest text-[#737373] uppercase mt-1">Administration</div>
+        <Link href="/admin/dashboard" className="inline-block focus-visible:outline-none">
+          <div className="inline-flex items-center justify-center bg-[#F9F9F7] p-1.5 rounded">
+            <Image
+              src="/branding/community-logo.png"
+              alt="CommUnity Logo"
+              width={160}
+              height={160}
+              className="h-10 w-auto object-contain"
+              priority
+            />
+          </div>
+        </Link>
       </div>
 
       {/* Navigation Links */}

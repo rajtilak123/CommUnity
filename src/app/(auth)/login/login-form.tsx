@@ -1,6 +1,8 @@
 "use client";
 
-import { ArrowRight, Building2, Eye, EyeOff, Lock, Mail } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, Eye, EyeOff, Lock, Mail } from "lucide-react";
 import { useActionState, useState } from "react";
 
 import { signInAction, type AuthActionState } from "@/lib/auth/actions";
@@ -81,16 +83,17 @@ export function LoginForm() {
 export function LoginBrand() {
   return (
     <div className="mb-xl flex flex-col items-center text-center">
-      <div className="mb-md flex size-12 items-center justify-center rounded-none border border-primary bg-primary text-on-primary">
-        <Building2 className="size-6" />
-      </div>
-      <p className="font-mono text-xs uppercase tracking-widest text-on-surface-variant mb-1">
-        COMMUNITY SaaS
-      </p>
-      <h1 className="font-serif text-3xl font-bold tracking-tight text-on-surface md:text-4xl">
-        CommUnity
-      </h1>
-      <p className="mt-xs text-body-md text-on-surface-variant">
+      <Link href="/" className="mb-md inline-block focus-visible:outline-none">
+        <Image
+          src="/branding/community-logo.png"
+          alt="CommUnity Logo"
+          width={240}
+          height={240}
+          className="h-24 w-auto object-contain"
+          priority
+        />
+      </Link>
+      <p className="text-body-md text-on-surface-variant">
         Welcome back to your residential portal.
       </p>
     </div>
