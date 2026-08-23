@@ -43,17 +43,17 @@ export function BookingForm({ facilityId }: BookingFormProps) {
   const times = defaultTimes();
 
   return (
-    <form action={formAction} className="rounded-[0.75rem] border border-outline-variant bg-surface-container-lowest p-md md:p-lg shadow-sm flex flex-col gap-md">
-      <div className="mb-xs">
-        <h3 className="text-body-lg font-bold text-on-surface">Book Facility</h3>
-        <p className="text-label-md text-on-surface-variant">Reserve your desired time slot.</p>
+    <form action={formAction} className="rounded-none border border-outline-variant bg-surface p-md md:p-lg flex flex-col gap-md">
+      <div className="border-b border-outline-variant pb-xs mb-xs">
+        <h3 className="font-serif text-xl font-bold text-on-surface">Book Facility</h3>
+        <p className="font-mono text-xs text-on-surface-variant">Reserve your desired time slot.</p>
       </div>
 
       <input type="hidden" name="facility_id" value={facilityId} />
 
       <div className="grid grid-cols-1 gap-md sm:grid-cols-2">
         <div className="flex flex-col gap-xs">
-          <Label htmlFor="start_time" className="text-label-md text-on-surface-variant">
+          <Label htmlFor="start_time" className="font-mono text-xs font-semibold uppercase tracking-wider text-on-surface-variant">
             Start Date &amp; Time
           </Label>
           <Input
@@ -62,12 +62,12 @@ export function BookingForm({ facilityId }: BookingFormProps) {
             type="datetime-local"
             defaultValue={times.start}
             required
-            className="rounded-lg border-outline-variant bg-surface px-md py-sm text-body-md"
+            className="font-mono text-xs"
           />
         </div>
 
         <div className="flex flex-col gap-xs">
-          <Label htmlFor="end_time" className="text-label-md text-on-surface-variant">
+          <Label htmlFor="end_time" className="font-mono text-xs font-semibold uppercase tracking-wider text-on-surface-variant">
             End Date &amp; Time
           </Label>
           <Input
@@ -76,13 +76,13 @@ export function BookingForm({ facilityId }: BookingFormProps) {
             type="datetime-local"
             defaultValue={times.end}
             required
-            className="rounded-lg border-outline-variant bg-surface px-md py-sm text-body-md"
+            className="font-mono text-xs"
           />
         </div>
       </div>
 
       <div className="flex flex-col gap-xs">
-        <Label htmlFor="notes" className="text-label-md text-on-surface-variant">
+        <Label htmlFor="notes" className="font-mono text-xs font-semibold uppercase tracking-wider text-on-surface-variant">
           Booking Notes / Purpose (Optional)
         </Label>
         <textarea
@@ -90,12 +90,12 @@ export function BookingForm({ facilityId }: BookingFormProps) {
           name="notes"
           rows={3}
           placeholder="e.g., Playing tennis practice, hosting a small family gathering"
-          className="w-full resize-none rounded-lg border border-outline-variant bg-surface px-md py-sm text-body-lg md:text-body-md transition-all focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/10"
+          className="w-full resize-none rounded-none border-0 border-b-2 border-outline-variant bg-transparent px-md py-2 text-body-md transition-all focus:border-primary focus:bg-surface-container-low focus:outline-none"
         />
       </div>
 
       {state.error ? (
-        <p className="rounded-lg border border-error/30 bg-error-container/40 px-md py-sm text-body-md text-on-error-container">
+        <p className="rounded-none border border-accent bg-accent/10 px-md py-sm font-mono text-xs text-accent">
           {state.error}
         </p>
       ) : null}
@@ -103,16 +103,18 @@ export function BookingForm({ facilityId }: BookingFormProps) {
       <Button
         type="submit"
         disabled={isPending}
-        className="w-full gap-sm rounded-lg px-xl py-md font-semibold text-body-md h-auto mt-2"
+        variant="default"
+        size="lg"
+        className="w-full gap-2 rounded-none border border-[#111111] bg-[#111111] text-[#F9F9F7] hover:bg-[#F9F9F7] hover:text-[#111111] font-mono text-xs font-bold uppercase tracking-wider h-11 mt-2 cursor-pointer transition-all"
       >
         {isPending ? (
           <>
-            <Loader2 className="size-5 animate-spin" />
+            <Loader2 className="size-4 animate-spin text-current" />
             Requesting...
           </>
         ) : (
           <>
-            <CalendarPlus className="size-5" />
+            <CalendarPlus className="size-4 text-current" />
             Submit Reservation Request
           </>
         )}

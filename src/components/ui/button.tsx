@@ -5,21 +5,24 @@ import type { ButtonHTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-label-md font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container/30 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-none text-label-md font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-current",
   {
     variants: {
       variant: {
-        default: "bg-primary text-on-primary hover:opacity-90 active:scale-[0.98]",
+        default:
+          "bg-[#111111] text-[#F9F9F7] border border-[#111111] hover:bg-[#F9F9F7] hover:text-[#111111] dark:bg-[#F0EEE8] dark:text-[#0E0E0C] dark:border-[#F0EEE8] dark:hover:bg-[#0E0E0C] dark:hover:text-[#F0EEE8]",
         secondary:
-          "border border-outline-variant bg-surface-container-lowest text-on-surface hover:bg-surface-container-low",
-        ghost: "text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface",
-        destructive: "bg-error text-on-error hover:opacity-90",
-        link: "text-primary underline-offset-4 hover:underline",
+          "bg-transparent border border-[#111111] text-[#111111] hover:bg-[#111111] hover:text-[#F9F9F7] dark:border-[#F0EEE8] dark:text-[#F0EEE8] dark:hover:bg-[#F0EEE8] dark:hover:text-[#0E0E0C]",
+        ghost:
+          "text-[#525252] hover:bg-[#E5E5E0] hover:text-[#111111] dark:text-[#A3A3A3] dark:hover:bg-[#222222] dark:hover:text-[#F0EEE8]",
+        destructive:
+          "bg-[#CC0000] text-white border border-[#CC0000] hover:bg-[#AA0000] hover:border-[#AA0000]",
+        link: "text-[#111111] underline-offset-4 hover:underline dark:text-[#F0EEE8]",
       },
       size: {
         default: "h-10 px-5 py-2.5",
-        sm: "h-8 rounded-md px-3 text-label-sm",
-        lg: "h-12 rounded-lg px-6",
+        sm: "h-8 px-3 text-label-sm",
+        lg: "h-12 px-6",
         icon: "size-10",
       },
     },
@@ -42,3 +45,4 @@ export function Button({ className, variant, size, asChild = false, ...props }: 
 }
 
 export { buttonVariants };
+

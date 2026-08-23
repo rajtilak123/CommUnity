@@ -20,7 +20,7 @@ const filterOptions: Array<{ value: NoticeCategory | "all"; label: string }> = [
 
 export function NoticeFilters({ activeCategory, onCategoryChange, className }: NoticeFiltersProps) {
   return (
-    <div className={cn("flex gap-sm overflow-x-auto pb-2 scrollbar-none", className)}>
+    <div className={cn("flex flex-wrap items-center gap-2 py-1", className)}>
       {filterOptions.map((option) => {
         const isActive = activeCategory === option.value;
 
@@ -30,10 +30,10 @@ export function NoticeFilters({ activeCategory, onCategoryChange, className }: N
             type="button"
             onClick={() => onCategoryChange(option.value)}
             className={cn(
-              "whitespace-nowrap rounded-full px-md py-2 text-label-md font-semibold transition-all cursor-pointer",
+              "h-8 w-fit shrink-0 whitespace-nowrap rounded-none px-3 font-mono text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer select-none",
               isActive
-                ? "bg-primary text-on-primary shadow-sm"
-                : "border border-outline-variant bg-surface text-on-surface-variant hover:bg-surface-container-high",
+                ? "border border-[#111111] bg-[#111111] text-[#F9F9F7] dark:bg-[#F0EEE8] dark:text-[#0E0E0C]"
+                : "border border-outline-variant bg-surface text-on-surface-variant hover:border-primary hover:text-on-surface"
             )}
           >
             {option.label}

@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 
-import { Card } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
 
@@ -34,10 +33,10 @@ export function DataTable<T>({
   }
 
   return (
-    <Card className={cn("overflow-hidden p-0", className)}>
+    <div className={cn("overflow-hidden border border-[#E5E5E0] bg-white", className)}>
       <Table>
         <TableHeader>
-          <TableRow className="bg-surface-container-low hover:bg-surface-container-low">
+          <TableRow className="bg-[#F5F5F5] hover:bg-[#F5F5F5]">
             {columns.map((column) => (
               <TableHead key={column.id} className={column.headerClassName}>
                 {column.header}
@@ -61,6 +60,7 @@ export function DataTable<T>({
           ))}
         </TableBody>
       </Table>
-    </Card>
+    </div>
   );
 }
+

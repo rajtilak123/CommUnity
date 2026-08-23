@@ -46,7 +46,8 @@ export async function uploadFacilityImages(
 }
 
 export async function getSignedFacilityImageUrl(fileUrl: string): Promise<string> {
-  if (fileUrl.startsWith("http")) {
+  if (!fileUrl) return "";
+  if (fileUrl.startsWith("http") || fileUrl.startsWith("/")) {
     return fileUrl;
   }
 

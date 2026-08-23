@@ -32,3 +32,20 @@ export function formatDate(dateStr?: string | null): string {
     dateStyle: "medium",
   });
 }
+
+export const DEFAULT_FACILITY_IMAGES: Record<string, string> = {
+  "community hall": "/facilities/community-hall.jpg",
+  "gym": "/facilities/gym.jpg",
+  "tennis court": "/facilities/tennis-court.jpg",
+};
+
+export function getDefaultFacilityImage(facilityName?: string | null): string | null {
+  if (!facilityName) return null;
+  const nameLower = facilityName.trim().toLowerCase();
+  for (const [key, value] of Object.entries(DEFAULT_FACILITY_IMAGES)) {
+    if (nameLower.includes(key)) {
+      return value;
+    }
+  }
+  return null;
+}

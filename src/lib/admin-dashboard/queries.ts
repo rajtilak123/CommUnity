@@ -116,7 +116,7 @@ export async function getAdminDashboardData(
   ]);
 
   // Handle Society Name
-  const societyName = societyResult.data?.name || "CommUnity Society";
+  const societyName = societyResult.data?.name || "CommUnity";
 
   // 1. Residents stats
   const allProfiles = (profilesResult.data ?? []) as Profile[];

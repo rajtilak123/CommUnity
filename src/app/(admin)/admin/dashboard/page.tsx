@@ -136,69 +136,82 @@ export default async function AdminDashboardPage() {
 
   return (
     <div className="space-y-xl max-w-container-max mx-auto px-margin-mobile sm:px-md py-md">
-      {/* ── SECTION 1 — COMPACT WELCOME HEADER ───────────────── */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-sm border-b border-outline-variant pb-md max-h-[120px] md:max-h-[90px]">
-        <div>
-          <h1 className="text-[28px] md:text-[32px] font-black text-on-surface tracking-tight leading-none">
-            {greeting}, {adminFirstName}
-          </h1>
-          <p className="text-body-sm font-semibold text-on-surface-variant mt-1">
-            Manage residents, complaints, facilities, notices, and community operations.
-          </p>
+      {/* ── SECTION 1 — EDITORIAL WELCOME MASTHEAD ───────────────── */}
+      <div className="border-b-2 border-primary pb-4">
+        <p className="font-mono text-[10px] uppercase tracking-widest text-on-surface-variant mb-1">
+          Administration Dashboard
+        </p>
+        <hr className="border-t-2 border-primary mb-3" />
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-sm">
+          <div>
+            <h1 className="font-serif text-[28px] md:text-[36px] font-bold text-on-surface tracking-tight leading-none">
+              {greeting}, {adminFirstName}
+            </h1>
+            <p className="text-body-sm text-on-surface-variant mt-1">
+              Manage residents, complaints, facilities, notices, and community operations.
+            </p>
+          </div>
+          <div className="md:text-right flex flex-col md:items-end justify-center shrink-0">
+            <p className="font-mono text-[11px] text-on-surface-variant">{currentDateStr}</p>
+            <span className="font-mono text-[10px] uppercase tracking-widest text-on-surface-variant border border-outline-variant px-2 py-0.5 mt-1 inline-block">
+              {data.societyName && !data.societyName.toLowerCase().includes("demo")
+                ? data.societyName
+                : "CommUnity Admin"}
+            </span>
+          </div>
         </div>
-        <div className="md:text-right flex flex-col md:items-end justify-center shrink-0">
-          <p className="text-body-sm font-bold text-on-surface">{currentDateStr}</p>
-          <span className="inline-block text-[11px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full mt-1">
-            {data.societyName}
+      </div>
+
+      {/* ── DAILY BRIEF STRIP ────────────────────────────── */}
+      <div className="border border-primary bg-surface px-4 py-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono text-xs">
+        <div className="flex items-center gap-2 shrink-0 border-b sm:border-b-0 border-outline-variant pb-2 sm:pb-0">
+          <span className="flex size-2 bg-error" />
+          <span className="font-mono text-xs font-bold uppercase tracking-widest text-on-surface">
+            DAILY BRIEF
+          </span>
+        </div>
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-on-surface-variant">
+          <span className="flex items-center gap-1.5">
+            <strong className={`font-mono text-sm ${newComplaintsToday > 0 ? "text-accent" : "text-on-surface"}`}>{newComplaintsToday}</strong>
+            <span className="text-[11px] uppercase tracking-wider">New Complaints</span>
+          </span>
+          <span className="text-outline-variant select-none">|</span>
+          <span className="flex items-center gap-1.5">
+            <strong className={`font-mono text-sm ${pendingBookingsCount > 0 ? "text-amber-600 dark:text-amber-400" : "text-on-surface"}`}>{pendingBookingsCount}</strong>
+            <span className="text-[11px] uppercase tracking-wider">Pending Bookings</span>
+          </span>
+          <span className="text-outline-variant select-none">|</span>
+          <span className="flex items-center gap-1.5">
+            <strong className="font-mono text-sm text-on-surface">{newNoticesToday}</strong>
+            <span className="text-[11px] uppercase tracking-wider">Notices Today</span>
+          </span>
+          <span className="text-outline-variant select-none">|</span>
+          <span className="flex items-center gap-1.5">
+            <strong className={`font-mono text-sm ${pendingResidentsCount > 0 ? "text-accent" : "text-on-surface"}`}>{pendingResidentsCount}</strong>
+            <span className="text-[11px] uppercase tracking-wider">Pending Approvals</span>
           </span>
         </div>
       </div>
 
-      {/* ── TODAY'S SUMMARY STRIP ────────────────────────────── */}
-      <div className="flex flex-wrap items-center gap-x-6 gap-y-2 rounded-xl border border-outline-variant bg-surface-container-lowest px-md py-2.5 shadow-sm text-body-sm font-semibold text-on-surface-variant">
-        <span className="text-on-surface uppercase tracking-wider text-[11px] font-extrabold flex items-center gap-1.5 shrink-0">
-          <Activity className="size-3.5 text-primary" /> Today&apos;s Summary
-        </span>
-        <span className="hidden sm:inline text-outline-variant font-normal">|</span>
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-          <span className="flex items-center gap-1">
-            <span className="size-1.5 rounded-full bg-error" />
-            <strong className="text-on-surface">{newComplaintsToday}</strong> New Complaints
-          </span>
-          <span className="flex items-center gap-1">
-            <span className="size-1.5 rounded-full bg-amber-500" />
-            <strong className="text-on-surface">{pendingBookingsCount}</strong> Pending Bookings
-          </span>
-          <span className="flex items-center gap-1">
-            <span className="size-1.5 rounded-full bg-emerald-500" />
-            <strong className="text-on-surface">{newNoticesToday}</strong> New Notices
-          </span>
-          <span className="flex items-center gap-1">
-            <span className="size-1.5 rounded-full bg-primary" />
-            <strong className="text-on-surface">{pendingResidentsCount}</strong> Pending Approvals
-          </span>
-        </div>
-      </div>
 
       {/* ── SECTION 2 — EXECUTIVE KPI GRID ─────────────────────── */}
       <div className="grid grid-cols-1 gap-gutter sm:grid-cols-2 lg:grid-cols-5">
         {/* Card 1: Residents */}
-        <div className="relative overflow-hidden rounded-2xl border border-outline-variant bg-surface-container-lowest p-md flex flex-col justify-between min-h-[145px] shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
-          <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-primary/5 to-transparent rounded-bl-full pointer-events-none" />
+        <div className="border border-outline-variant bg-surface-container-lowest p-md flex flex-col justify-between min-h-[145px]">
           <div className="flex items-center justify-between">
-            <span className="text-label-sm font-bold uppercase tracking-wider text-on-surface-variant">Residents</span>
-            <span className="rounded-lg bg-primary/10 p-2 text-primary">
+            <span className="font-mono text-[10px] font-medium uppercase tracking-widest text-on-surface-variant">Residents</span>
+            <span className="text-on-surface-variant">
               <Users className="size-4" />
             </span>
           </div>
           <div className="mt-2">
-            <div className="text-[36px] font-black text-on-surface tracking-tight leading-none">
+            <div className="font-mono text-[36px] font-bold text-on-surface tracking-tight leading-none">
               {stats.residents.approved}
             </div>
-            <div className="mt-2 flex items-center justify-between text-label-sm text-on-surface-variant font-semibold">
+            <div className="mt-2 flex items-center justify-between font-mono text-[10px] text-on-surface-variant">
               <span>+{stats.activity.newResidentsThisMonth} Joiners</span>
-              <span>•</span>
-              <span className={stats.residents.pending > 0 ? "text-primary font-bold" : ""}>
+              <span>·</span>
+              <span className={stats.residents.pending > 0 ? "text-error font-semibold" : ""}>
                 {stats.residents.pending} Pending
               </span>
             </div>
@@ -206,43 +219,41 @@ export default async function AdminDashboardPage() {
         </div>
 
         {/* Card 2: Complaints */}
-        <div className="relative overflow-hidden rounded-2xl border border-outline-variant bg-surface-container-lowest p-md flex flex-col justify-between min-h-[145px] shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
-          <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-amber-500/5 to-transparent rounded-bl-full pointer-events-none" />
+        <div className="border border-outline-variant bg-surface-container-lowest p-md flex flex-col justify-between min-h-[145px] border-l-4 border-l-error">
           <div className="flex items-center justify-between">
-            <span className="text-label-sm font-bold uppercase tracking-wider text-on-surface-variant">Complaints</span>
-            <span className="rounded-lg bg-amber-500/10 p-2 text-amber-600 dark:text-amber-400">
+            <span className="font-mono text-[10px] font-medium uppercase tracking-widest text-on-surface-variant">Complaints</span>
+            <span className="text-error">
               <AlertTriangle className="size-4" />
             </span>
           </div>
           <div className="mt-2">
-            <div className="text-[36px] font-black text-on-surface tracking-tight leading-none">
+            <div className="font-mono text-[36px] font-bold text-on-surface tracking-tight leading-none">
               {stats.complaints.open + stats.complaints.inProgress}
             </div>
-            <div className="mt-2 flex items-center justify-between text-label-sm text-on-surface-variant font-semibold">
+            <div className="mt-2 flex items-center justify-between font-mono text-[10px] text-on-surface-variant">
               <span>{stats.complaints.resolved} Resolved</span>
-              <span>•</span>
+              <span>·</span>
               <span>{stats.complaints.open} Open</span>
             </div>
           </div>
         </div>
 
         {/* Card 3: Facilities */}
-        <div className="relative overflow-hidden rounded-2xl border border-outline-variant bg-surface-container-lowest p-md flex flex-col justify-between min-h-[145px] shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
-          <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-violet-500/5 to-transparent rounded-bl-full pointer-events-none" />
+        <div className="border border-outline-variant bg-surface-container-lowest p-md flex flex-col justify-between min-h-[145px]">
           <div className="flex items-center justify-between">
-            <span className="text-label-sm font-bold uppercase tracking-wider text-on-surface-variant">Facilities</span>
-            <span className="rounded-lg bg-violet-500/10 p-2 text-violet-600 dark:text-violet-400">
+            <span className="font-mono text-[10px] font-medium uppercase tracking-widest text-on-surface-variant">Facilities</span>
+            <span className="text-on-surface-variant">
               <Building className="size-4" />
             </span>
           </div>
           <div className="mt-2">
-            <div className="text-[36px] font-black text-on-surface tracking-tight leading-none">
+            <div className="font-mono text-[36px] font-bold text-on-surface tracking-tight leading-none">
               {stats.facilities.active}
             </div>
-            <div className="mt-2 flex items-center justify-between text-label-sm text-on-surface-variant font-semibold">
+            <div className="mt-2 flex items-center justify-between font-mono text-[10px] text-on-surface-variant">
               <span>{stats.facilities.upcomingBookings} Upcoming</span>
-              <span>•</span>
-              <span className={stats.facilities.pendingApprovals > 0 ? "text-violet-600 dark:text-violet-400 font-bold" : ""}>
+              <span>·</span>
+              <span className={stats.facilities.pendingApprovals > 0 ? "text-amber-600 dark:text-amber-400 font-semibold" : ""}>
                 {stats.facilities.pendingApprovals} Pending
               </span>
             </div>
@@ -250,42 +261,40 @@ export default async function AdminDashboardPage() {
         </div>
 
         {/* Card 4: Community Activity */}
-        <div className="relative overflow-hidden rounded-2xl border border-outline-variant bg-surface-container-lowest p-md flex flex-col justify-between min-h-[145px] shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
-          <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-emerald-500/5 to-transparent rounded-bl-full pointer-events-none" />
+        <div className="border border-outline-variant bg-surface-container-lowest p-md flex flex-col justify-between min-h-[145px]">
           <div className="flex items-center justify-between">
-            <span className="text-label-sm font-bold uppercase tracking-wider text-on-surface-variant">Alerts Board</span>
-            <span className="rounded-lg bg-emerald-500/10 p-2 text-emerald-600 dark:text-emerald-400">
+            <span className="font-mono text-[10px] font-medium uppercase tracking-widest text-on-surface-variant">Alerts Board</span>
+            <span className="text-on-surface-variant">
               <Megaphone className="size-4" />
             </span>
           </div>
           <div className="mt-2">
-            <div className="text-[36px] font-black text-on-surface tracking-tight leading-none">
+            <div className="font-mono text-[36px] font-bold text-on-surface tracking-tight leading-none">
               {stats.activity.noticesThisMonth}
             </div>
-            <div className="mt-2 flex items-center justify-between text-label-sm text-on-surface-variant font-semibold">
+            <div className="mt-2 flex items-center justify-between font-mono text-[10px] text-on-surface-variant">
               <span>{stats.activity.notificationsSent} Notifications</span>
-              <span>•</span>
+              <span>·</span>
               <span>This Month</span>
             </div>
           </div>
         </div>
 
         {/* Card 5: Community Health */}
-        <div className="relative overflow-hidden rounded-2xl border border-outline-variant bg-surface-container-lowest p-md flex flex-col justify-between min-h-[145px] shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
-          <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-rose-500/5 to-transparent rounded-bl-full pointer-events-none" />
+        <div className="border border-outline-variant bg-surface-container-lowest p-md flex flex-col justify-between min-h-[145px]">
           <div className="flex items-center justify-between">
-            <span className="text-label-sm font-bold uppercase tracking-wider text-on-surface-variant">Health Score</span>
-            <span className="rounded-lg bg-rose-500/10 p-2 text-rose-500">
-              <Heart className="size-4 animate-pulse" />
+            <span className="font-mono text-[10px] font-medium uppercase tracking-widest text-on-surface-variant">Health Score</span>
+            <span className="text-on-surface-variant">
+              <Heart className="size-4" />
             </span>
           </div>
           <div className="mt-2">
-            <div className="text-[36px] font-black text-on-surface tracking-tight leading-none flex items-baseline gap-0.5">
+            <div className="font-mono text-[36px] font-bold text-on-surface tracking-tight leading-none flex items-baseline gap-0.5">
               {healthScore}
               <span className="text-body-sm font-bold text-on-surface-variant">%</span>
             </div>
             <div className="mt-2 flex items-center gap-1.5">
-              <span className={cn("text-[10px] font-extrabold px-1.5 py-0.5 rounded border leading-none", healthColorClass)}>
+              <span className={cn("font-mono text-[10px] font-extrabold px-1.5 py-0.5 border leading-none", healthColorClass)}>
                 {healthLabel}
               </span>
             </div>
@@ -293,21 +302,22 @@ export default async function AdminDashboardPage() {
         </div>
       </div>
 
+
       {/* ── SECTION 3 — QUICK ACTIONS (SINGLE ROW COMMAND PANELS) ── */}
       <section className="space-y-md">
-        <h2 className="text-label-sm font-bold uppercase tracking-wider text-on-surface-variant">
+        <h2 className="font-mono text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">
           Quick Shortcuts
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-5 gap-md">
           <Link
             href="/admin/residents"
-            className="group rounded-xl border border-outline-variant bg-surface-container-lowest p-md flex flex-col justify-between gap-sm hover:border-primary hover:shadow-md transition-all duration-300"
+            className="group border border-outline-variant bg-surface-container-lowest p-md flex flex-col justify-between gap-sm hover:border-primary transition-colors"
           >
             <div className="flex items-center justify-between">
-              <span className="rounded-lg bg-primary/10 p-2 text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+              <span className="text-on-surface-variant group-hover:text-primary">
                 <Users className="size-4" />
               </span>
-              <ChevronRight className="size-3.5 text-outline group-hover:translate-x-0.5 group-hover:text-primary transition-all" />
+              <ChevronRight className="size-3.5 text-outline group-hover:text-primary transition-colors" />
             </div>
             <div className="mt-1">
               <h3 className="text-body-sm font-bold text-on-surface">Residents</h3>
@@ -317,13 +327,13 @@ export default async function AdminDashboardPage() {
 
           <Link
             href="/admin/complaints"
-            className="group rounded-xl border border-outline-variant bg-surface-container-lowest p-md flex flex-col justify-between gap-sm hover:border-primary hover:shadow-md transition-all duration-300"
+            className="group border border-outline-variant bg-surface-container-lowest p-md flex flex-col justify-between gap-sm hover:border-error transition-colors"
           >
             <div className="flex items-center justify-between">
-              <span className="rounded-lg bg-amber-500/10 p-2 text-amber-600 dark:text-amber-400 group-hover:bg-amber-600 group-hover:text-white transition-colors">
+              <span className="text-error">
                 <AlertTriangle className="size-4" />
               </span>
-              <ChevronRight className="size-3.5 text-outline group-hover:translate-x-0.5 group-hover:text-primary transition-all" />
+              <ChevronRight className="size-3.5 text-outline group-hover:text-error transition-colors" />
             </div>
             <div className="mt-1">
               <h3 className="text-body-sm font-bold text-on-surface">Complaints</h3>
@@ -333,13 +343,13 @@ export default async function AdminDashboardPage() {
 
           <Link
             href="/admin/notices"
-            className="group rounded-xl border border-outline-variant bg-surface-container-lowest p-md flex flex-col justify-between gap-sm hover:border-primary hover:shadow-md transition-all duration-300"
+            className="group border border-outline-variant bg-surface-container-lowest p-md flex flex-col justify-between gap-sm hover:border-primary transition-colors"
           >
             <div className="flex items-center justify-between">
-              <span className="rounded-lg bg-emerald-500/10 p-2 text-emerald-600 dark:text-emerald-400 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+              <span className="text-on-surface-variant group-hover:text-primary">
                 <Megaphone className="size-4" />
               </span>
-              <ChevronRight className="size-3.5 text-outline group-hover:translate-x-0.5 group-hover:text-primary transition-all" />
+              <ChevronRight className="size-3.5 text-outline group-hover:text-primary transition-colors" />
             </div>
             <div className="mt-1">
               <h3 className="text-body-sm font-bold text-on-surface">Notices</h3>
@@ -349,13 +359,13 @@ export default async function AdminDashboardPage() {
 
           <Link
             href="/admin/facilities"
-            className="group rounded-xl border border-outline-variant bg-surface-container-lowest p-md flex flex-col justify-between gap-sm hover:border-primary hover:shadow-md transition-all duration-300"
+            className="group border border-outline-variant bg-surface-container-lowest p-md flex flex-col justify-between gap-sm hover:border-primary transition-colors"
           >
             <div className="flex items-center justify-between">
-              <span className="rounded-lg bg-violet-500/10 p-2 text-violet-600 dark:text-violet-400 group-hover:bg-violet-600 group-hover:text-white transition-colors">
+              <span className="text-on-surface-variant group-hover:text-primary">
                 <Building className="size-4" />
               </span>
-              <ChevronRight className="size-3.5 text-outline group-hover:translate-x-0.5 group-hover:text-primary transition-all" />
+              <ChevronRight className="size-3.5 text-outline group-hover:text-primary transition-colors" />
             </div>
             <div className="mt-1">
               <h3 className="text-body-sm font-bold text-on-surface">Facilities</h3>
@@ -365,13 +375,13 @@ export default async function AdminDashboardPage() {
 
           <Link
             href="/admin/bookings"
-            className="group rounded-xl border border-outline-variant bg-surface-container-lowest p-md flex flex-col justify-between gap-sm hover:border-primary hover:shadow-md transition-all duration-300"
+            className="group border border-outline-variant bg-surface-container-lowest p-md flex flex-col justify-between gap-sm hover:border-primary transition-colors"
           >
             <div className="flex items-center justify-between">
-              <span className="rounded-lg bg-secondary/10 p-2 text-secondary dark:text-secondary group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+              <span className="text-on-surface-variant group-hover:text-primary">
                 <Calendar className="size-4" />
               </span>
-              <ChevronRight className="size-3.5 text-outline group-hover:translate-x-0.5 group-hover:text-primary transition-all" />
+              <ChevronRight className="size-3.5 text-outline group-hover:text-primary transition-colors" />
             </div>
             <div className="mt-1">
               <h3 className="text-body-sm font-bold text-on-surface">Bookings</h3>
@@ -380,6 +390,7 @@ export default async function AdminDashboardPage() {
           </Link>
         </div>
       </section>
+
 
       {/* ── SECTION 4 — MAIN WORKSPACE: 70 / 30 SPLIT ───────────── */}
       <div className="grid grid-cols-1 lg:grid-cols-10 gap-gutter items-start">

@@ -21,22 +21,22 @@ export function EmptyState({
   return (
     <div
       className={cn(
-        "w-full min-w-0 flex flex-col items-stretch justify-center rounded-xl border border-dashed border-outline-variant bg-surface-container-low px-md py-xl md:px-lg text-center",
+        "w-full min-w-0 flex flex-col items-center justify-center rounded-none border border-dashed border-outline-variant bg-surface px-md py-xl md:px-lg text-center",
         className,
       )}
     >
       {Icon ? (
-        <div className="mb-md flex size-12 shrink-0 self-center items-center justify-center rounded-full bg-surface-container-high text-on-surface-variant">
-          <Icon className="size-6" />
+        <div className="mb-md flex size-10 shrink-0 items-center justify-center border border-outline-variant text-outline">
+          <Icon className="size-5" />
         </div>
       ) : null}
 
-      <h3 className="w-full text-center text-headline-sm text-on-surface">
+      <h3 className="w-full text-center font-serif text-headline-sm text-on-surface">
         {title}
       </h3>
 
       {description ? (
-        <p className="mt-sm w-full max-w-md self-center text-center text-body-md text-on-surface-variant leading-relaxed">
+        <p className="mt-sm w-full max-w-md mx-auto text-center text-body-md text-on-surface-variant leading-relaxed whitespace-normal break-words">
           {description}
         </p>
       ) : null}

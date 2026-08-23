@@ -4,14 +4,14 @@ import type { ComplaintStatus } from "@/types/ui";
 import { cn } from "@/lib/utils";
 
 const statusBadgeVariants = cva(
-  "inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-label-sm font-semibold uppercase tracking-wider",
+  "inline-flex items-center gap-1 rounded-none px-2 py-0.5 text-[10px] font-mono font-semibold uppercase tracking-wider",
   {
     variants: {
       status: {
-        open: "bg-emerald-500/10 text-emerald-700 dark:text-emerald-300",
-        in_progress: "bg-amber-500/10 text-amber-700 dark:text-amber-300",
-        resolved: "bg-primary-container/10 text-primary-container",
-        closed: "bg-slate-500/10 text-slate-600 dark:text-slate-300",
+        open: "border border-[#CC0000] text-[#CC0000] bg-transparent",
+        in_progress: "border border-[#D97706] text-[#D97706] bg-transparent",
+        resolved: "border border-[#111111] text-[#111111] dark:border-[#F0EEE8] dark:text-[#F0EEE8] bg-transparent",
+        closed: "border border-[#A3A3A3] text-[#A3A3A3] bg-transparent",
       },
     },
     defaultVariants: {
@@ -37,3 +37,4 @@ export function StatusBadge({ status, className }: StatusBadgeProps) {
     <span className={cn(statusBadgeVariants({ status }), className)}>{statusLabels[status]}</span>
   );
 }
+

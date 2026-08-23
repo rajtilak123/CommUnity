@@ -23,7 +23,7 @@ export function AdminShell({
 
       <div className="flex min-h-screen flex-col md:ml-[220px]">
         <main className="flex-1 min-w-0 overflow-y-auto">
-          <div className="mx-auto w-full min-w-0 max-w-[1400px] space-y-xl p-margin-mobile pt-[80px] md:p-xl">
+          <div className="mx-auto w-full min-w-0 max-w-[1400px] space-y-xl p-margin-mobile pt-[72px] md:p-xl">
             {children}
           </div>
         </main>

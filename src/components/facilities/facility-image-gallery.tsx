@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { getDefaultFacilityImage } from "@/lib/facilities/constants";
 import { getSignedFacilityImageUrl } from "@/lib/facilities/upload";
 import type { FacilityImage } from "@/types/facilities";
 import { Users } from "lucide-react";
@@ -11,25 +12,36 @@ type FacilityImageGalleryProps = {
 };
 
 export function FacilityImageGallery({ images, facilityName }: FacilityImageGalleryProps) {
-  const [signedUrls, setSignedUrls] = useState<string[]>([]);
+  const defaultImage = getDefaultFacilityImage(facilityName);
+  const [signedUrls, setSignedUrls] = useState<string[]>(defaultImage ? [defaultImage] : []);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let active = true;
     async function load() {
-      if (images.length === 0) {
-        setLoading(false);
+      const urlsToLoad = images.length > 0
+        ? images.map((img) => img.file_url)
+        : defaultImage
+        ? [defaultImage]
+        : [];
+
+      if (urlsToLoad.length === 0) {
+        if (active) setLoading(false);
         return;
       }
       try {
         const urls = await Promise.all(
-          images.map((img) => getSignedFacilityImageUrl(img.file_url))
+          urlsToLoad.map((url) => getSignedFacilityImageUrl(url))
         );
         if (active) {
-          setSignedUrls(urls.filter(Boolean));
+          const validUrls = urls.filter(Boolean);
+          setSignedUrls(validUrls.length > 0 ? validUrls : defaultImage ? [defaultImage] : []);
         }
       } catch (err) {
         console.error("Failed to load facility gallery images", err);
+        if (active && defaultImage) {
+          setSignedUrls([defaultImage]);
+        }
       } finally {
         if (active) {
           setLoading(false);
@@ -40,17 +52,17 @@ export function FacilityImageGallery({ images, facilityName }: FacilityImageGall
     return () => {
       active = false;
     };
-  }, [images]);
+  }, [images, defaultImage]);
 
   if (loading) {
     return (
-      <div className="aspect-video w-full rounded-xl bg-surface-container-high animate-pulse" />
+      <div className="aspect-video w-full rounded-none bg-surface-container-high animate-pulse" />
     );
   }
 
   if (signedUrls.length === 0) {
     return (
-      <div className="aspect-video w-full rounded-xl bg-surface-container-high flex items-center justify-center text-outline-variant">
+      <div className="aspect-video w-full rounded-none bg-surface-container-high flex items-center justify-center text-outline">
         <Users className="size-16" />
       </div>
     );
@@ -58,7 +70,7 @@ export function FacilityImageGallery({ images, facilityName }: FacilityImageGall
 
   return (
     <div className="grid grid-cols-1 gap-md">
-      <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-surface-container-high border border-outline-variant">
+      <div className="relative aspect-video max-h-[360px] w-full overflow-hidden rounded-none bg-surface-container-high border border-outline-variant">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={signedUrls[0]}
@@ -69,7 +81,7 @@ export function FacilityImageGallery({ images, facilityName }: FacilityImageGall
       {signedUrls.length > 1 && (
         <div className="grid grid-cols-4 gap-sm">
           {signedUrls.slice(1, 5).map((url, idx) => (
-            <div key={idx} className="relative aspect-video overflow-hidden rounded-lg bg-surface-container border border-outline-variant">
+            <div key={idx} className="relative aspect-video overflow-hidden rounded-none bg-surface-container border border-outline-variant">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={url}

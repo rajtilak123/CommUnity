@@ -185,7 +185,9 @@ export function ResidentDetailView({ resident, societyName }: ResidentDetailView
               <Building className="size-5 text-outline" />
               <div>
                 <div className="text-label-sm font-medium">Society</div>
-                <div className="text-body-md text-on-surface">{societyName || "Unknown Society"}</div>
+                <div className="text-body-md text-on-surface">
+                  {societyName && !societyName.toLowerCase().includes("demo") ? societyName : "CommUnity"}
+                </div>
               </div>
             </div>
             <div className="flex items-center gap-sm text-on-surface-variant">

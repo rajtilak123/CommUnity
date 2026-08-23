@@ -33,7 +33,7 @@ export function NoticesList({ notices }: NoticesListProps) {
   return (
     <>
       <div className="hidden md:block">
-        <h2 className="text-headline-lg text-on-surface">Notices & Announcements</h2>
+        <h2 className="font-serif text-2xl md:text-3xl font-bold text-on-surface">Notices &amp; Announcements</h2>
       </div>
 
       <div className="mb-xl flex flex-col gap-md">
@@ -41,7 +41,7 @@ export function NoticesList({ notices }: NoticesListProps) {
           placeholder="Search for notices..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="rounded-[0.75rem] border-outline-variant bg-surface py-3 pl-12 shadow-sm"
+          className="rounded-none border-0 border-b-2 border-outline-variant bg-transparent py-3 pl-10 shadow-none focus:border-primary"
         />
         <NoticeFilters activeCategory={category} onCategoryChange={setCategory} />
       </div>
