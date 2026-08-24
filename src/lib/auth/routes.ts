@@ -1,4 +1,4 @@
-export const PUBLIC_ROUTES = ["/login", "/auth/callback"] as const;
+export const PUBLIC_ROUTES = ["/login", "/join", "/auth/callback"] as const;
 
 export const RESIDENT_ROUTE_PREFIXES = [
   "/dashboard",

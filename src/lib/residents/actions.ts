@@ -1,5 +1,6 @@
 "use server";
 
+import crypto from "crypto";
 import { revalidatePath } from "next/cache";
 import { requireAdmin } from "@/lib/auth/session";
 import { createClient } from "@/lib/supabase/server";
@@ -167,3 +168,87 @@ export async function updateUnitLabelAction(residentId: string, unitLabel: strin
   revalidatePath(`/admin/residents/${residentId}`);
   return { success: "Unit designation updated" };
 }
+
+const ALLOWED_CHARS = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
+
+function generateSecureInviteCode(): string {
+  const bytes = crypto.randomBytes(6);
+  let code = "";
+  for (let i = 0; i < 6; i++) {
+    code += ALLOWED_CHARS[bytes[i] % ALLOWED_CHARS.length];
+  }
+  return code;
+}
+
+export type CreateInviteActionState = {
+  error?: string;
+  success?: boolean;
+  code?: string;
+};
+
+export async function createResidentInvitationAction(
+  _prevState: CreateInviteActionState,
+  _formData: FormData,
+): Promise<CreateInviteActionState> {
+  void _prevState;
+  void _formData;
+  try {
+    const admin = await requireAdmin();
+    if (!admin.society_id) {
+      console.error("[createResidentInvitationAction] Admin has no society_id:", admin.id);
+      return { error: "No society associated with your admin account." };
+    }
+
+    const supabase = await createClient();
+
+    // 1. Generate secure code & SHA-256 hash
+    const code = generateSecureInviteCode();
+    const normalizedCode = code.trim().toUpperCase();
+    const tokenHash = crypto.createHash("sha256").update(normalizedCode).digest("hex");
+    const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
+    const placeholderEmail = `invite-${tokenHash.substring(0, 12)}@community.local`;
+
+    // 2. Store invitation record
+    const { error: insertError } = await supabase.from("invitations").insert({
+      society_id: admin.society_id,
+      email: placeholderEmail,
+      type: "resident_onboard",
+      token_hash: tokenHash,
+      created_by: admin.id,
+      expires_at: expiresAt,
+      is_redeemed: false,
+    });
+
+    if (insertError) {
+      console.error("[createResidentInvitationAction] Insert error:", {
+        message: insertError.message,
+        code: insertError.code,
+        details: insertError.details,
+        hint: insertError.hint,
+      });
+      return { error: insertError.message || "Failed to create invitation record." };
+    }
+
+    revalidatePath("/admin/residents");
+
+    return {
+      success: true,
+      code: normalizedCode,
+    };
+  } catch (err: unknown) {
+    if (
+      err &&
+      typeof err === "object" &&
+      "digest" in err &&
+      typeof (err as { digest?: string }).digest === "string" &&
+      (err as { digest: string }).digest.startsWith("NEXT_REDIRECT")
+    ) {
+      throw err;
+    }
+
+    console.error("[createResidentInvitationAction] Unhandled Exception:", err);
+    const msg = err instanceof Error ? err.message : "Internal Server Error";
+    return { error: `Server error: ${msg}` };
+  }
+}
+

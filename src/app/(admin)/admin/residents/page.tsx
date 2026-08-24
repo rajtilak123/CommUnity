@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { PageHeader } from "@/components/page-header";
 import { ResidentsList } from "@/components/residents/residents-list";
+import { AddResidentDialog } from "@/components/residents/add-resident-dialog";
 import { requireAdmin } from "@/lib/auth/session";
 import { getResidentsList } from "@/lib/residents/queries";
 import type { Profile } from "@/types/auth";
@@ -40,6 +41,7 @@ export default async function AdminResidentsPage() {
         title="Residents Management"
         description="Manage registrations, assign housing units, adjust user roles, and activate/suspend resident accounts."
         breadcrumbs={breadcrumbs}
+        actions={<AddResidentDialog />}
       />
 
       <div className="mt-lg">

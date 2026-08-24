@@ -10,14 +10,14 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-[#111111] text-[#F9F9F7] border border-[#111111] hover:bg-[#F9F9F7] hover:text-[#111111] dark:bg-[#F0EEE8] dark:text-[#0E0E0C] dark:border-[#F0EEE8] dark:hover:bg-[#0E0E0C] dark:hover:text-[#F0EEE8]",
+          "bg-primary text-on-primary border border-primary hover:bg-surface hover:text-primary active:scale-[0.98]",
         secondary:
-          "bg-transparent border border-[#111111] text-[#111111] hover:bg-[#111111] hover:text-[#F9F9F7] dark:border-[#F0EEE8] dark:text-[#F0EEE8] dark:hover:bg-[#F0EEE8] dark:hover:text-[#0E0E0C]",
+          "border border-outline-variant bg-surface text-on-surface hover:bg-surface-container-low",
         ghost:
-          "text-[#525252] hover:bg-[#E5E5E0] hover:text-[#111111] dark:text-[#A3A3A3] dark:hover:bg-[#222222] dark:hover:text-[#F0EEE8]",
+          "text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface",
         destructive:
-          "bg-[#CC0000] text-white border border-[#CC0000] hover:bg-[#AA0000] hover:border-[#AA0000]",
-        link: "text-[#111111] underline-offset-4 hover:underline dark:text-[#F0EEE8]",
+          "bg-error text-on-error border border-error hover:bg-error/90 active:scale-[0.98]",
+        link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
         default: "h-10 px-5 py-2.5",
@@ -45,4 +45,3 @@ export function Button({ className, variant, size, asChild = false, ...props }: 
 }
 
 export { buttonVariants };
-

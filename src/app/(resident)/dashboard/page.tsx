@@ -504,13 +504,15 @@ export default async function ResidentDashboardPage() {
                     <CalendarDays className="size-6" />
                   </div>
 
-                  <h3 className="w-full text-headline-sm text-on-surface">
-                    No upcoming bookings
-                  </h3>
+                  <div className="w-full max-w-md mx-auto space-y-sm text-center">
+                    <h3 className="w-full font-serif text-headline-sm text-on-surface">
+                      No upcoming bookings
+                    </h3>
 
-                  <p className="mx-auto mt-sm w-full whitespace-normal break-words text-center text-body-md leading-relaxed text-on-surface-variant">
-                    Book clubhouse slots, sports grounds, and other facilities online.
-                  </p>
+                    <p className="w-full text-center text-body-md text-on-surface-variant leading-relaxed">
+                      Book clubhouse slots, sports grounds, and other facilities online.
+                    </p>
+                  </div>
 
                   <div className="mt-lg flex w-full justify-center">
                     <Link

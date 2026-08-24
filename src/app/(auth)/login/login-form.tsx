@@ -75,6 +75,18 @@ export function LoginForm() {
           {isPending ? "Signing in..." : "Login to Portal"}
           {!isPending ? <ArrowRight className="size-4" /> : null}
         </Button>
+
+        <div className="pt-md text-center border-t border-outline-variant">
+          <p className="font-mono text-xs text-on-surface-variant">
+            Have an invitation code?{" "}
+            <Link
+              href="/join"
+              className="font-semibold text-primary hover:underline"
+            >
+              Join your community →
+            </Link>
+          </p>
+        </div>
       </form>
     </div>
   );

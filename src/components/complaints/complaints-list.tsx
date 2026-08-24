@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Plus } from "lucide-react";
+import { Plus, AlertTriangle } from "lucide-react";
 import { useMemo, useState } from "react";
 
 import { ComplaintCard } from "@/components/complaints/complaint-card";
@@ -11,7 +11,6 @@ import { EmptyState } from "@/components/empty-state";
 import { SearchInput } from "@/components/search-input";
 import type { ComplaintListItem, ComplaintStats } from "@/types/complaints";
 import type { ComplaintStatus } from "@/types/ui";
-import { AlertTriangle } from "lucide-react";
 
 type ComplaintsListProps = {
   complaints: ComplaintListItem[];

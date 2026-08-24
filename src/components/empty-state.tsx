@@ -31,15 +31,17 @@ export function EmptyState({
         </div>
       ) : null}
 
-      <h3 className="w-full text-center font-serif text-headline-sm text-on-surface">
-        {title}
-      </h3>
+      <div className="w-full max-w-md mx-auto space-y-sm text-center">
+        <h3 className="w-full font-serif text-headline-sm text-on-surface">
+          {title}
+        </h3>
 
-      {description ? (
-        <p className="mt-sm w-full max-w-md mx-auto text-center text-body-md text-on-surface-variant leading-relaxed whitespace-normal break-words">
-          {description}
-        </p>
-      ) : null}
+        {description ? (
+          <p className="w-full text-center text-body-md text-on-surface-variant leading-relaxed">
+            {description}
+          </p>
+        ) : null}
+      </div>
 
       {action ? (
         <div className="mt-lg flex w-full justify-center">

@@ -18,10 +18,15 @@ export {
   updateResidentStatusSchema,
   toggleResidentActiveSchema,
   updateResidentRoleSchema,
+  joinCodeSchema,
+  joinRegisterSchema,
 } from "@/lib/validations/residents";
 export type {
   UpdateResidentStatusInput,
   ToggleResidentActiveInput,
   UpdateResidentRoleInput,
+  JoinCodeInput,
+  JoinRegisterInput,
 } from "@/lib/validations/residents";
+
 
