@@ -19,14 +19,18 @@ export function ResidentHeader({ profile, unreadCount = 0 }: ResidentHeaderProps
         <div className="flex size-7 shrink-0 items-center justify-center border border-[#E5E5E0] font-mono text-[10px] font-semibold text-[#525252] md:hidden">
           {initials}
         </div>
-        <Link href="/dashboard" className="flex items-center focus-visible:outline-none">
+        <Link href="/dashboard" className="flex items-center gap-2 focus-visible:outline-none">
           <Image
-            src="/branding/community-logo.png"
+            src="/branding/community-icon.png"
             alt="CommUnity Logo"
-            width={120}
-            height={120}
-            className="h-7 w-auto object-contain"
+            width={28}
+            height={28}
+            className="size-7 object-contain"
+            unoptimized
           />
+          <span className="font-serif text-xl font-bold tracking-tight text-[#111111]">
+            CommUnity
+          </span>
         </Link>
       </div>
 

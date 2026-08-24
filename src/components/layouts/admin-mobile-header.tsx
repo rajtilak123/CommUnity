@@ -105,12 +105,16 @@ export function AdminMobileHeader({ profile }: AdminMobileHeaderProps) {
       <header className="fixed top-0 left-0 right-0 z-40 flex h-14 items-center justify-between border-b border-outline-variant bg-surface px-margin-mobile md:hidden">
         <Link href="/admin/dashboard" className="flex items-center gap-2 focus-visible:outline-none">
           <Image
-            src="/branding/community-logo.png"
+            src="/branding/community-icon.png"
             alt="CommUnity Logo"
-            width={120}
-            height={120}
-            className="h-7 w-auto object-contain"
+            width={28}
+            height={28}
+            className="size-7 object-contain"
+            unoptimized
           />
+          <span className="font-serif text-xl font-bold tracking-tight text-on-surface">
+            CommUnity
+          </span>
           <span className="font-mono text-[9px] tracking-widest text-on-surface-variant uppercase">Admin</span>
         </Link>
 
@@ -149,14 +153,18 @@ export function AdminMobileHeader({ profile }: AdminMobileHeaderProps) {
         {/* Drawer Header */}
         <div className="flex items-center justify-between px-4 py-5 border-b border-[#333333]">
           <Link href="/admin/dashboard" className="inline-block focus-visible:outline-none">
-            <div className="inline-flex items-center justify-center bg-[#F9F9F7] p-1 rounded">
+            <div className="inline-flex items-center gap-2 justify-center bg-[#F9F9F7] px-2 py-1 rounded">
               <Image
-                src="/branding/community-logo.png"
+                src="/branding/community-icon.png"
                 alt="CommUnity Logo"
-                width={120}
-                height={120}
-                className="h-8 w-auto object-contain"
+                width={28}
+                height={28}
+                className="size-7 object-contain"
+                unoptimized
               />
+              <span className="font-serif text-xl font-bold tracking-tight text-[#111111]">
+                CommUnity
+              </span>
             </div>
           </Link>
           <button

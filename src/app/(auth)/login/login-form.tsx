@@ -83,18 +83,22 @@ export function LoginForm() {
 export function LoginBrand() {
   return (
     <div className="mb-xl flex flex-col items-center text-center">
-      <Link href="/" className="mb-md inline-block focus-visible:outline-none">
+      <Link href="/" className="mb-md inline-flex items-center gap-2.5 focus-visible:outline-none">
         <Image
-          src="/branding/community-logo.png"
+          src="/branding/community-icon.png"
           alt="CommUnity Logo"
-          width={240}
-          height={240}
-          className="h-24 w-auto object-contain"
+          width={40}
+          height={40}
+          className="size-10 object-contain"
+          unoptimized
           priority
         />
+        <span className="font-serif text-3xl font-bold tracking-tight text-on-surface">
+          CommUnity
+        </span>
       </Link>
       <p className="text-body-md text-on-surface-variant">
-        Welcome back to your residential portal.
+        Where the whole community comes together
       </p>
     </div>
   );

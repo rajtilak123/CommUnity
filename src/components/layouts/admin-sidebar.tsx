@@ -23,15 +23,19 @@ export function AdminSidebar({ profile }: AdminSidebarProps) {
       {/* Brand header */}
       <div className="px-4 py-5 border-b border-[#333333]">
         <Link href="/admin/dashboard" className="inline-block focus-visible:outline-none">
-          <div className="inline-flex items-center justify-center bg-[#F9F9F7] p-1.5 rounded">
+          <div className="inline-flex items-center gap-2 justify-center bg-[#F9F9F7] px-2.5 py-1 rounded">
             <Image
-              src="/branding/community-logo.png"
+              src="/branding/community-icon.png"
               alt="CommUnity Logo"
-              width={160}
-              height={160}
-              className="h-10 w-auto object-contain"
+              width={28}
+              height={28}
+              className="size-7 object-contain"
+              unoptimized
               priority
             />
+            <span className="font-serif text-xl font-bold tracking-tight text-[#111111]">
+              CommUnity
+            </span>
           </div>
         </Link>
       </div>

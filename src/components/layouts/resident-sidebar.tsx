@@ -22,15 +22,19 @@ export function ResidentSidebar({ profile }: ResidentSidebarProps) {
     <aside className="fixed inset-y-0 left-0 z-40 hidden h-full w-sidebar flex-col border-r border-primary bg-surface md:flex">
       {/* Brand header */}
       <div className="px-6 py-5 border-b border-outline-variant">
-        <Link href="/dashboard" className="inline-block focus-visible:outline-none">
+        <Link href="/dashboard" className="inline-flex items-center gap-2.5 focus-visible:outline-none">
           <Image
-            src="/branding/community-logo.png"
+            src="/branding/community-icon.png"
             alt="CommUnity Logo"
-            width={160}
-            height={160}
-            className="h-12 w-auto object-contain"
+            width={32}
+            height={32}
+            className="size-8 object-contain"
+            unoptimized
             priority
           />
+          <span className="font-serif text-2xl font-bold tracking-tight text-on-surface">
+            CommUnity
+          </span>
         </Link>
       </div>
 
